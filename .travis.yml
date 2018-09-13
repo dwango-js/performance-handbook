@@ -2,7 +2,7 @@ sudo: false
 language: node_js
 node_js: stable
 before_script:
-  - $(npm bin)/set-up-ssh --key "$encrypted_cdce992b6b2a_key" --iv "$encrypted_cdce992b6b2a_iv" --path-encrypted-key ".travis/textlint.github.io-deploykey.enc"
+  - $(npm bin)/set-up-ssh --key "$encrypted_cdce992b6b2a_key" --iv "$encrypted_cdce992b6b2a_iv" --path-encrypted-key ".travis/github_deploy_key.enc"
 script:
   - yarn test
   - $(npm bin)/update-branch --commands "npm run build" --commit-message "Update Website [skip ci]" --directory "_book" --distribution-branch "gh-pages" --source-branch "master"
