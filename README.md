@@ -1,4 +1,4 @@
-# [Webフロントエンド パフォーマンス改善ハンドブック](https://dwango-js.github.io/performance-handbook/)
+# [Webフロントエンド パフォーマンス改善ハンドブック](https://dwango-js.github.io/performance-handbook/) [![Build Status](https://travis-ci.org/dwango-js/performance-handbook.svg?branch=master)](https://travis-ci.org/dwango-js/performance-handbook)
   
 このパフォーマンス改善ハンドブックでは、ウェブアプリケーションにおけるフロントエンドのパフォーマンス改善について扱っています。
 
