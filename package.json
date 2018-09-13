@@ -1,0 +1,27 @@
+{
+  "private": true,
+  "license": "MIT",
+  "name": "performance-handbook",
+  "version": "1.0.0",
+  "scripts": {
+    "prepublish": "gitbook install",
+    "start": "gitbook serve",
+    "build": "gitbook build",
+    "lint": "textlint -f pretty-error \"src/**/*.md\"",
+    "lint:fix": "textlint --fix \"src/**/*.md\"",
+    "predeploy": "npm run build",
+    "test": "npm run lint",
+    "deploy": "gh-pages -d _book"
+  },
+  "description": "Webフロントエンド パフォーマンス改善ハンドブック",
+  "devDependencies": {
+    "gh-pages": "^1.2.0",
+    "gitbook-cli": "^2.3.2",
+    "gitbook-plugin-markdown-video": "^1.2.0",
+    "textlint": "^11.0.0",
+    "textlint-filter-rule-comments": "^1.2.2",
+    "textlint-rule-no-dead-link": "^4.3.0",
+    "textlint-rule-preset-ja-technical-writing": "^3.1.0",
+    "textlint-rule-prh": "^5.2.0"
+  }
+}

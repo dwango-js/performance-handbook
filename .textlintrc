@@ -1,0 +1,30 @@
+{
+  "filters": {
+    "comments": true
+  },
+  "rules": {
+    "preset-ja-technical-writing": {
+      "sentence-length": {
+        "max": 120,
+        "severity": "warning"
+      },
+      "no-doubled-joshi": {
+        "severity": "warning"
+      },
+      "ja-no-mixed-period": {
+        "severity": "warning"
+      },
+      "ja-no-weak-phrase": {
+        "severity": "warning"
+      }
+    },
+    "no-dead-link": {
+      "checkRelative": true
+    },
+    "prh": {
+      "rulePaths": [
+        "./prh.yml"
+      ]
+    }
+  }
+}
