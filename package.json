@@ -7,7 +7,7 @@
     "prepublish": "gitbook install",
     "start": "gitbook serve",
     "build": "gitbook build",
-    "lint": "textlint -f pretty-error \"src/**/*.md\"",
+    "lint": "textlint \"src/**/*.md\"",
     "lint:fix": "textlint --fix \"src/**/*.md\"",
     "predeploy": "npm run build",
     "test": "npm run lint",
