@@ -15,6 +15,7 @@
   },
   "description": "Webフロントエンド パフォーマンス改善ハンドブック",
   "devDependencies": {
+    "@alrra/travis-scripts": "^3.0.1",
     "gh-pages": "^1.2.0",
     "gitbook-cli": "^2.3.2",
     "gitbook-plugin-markdown-video": "^1.2.0",
