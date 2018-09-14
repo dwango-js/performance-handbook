@@ -22,7 +22,7 @@
 
 ### 参考
 
-動画の視聴ページにおけるコメント入力の更新範囲。
+[ニコニコ動画](http://www.nicovideo.jp/)の視聴ページにおけるコメント入力の更新範囲。
 こちらは、入力ごとに描画が更新される範囲が限定的になっていることがわかります。
 
 <video src="./img/video-input.mp4" controls width="640" height="480"></video>
