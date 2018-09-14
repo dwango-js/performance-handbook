@@ -10,7 +10,7 @@
 - `setInterval`
 - `requestAnimationFrame`
 
-これらを監視してみれば、無駄な処理を見つけることができそうです。
+これらの関数を監視してみれば、無駄な処理を見つけることができそうです。
 
 別の方法としてChromeにはPerformance Monitorがあるので、これをじっと見ていると変化に気づくことができます。
 この問題も元々はPerformance Monitorを見ていて変な処理があることを見つけたのが出発点です。

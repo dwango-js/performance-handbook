@@ -17,7 +17,7 @@
 
 これらについては次のサイトや書籍が参考になります。
 
-### 参考
+**参考**
 
 - [Chrome DevTools  |  Tools for Web Developers  |  Google Developers](https://developers.google.com/web/tools/chrome-devtools/ "Chrome DevTools  |  Tools for Web Developers  |  Google Developers")
 - [開発ツール | MDN](https://developer.mozilla.org/ja/docs/Tools "開発ツール | MDN")

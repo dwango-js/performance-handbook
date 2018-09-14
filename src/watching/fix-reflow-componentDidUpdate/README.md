@@ -3,7 +3,10 @@
 Reactではコンポーネントが描画/更新し終わると`componentDidUpdate`のライフサイクルメソッドが呼ばれます。
 このとき、`componentDidUpdate`でReflowが発生するということは、描画が更新されるたびにレイアウト情報を計算し直さなければなりません。
 
-> レイアウトの算出 各要素に割り当てられたスタイル情報をもとに、それぞれの要素がどの ような位置関係で配置されるのかを決定するのがレイアウトの算出処理で す。これが行われないと、要素がどんな位置にどんな大きさで配置されて いるのかはわかりません。この処理の呼称はレンダリングエンジンによっ て異なります。Chrome の Blink や Safari の WebKitではこの処理を単にレイアウト(Layout)と呼び、Firefox の Gecko ではリフロー(Reflow)と呼びます が、本書ではレイアウトの算出と総称します。 JavaScript から Element#getBoundingClientRect() メソッドを実行して要 く けい素の矩形情報を取得したり、offsetTop や offsetWidth などのプロパティを 参照したりすることは頻繁にあります。これらもレイアウトの算出処理に よって得られた値を取得するための API です。このようなレイアウトに関 わる情報の更新や参照が JavaScript から頻繁に行われることでレイアウト 算出の処理が誘発され、UI のスムーズさを損なう大きい負荷を生み出して しまうことがあります。
+> レイアウトの算出 各要素に割り当てられたスタイル情報をもとに、それぞれの要素がどの ような位置関係で配置されるのかを決定するのがレイアウトの算出処理で す。これが行われないと、要素がどんな位置にどんな大きさで配置されて いるのかはわかりません。
+> この処理の呼称はレンダリングエンジンによっ て異なります。Chrome の Blink や Safari の WebKitではこの処理を単にレイアウト(Layout)と呼び、Firefox の Gecko ではリフロー(Reflow)と呼びます が、本書ではレイアウトの算出と総称します。 
+> JavaScript から Element#getBoundingClientRect() メソッドを実行して要素の矩形情報を取得したり、offsetTop や offsetWidth などのプロパティを 参照したりすることは頻繁にあります。
+> これらもレイアウトの算出処理に よって得られた値を取得するための API です。このようなレイアウトに関わる情報の更新や参照がJavaScriptから頻繁に行われることでレイアウト 算出の処理が誘発され、UI のスムーズさを損なう大きい負荷を生み出してしまうことがあります。
 > [超速！ Webページ速度改善ガイド](http://gihyo.jp/book/2017/978-4-7741-9400-4 "超速！ Webページ速度改善ガイド")
 
 ペイント（描画）とレイアウトは多くのブラウザでは、レンダリングプロセスでそれぞれ別々の処理となっています。
@@ -55,7 +58,7 @@ export const getVideoDimensions = (video: HTMLVideoElement): VideoDimensions => 
 `getVideoDimensions`の中で、`clientHeight`/`clientWidth`など要素のサイズを再計算が必要なDOMプロパティに触れていることがわかります。
 
 これらのプロパティはレイアウトを発生させるプロパティとして知られています。
-次のページのそれらのプロパティのまとめがあります。
+次のページのそれらのプロパティのまとめられています。
 
 - <https://gist.github.com/paulirish/5d52fb081b3570c81e3a>
 - [CSS Triggers](https://csstriggers.com/ "CSS Triggers")
@@ -82,7 +85,7 @@ export const getVideoDimensions = (video: HTMLVideoElement): VideoDimensions => 
 
 ![getVideoDimensionsを呼び出す回数を削減するPR](./img/pr-getVideoDimensions.png)
 
-次のような修正を行いました。
+具体的には次のような修正を行いました。
 
 <!-- textlint-disable -->
 
