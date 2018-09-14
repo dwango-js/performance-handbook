@@ -6,7 +6,7 @@ webpackでビルドされているので[Webpack Bundle Analyzer](https://github
 
 - [Webpack Bundle Analyzer](https://github.com/webpack-contrib/webpack-bundle-analyzer "Webpack Bundle Analyzer")
 
-実際の改善前のbundleしたファイルの構造は次のような形でした。
+実際の改善前のbundleしたファイル構造は次のような形でした。
 
 ![before-bundle.png](./img/before-bundle.png)
 

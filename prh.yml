@@ -190,6 +190,8 @@ rules:
     prh: C87でざきさんがやらかした思い出
   - expected: superset
     pattern: super set
+  - expected: ずつ
+    pattern: づつ
 
   # 辞書
   - expected: 視聴ページ

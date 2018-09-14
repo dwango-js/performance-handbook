@@ -33,7 +33,7 @@
 [webpack-bundle-analyzer](https://github.com/webpack-contrib/webpack-bundle-analyzer)などは、環境変数などで普段のビルド + bundle-analyzerの結果を出力できるようにwebpackの設定ファイルを作成しておくとよいです。
 
 
-例) `BUILD_STATS=1 webpack` ように環境変数で[webpack-bundle-analyzer](https://github.com/webpack-contrib/webpack-bundle-analyzer)を有効化する
+例) `BUILD_STATS=1 webpack` のように環境変数で[webpack-bundle-analyzer](https://github.com/webpack-contrib/webpack-bundle-analyzer)を有効化する
 
 ```js
 const path = require('path');
@@ -246,7 +246,7 @@ webpackなどでは[Code Splitting](https://webpack.js.org/guides/code-splitting
 
 どのように分割するかはアプリケーションに依存しますが、もっとよくあるケースはルーティングによってページ（URL）として別れているコンポーネントを分割することです。
 また、同じページ内でも一般ユーザーと管理ユーザーで表示されるものが異なるということがあります。
-管理ユーザーでは　"一般ユーザーの表示" + "管理ツール"といった構造になっていることも多いです。
+管理ユーザーでは"一般ユーザーの表示" + "管理ツール"といった構造になっていることも多いです。
 
 このような場合にメインのbundleに一般ユーザーに不要な"管理ツール"のコンポーネントを含めるのは適切ではありません。
 そのため、"管理ツール"だけをchunkとして分けたり、[Dynamic Imports](https://webpack.js.org/guides/code-splitting/#dynamic-imports)で動的にロードするといったことができます。
