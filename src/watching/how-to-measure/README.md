@@ -16,6 +16,16 @@
     - `6x` 6倍遅い状態
 - ネットワークスロットリングを行う
 
+## 実際に利用した設定
+
+この**視聴中のパフォーマンス改善**では次のような設定を利用して計測しています。
+ネットワークスロットリングについてはランタイムではあまり関係ないものが多かったため特に設定していませんでした。
+
+- 値の計測: Chrome
+    - CPUスロットリング: 6x
+    - ネットワークスロットリング: なし
+- 動作の確認: IE/Edge/Firefox/Chrome/Safari
+
 **参考**
 
 - [CPU Throttling - Chrome DevTools - Dev Tips](https://umaar.com/dev-tips/88-cpu-throttling/)
