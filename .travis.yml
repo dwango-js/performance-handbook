@@ -1,6 +1,15 @@
-sudo: false
+dist: trusty
+sudo: required
 language: node_js
 node_js: stable
+before_install:
+  # https://calibre-ebook.com/download_linux
+  - sudo -v && wget -nv -O- https://download.calibre-ebook.com/linux-installer.sh | sudo sh /dev/stdin
+  - sudo ln -s /opt/calibre/ebook-convert /usr/local/bin/
+  # https://ipafont.ipa.go.jp/node26
+  - mkdir -p ~/.fonts
+  - cp ./resources/fonts/IPAexfont00301/ipaexm.ttf ~/.fonts/ipaexm.ttf
+  - fc-cache -fv
 before_script:
   - $(npm bin)/set-up-ssh --key "$encrypted_cdce992b6b2a_key" --iv "$encrypted_cdce992b6b2a_iv" --path-encrypted-key ".travis/github_deploy_key.enc"
 script:
