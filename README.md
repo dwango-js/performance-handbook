@@ -33,7 +33,11 @@
 
 ## Deploy
 
+`yarn run build` script require to install [ebook-convert](https://manual.calibre-ebook.com/generated/en/ebook-convert.html) with [calibre](https://calibre-ebook.com/download). 
+
     yarn run deploy
+    # Build web only
+    yarn run build:web
 
 ## Running tests
 
