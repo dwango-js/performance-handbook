@@ -11,6 +11,18 @@
 - 視聴中のパフォーマンス改善
 - ページロードのパフォーマンス改善
 
+## ダウンロード版
+
+埋め込み動画を再生できないなど一部制限がありますが、ダウンロード版を配布しています。
+
+<!-- textlint-disable -->
+
+- [PDF版](https://dwango-js.github.io/performance-handbook/performance-handbook.pdf)
+- [EPUB版](https://dwango-js.github.io/performance-handbook/performance-handbook.epub)
+- [MOBI版](https://dwango-js.github.io/performance-handbook/performance-handbook.mobi)
+
+<!-- textlint-enable -->
+
 ## Install
 
     yarn install

@@ -2,10 +2,15 @@
   "gitbook": ">=3.0.0",
   "title": "Webフロントエンド パフォーマンス改善ハンドブック",
   "description": "ウェブアプリケーションのフロントエンドにおけるパフォーマンス改善ハンドブック",
+  "author": "DWANGO Co., Ltd.",
+  "language": "ja",
   "root": "./src/",
   "plugins": [
     "markdown-video"
   ],
   "pluginsConfig": {
+  },
+  "pdf": {
+    "fontFamily": "IPAexMincho"
   }
 }

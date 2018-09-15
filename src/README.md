@@ -2,6 +2,18 @@
 
 このパフォーマンス改善ハンドブックでは、ウェブアプリケーションにおけるフロントエンドのパフォーマンス改善について扱っています。
 
+## ダウンロード版
+
+埋め込み動画を再生できないなど一部制限がありますが、ダウンロード版を配布しています。
+
+<!-- textlint-disable -->
+
+- [PDF版](https://dwango-js.github.io/performance-handbook/performance-handbook.pdf)
+- [EPUB版](https://dwango-js.github.io/performance-handbook/performance-handbook.epub)
+- [MOBI版](https://dwango-js.github.io/performance-handbook/performance-handbook.mobi)
+
+<!-- textlint-enable -->
+
 ## 目的
 
 このハンドブックでは過去に行った改善の事例を中心に紹介しています。
@@ -20,7 +32,6 @@
 
 機能とパフォーマンスに相関がある場合もあります。その場合、そこにはトレードオフの関係があります。
 そのようなトレードオフについての考え方の一例として[軽量化のトレードオフの検証](./watching/tradeoff/README.md)などもハンドブックに含まれています。
-
 
 ## 読み方
 
