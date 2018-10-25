@@ -72,7 +72,7 @@ module.exports = function (jsCode, inMap) {
 
 この[enableCEA708Captions](https://github.com/video-dev/hls.js/blob/master/docs/API.md#enablecea708captions)オプションを`false`にすることで`Cea608`に関する処理をしなくなることが確認できました。
 
-📝 hls.jsではこのオプションが有効時にフラグメントを取得するたびに、`cea608Parser`をリセットする処理が行われていた。
+📝 hls.jsではこのオプションが有効時にフラグメントを取得するたびに、`cea608Parser`をリセットする処理が行われていました。
 
 - <https://github.com/video-dev/hls.js/blob/905e65fd68095bd5e2bc9f888ae09b64fca8835a/src/controller/timeline-controller.js#L228-L232>
 
