@@ -38,7 +38,7 @@
 
 リサイズイベントが起きたから、要素をリサイズするといったようにイベント駆動で処理することで負荷が軽減できます。もちろん大量のイベントが発生すると問題となるため、イベントを間引くや別のタイミングでまとめる工夫も必要になる場合があります。
 
-少なくても、`shouldComponentUpdate`が完全に管理できていない状況においては`componentDidUpdate`でレイアウトするのは問題となりやすい。
+少なくとも、`shouldComponentUpdate`が完全に管理できていない状況においては`componentDidUpdate`でレイアウトするのは問題となりやすい箇所です。
 
 - [ `componentDidUpdate`でのReflowの修正](../fix-reflow-componentDidUpdate/README.md)
 
