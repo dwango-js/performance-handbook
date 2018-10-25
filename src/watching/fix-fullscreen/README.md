@@ -52,8 +52,8 @@
 
 #### 1. componentDidUpdateで重たい場所を見つける
 
-React 16ならばTimelineに次のような表示が出ている箇所が怪しい箇所。
-長い`componentDidUpdate`の処理の場合に表示される)
+React 16ならばTimelineに次のような表示が出ている箇所が怪しい箇所です。  
+（長い`componentDidUpdate`の処理の場合に表示される)
 
 > ⛔ (Committing Changes) Warning: Lifecycle hook scheduled a cascading update
 
