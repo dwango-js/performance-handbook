@@ -1,0 +1,676 @@
+
+<!DOCTYPE HTML>
+<html lang="ja" >
+    <head>
+        <meta charset="UTF-8">
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <title>リストコンポーネントのshouldComponentUpdateの改善 · Webフロントエンド パフォーマンス改善ハンドブック</title>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="description" content="">
+        <meta name="generator" content="GitBook 3.2.3">
+        <meta name="author" content="DWANGO Co., Ltd.">
+        
+        
+    
+    <link rel="stylesheet" href="../../gitbook/style.css">
+
+    
+            
+                
+                <link rel="stylesheet" href="../../gitbook/gitbook-plugin-markdown-video/video-js.min.css">
+                
+            
+                
+                <link rel="stylesheet" href="../../gitbook/gitbook-plugin-highlight/website.css">
+                
+            
+                
+                <link rel="stylesheet" href="../../gitbook/gitbook-plugin-search/search.css">
+                
+            
+                
+                <link rel="stylesheet" href="../../gitbook/gitbook-plugin-fontsettings/website.css">
+                
+            
+        
+
+    
+
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+
+        
+    
+    
+    <meta name="HandheldFriendly" content="true"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="../../gitbook/images/apple-touch-icon-precomposed-152.png">
+    <link rel="shortcut icon" href="../../gitbook/images/favicon.ico" type="image/x-icon">
+
+    
+    <link rel="next" href="throttling.html" />
+    
+    
+    <link rel="prev" href="./" />
+    
+
+    </head>
+    <body>
+        
+<div class="book">
+    <div class="book-summary">
+        
+            
+<div id="book-search-input" role="search">
+    <input type="text" placeholder="検索すると入力" />
+</div>
+
+            
+                <nav role="navigation">
+                
+
+
+<ul class="summary">
+    
+    
+
+    
+
+    
+        
+        
+    
+        <li class="chapter " data-level="1.1" data-path="../../">
+            
+                <a href="../../">
+            
+                    
+                    Introduction
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2" data-path="../">
+            
+                <a href="../">
+            
+                    
+                    視聴中のパフォーマンス改善
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.2.1" data-path="../metrics/">
+            
+                <a href="../metrics/">
+            
+                    
+                    指標の作成
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.2" data-path="../how-to-measure/">
+            
+                <a href="../how-to-measure/">
+            
+                    
+                    パフォーマンスの計測の仕方
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.3" data-path="../no-perf/">
+            
+                <a href="../no-perf/">
+            
+                    
+                    パフォーマンスにおける無駄
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.4" data-path="../fix/">
+            
+                <a href="../fix/">
+            
+                    
+                    パフォーマンス修正の事例
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.2.4.1" data-path="../fix-reflow-componentDidUpdate/">
+            
+                <a href="../fix-reflow-componentDidUpdate/">
+            
+                    
+                    更新ごとの無駄なReflowが発生する問題の修正
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.4.2" data-path="../fix-fullscreen/">
+            
+                <a href="../fix-fullscreen/">
+            
+                    
+                    フルスクリーン時に描画コストの問題の修正
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.4.3" data-path="../fix-input/">
+            
+                <a href="../fix-input/">
+            
+                    
+                    入力欄とControl Componentの改善
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.4.4" data-path="./">
+            
+                <a href="./">
+            
+                    
+                    リストコンポーネントの問題
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter active" data-level="1.2.4.5" data-path="shouldComponentUpdate.html">
+            
+                <a href="shouldComponentUpdate.html">
+            
+                    
+                    リストコンポーネントのshouldComponentUpdateの改善
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.4.6" data-path="throttling.html">
+            
+                <a href="throttling.html">
+            
+                    
+                    リストコンポーネントへの追加処理の修正
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.4.7" data-path="../fix-interval/">
+            
+                <a href="../fix-interval/">
+            
+                    
+                    定期的に動いてる無駄なものを停止する
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.4.8" data-path="../fix-new-function/">
+            
+                <a href="../fix-new-function/">
+            
+                    
+                    毎回関数を作ってpropsに設定する問題の修正
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.4.9" data-path="../fix-mousemove/">
+            
+                <a href="../fix-mousemove/">
+            
+                    
+                    マウスを動かすと再描画する問題の修正
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.5" data-path="../tradeoff/">
+            
+                <a href="../tradeoff/">
+            
+                    
+                    軽量化のトレードオフの検証
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.6" data-path="../fix-library/">
+            
+                <a href="../fix-library/">
+            
+                    
+                    ライブラリを改善する
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3" data-path="../../startup/">
+            
+                <a href="../../startup/">
+            
+                    
+                    ページロードのパフォーマンス改善
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.3.1" data-path="../../startup/stats/">
+            
+                <a href="../../startup/stats/">
+            
+                    
+                    継続的なパフォーマンス計測
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.2" data-path="../../startup/reduce-bundle/">
+            
+                <a href="../../startup/reduce-bundle/">
+            
+                    
+                    パッケージはBundleを配布しない
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.3" data-path="../../startup/module-field/">
+            
+                <a href="../../startup/module-field/">
+            
+                    
+                    "module"フィールド対応
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.4" data-path="../../startup/reduce-size/">
+            
+                <a href="../../startup/reduce-size/">
+            
+                    
+                    ファイルサイズを減らす
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+    
+
+    <li class="divider"></li>
+
+    <li>
+        <a href="https://www.gitbook.com" target="blank" class="gitbook-link">
+            GitBookで公開 
+        </a>
+    </li>
+</ul>
+
+
+                </nav>
+            
+        
+    </div>
+
+    <div class="book-body">
+        
+            <div class="body-inner">
+                
+                    
+
+<div class="book-header" role="navigation">
+    
+
+    <!-- Title -->
+    <h1>
+        <i class="fa fa-circle-o-notch fa-spin"></i>
+        <a href="../.." >リストコンポーネントのshouldComponentUpdateの改善</a>
+    </h1>
+</div>
+
+
+
+
+                    <div class="page-wrapper" tabindex="-1" role="main">
+                        <div class="page-inner">
+                            
+<div id="book-search-results">
+    <div class="search-noresults">
+    
+                                <section class="normal markdown-section">
+                                
+                                <h1 id="&#x30EA;&#x30B9;&#x30C8;&#x30B3;&#x30F3;&#x30DD;&#x30FC;&#x30CD;&#x30F3;&#x30C8;&#x306E;shouldcomponentupdate&#x306E;&#x6539;&#x5584;">&#x30EA;&#x30B9;&#x30C8;&#x30B3;&#x30F3;&#x30DD;&#x30FC;&#x30CD;&#x30F3;&#x30C8;&#x306E;<code>shouldComponentUpdate</code>&#x306E;&#x6539;&#x5584;</h1>
+<p>&#x30B3;&#x30E1;&#x30F3;&#x30C8;&#x30D1;&#x30CD;&#x30EB;&#x306F;<code>DataGrid</code>&#x3068;&#x547C;&#x3070;&#x308C;&#x308B;&#x6C4E;&#x7528;&#x7684;&#x306A;&#x30EA;&#x30B9;&#x30C8;&#x8868;&#x793A;&#x306E;&#x30B3;&#x30F3;&#x30DD;&#x30FC;&#x30CD;&#x30F3;&#x30C8;&#x3067;&#x4F5C;&#x3089;&#x308C;&#x3066;&#x3044;&#x307E;&#x3057;&#x305F;&#x3002;</p>
+<p><code>DataGrid</code>&#x306F;&#x6B21;&#x306E;&#x3088;&#x3046;&#x306B;1&#x884C;&#x3054;&#x3068;&#x306B;&#x30A2;&#x30A4;&#x30C6;&#x30E0;&#x3092;&#x4E26;&#x3079;&#x3001;&#x8868;&#x793A;&#x9818;&#x57DF;&#x306E;&#x4E0A;&#x4E0B;&#x306E;&#x898B;&#x3048;&#x306A;&#x3044;&#x7A7A;&#x9593;&#x306F;&#x7A7A;&#x306E;div&#x8981;&#x7D20;&#x3092;&#x914D;&#x7F6E;&#x3057;&#x3066;&#x9AD8;&#x3055;&#x3092;&#x4F5C;&#x308B;&#x3068;&#x3044;&#x3063;&#x305F;&#x4F5C;&#x308A;&#x306B;&#x306A;&#x3063;&#x3066;&#x3044;&#x307E;&#x3059;&#x3002;</p>
+<h2 id="datagrid">DataGrid</h2>
+<p>&#x6B21;&#x306E;&#x52D5;&#x753B;&#x306E;&#x3088;&#x3046;&#x306B;<code>DataGrid</code>&#x306B;&#x30B3;&#x30E1;&#x30F3;&#x30C8;&#x3092;&#x8FFD;&#x52A0;&#x3059;&#x308B;&#x3068;&#x3001;&#x8868;&#x793A;&#x7BC4;&#x56F2;&#x5916;&#x306E;&#x63CF;&#x753B;&#x3082;&#x767A;&#x751F;&#x3057;&#x3066;&#x3044;&#x308B;&#x3053;&#x3068;&#x304C;&#x5206;&#x304B;&#x308B;&#x3068;&#x601D;&#x3044;&#x307E;&#x3059;&#x3002;</p>
+<p><img src="img/datagrid-highlight.png" alt="datagrid-highlight.png"></p>
+<video src="img/datagrid-highlight.mp4" controls width="640" height="480"></video>
+
+<p>&#x3053;&#x308C;&#x306F;&#x9AD8;&#x3055;&#x3092;&#x78BA;&#x4FDD;&#x3059;&#x308B;&#x305F;&#x3081;&#x306E;&#x4ED5;&#x7D44;&#x307F;&#x306A;&#x306E;&#x3067;&#x610F;&#x56F3;&#x3068;&#x304A;&#x308A;&#x3067;&#x3059;&#x3002;
+&#x3057;&#x304B;&#x3057;&#x3001;&#x30EA;&#x30B9;&#x30C8;&#x306F;&#x30EA;&#x30B9;&#x30C8;&#x30A2;&#x30A4;&#x30C6;&#x30E0;&#x306E;&#x66F4;&#x65B0;&#x3059;&#x308B;&#x6642;&#x306E;&#x51E6;&#x7406;&#x3092;&#x5C0F;&#x3055;&#x304F;&#x3067;&#x304D;&#x308C;&#x3070;&#x305D;&#x306E;&#x307E;&#x307E; <code>&#x30EA;&#x30B9;&#x30C8;&#x30A2;&#x30A4;&#x30C6;&#x30E0;&#x306E;&#x6570; * &#x6539;&#x5584;&#x3057;&#x305F;&#x6642;&#x9593;</code>&#x5206;&#x3060;&#x3051;&#x51E6;&#x7406;&#x6642;&#x9593;&#x304C;&#x6E1B;&#x308A;&#x307E;&#x3059;&#x3002;
+&#x305D;&#x306E;&#x305F;&#x3081;&#x3001;&#x30EA;&#x30B9;&#x30C8;&#x30A2;&#x30A4;&#x30C6;&#x30E0;&#x305D;&#x308C;&#x305E;&#x308C;&#x306E;&#x6700;&#x9069;&#x5316;&#x3092;&#x3059;&#x308B;&#x30E2;&#x30C1;&#x30D9;&#x30FC;&#x30B7;&#x30E7;&#x30F3;&#x306F;&#x5927;&#x304D;&#x3044;&#x3067;&#x3059;&#x3002;</p>
+<h2 id="&#x89B3;&#x6E2C;">&#x89B3;&#x6E2C;</h2>
+<p>&#x30EA;&#x30B9;&#x30C8;&#x30B3;&#x30F3;&#x30DD;&#x30FC;&#x30CD;&#x30F3;&#x30C8;&#x306B;&#x7121;&#x99C4;&#x306A;&#x51E6;&#x7406;&#x304C;&#x306A;&#x3044;&#x304B;&#x3092;&#x8A73;&#x3057;&#x304F;&#x8ABF;&#x3079;&#x308B;&#x305F;&#x3081;&#x306B;&#x3001;<code>react-addons-perf</code>&#x3092;&#x4F7F;&#x3063;&#x3066;&#x7121;&#x99C4;&#x306A;&#x66F4;&#x65B0;&#x304C;&#x884C;&#x308F;&#x308C;&#x3066;&#x3044;&#x306A;&#x3044;&#x304B;&#x3092;&#x8ABF;&#x3079;&#x3066;&#x307F;&#x308B;&#x3053;&#x3068;&#x306B;&#x3057;&#x307E;&#x3057;&#x305F;&#x3002;</p>
+<blockquote>
+<p><strong>&#x6CE8;&#x8A18;:</strong>
+<code>react-addons-perf</code>&#x306F;React 15&#x3067;&#x3057;&#x304B;&#x52D5;&#x304D;&#x307E;&#x305B;&#x3093;&#x3002;
+React 16&#x4EE5;&#x964D;&#x306F;<a href="https://github.com/amsul/react-performance" title="react-performance" target="_blank">react-performance</a>&#x3084;<a href="https://reactjs.org/blog/2018/09/10/introducing-the-react-profiler.html" target="_blank">&#x516C;&#x5F0F;&#x306E;&#x30D7;&#x30ED;&#x30D5;&#x30A1;&#x30A4;&#x30E9;</a>&#x3092;&#x5229;&#x7528;&#x3057;&#x307E;&#x3059;&#x3002;</p>
+</blockquote>
+<ul>
+<li><a href="https://reactjs.org/docs/perf.html" target="_blank">Performance Tools - React</a></li>
+<li><a href="http://tech.gmo-media.jp/post/141458071484/react-perf-tuning" target="_blank">React&#x3092;&#x4F7F;&#x3063;&#x305F;&#x30D7;&#x30ED;&#x30C0;&#x30AF;&#x30C8;&#x306E;&#x30D1;&#x30D5;&#x30A9;&#x30FC;&#x30DE;&#x30F3;&#x30B9;&#x3092;&#x6539;&#x5584;&#x3057;&#x305F;&#x8A71; | GMO&#x30E1;&#x30C7;&#x30A3;&#x30A2; &#x30A8;&#x30F3;&#x30B8;&#x30CB;&#x30A2;&#x30D6;&#x30ED;&#x30B0;</a></li>
+</ul>
+<p><code>react-addons-perf</code>&#x306B;&#x306F;<a href="https://reactjs.org/docs/perf.html#printwasted" title="printWasted()" target="_blank">printWasted()</a>&#x3068;&#x3044;&#x3046;&#x3001;&#x7121;&#x99C4;&#x306A;&#x66F4;&#x65B0;&#x3092;&#x30C6;&#x30FC;&#x30D6;&#x30EB;&#x8868;&#x793A;&#x3057;&#x3066;&#x304F;&#x308C;&#x308B;&#x6A5F;&#x80FD;&#x304C;&#x3042;&#x308A;&#x307E;&#x3059;&#x3002;&#x3053;&#x3053;&#x3067;&#x3044;&#x3046;&#x7121;&#x99C4;&#x306A;&#x66F4;&#x65B0;&#x3068;&#x3044;&#x3046;&#x306E;&#x306F;&#x3001;Props&#x306A;&#x3069;&#x304C;&#x540C;&#x3058;render&#x7D50;&#x679C;&#x304C;&#x540C;&#x3058;&#x3067;&#x3042;&#x3063;&#x305F;&#x305F;&#x3081;Virtual DOM&#x306B;&#x5438;&#x53CE;&#x3055;&#x308C;&#x7D50;&#x5C40;&#x4F55;&#x3082;&#x5909;&#x308F;&#x3089;&#x306A;&#x304B;&#x3063;&#x305F;&#x66F4;&#x65B0;&#x306E;&#x3053;&#x3068;&#x3092;&#x8A00;&#x3044;&#x307E;&#x3059;&#x3002;</p>
+<p>&#x518D;&#x73FE;&#x6027;&#x304C;&#x3042;&#x308B;&#x64CD;&#x4F5C;&#x3067;&#x518D;&#x73FE;&#x6027;&#x304C;&#x3042;&#x308B;&#x7D50;&#x679C;&#x3092;&#x5F97;&#x308B;&#x305F;&#x3081;&#x306B;&#x3001;&#x307E;&#x305A;&#x306F;&#x3069;&#x3046;&#x3044;&#x3046;&#x64CD;&#x4F5C;&#x3092;&#x3057;&#x305F;&#x6642;&#x306E;&#x51E6;&#x7406;&#x3092;&#x8A18;&#x9332;&#x3059;&#x308B;&#x304B;&#x3092;&#x8003;&#x3048;&#x307E;&#x3057;&#x305F;&#x3002;
+<code>DataGrid</code>&#x306F;&#x30B3;&#x30F3;&#x30DD;&#x30FC;&#x30CD;&#x30F3;&#x30C8;&#x5358;&#x4F4D;&#x3067;&#x958B;&#x767A;&#x3055;&#x308C;&#x3066;&#x3044;&#x3066;<a href="https://github.com/storybooks/storybook" title="storybook" target="_blank">Storybook</a>&#x3068;&#x3044;&#x3046;&#x30D7;&#x30EC;&#x30D3;&#x30E5;&#x30FC;&#x74B0;&#x5883;&#x3067;&#x52D5;&#x304B;&#x3059;&#x3053;&#x3068;&#x304C;&#x3067;&#x304D;&#x308B;&#x3088;&#x3046;&#x306B;&#x306A;&#x3063;&#x3066;&#x3044;&#x307E;&#x3057;&#x305F;&#x3002;
+&#x305D;&#x306E;&#x305F;&#x3081;&#x3001;&#x3053;&#x306E;Storybook&#x3067;&#x7279;&#x5B9A;&#x306E;&#x64CD;&#x4F5C;&#x3092;&#x3057;&#x305F;&#x6642;&#x306E;&#x52D5;&#x4F5C;&#x3092;&#x89B3;&#x6E2C;&#x3057;&#x3066;&#x3044;&#x304D;&#x307E;&#x3057;&#x305F;&#x3002;</p>
+<p><img src="img/datagrid-story.png" alt="datagrid-story.png"></p>
+<blockquote>
+<p>Storybook&#x3067;&#x306E;DataGrid</p>
+</blockquote>
+<h3 id="&#x64CD;&#x4F5C;&#x5185;&#x5BB9;">&#x64CD;&#x4F5C;&#x5185;&#x5BB9;</h3>
+<p>DataGrid&#x306E;&#x5178;&#x578B;&#x7684;&#x306A;&#x30E6;&#x30FC;&#x30B9;&#x30B1;&#x30FC;&#x30B9;&#x306F;&#x30B3;&#x30E1;&#x30F3;&#x30C8;&#x3092;&#x8FFD;&#x52A0;&#x3059;&#x308B;&#x3053;&#x3068;&#x3067;&#x3042;&#x308B;&#x305F;&#x3081;&#x3001;&#x6B21;&#x306E;&#x64CD;&#x4F5C;&#x3092;&#x3057;&#x305F;&#x6642;&#x306E;&#x51E6;&#x7406;&#x3092;<code>react-addons-perf</code>&#x3067;&#x8A18;&#x9332;&#x3057;&#x307E;&#x3057;&#x305F;&#x3002;</p>
+<ol>
+<li>DataGrid&#x306E;Story&#x3067;10&#x30B3;&#x305A;&#x3064;&#x30B3;&#x30E1;&#x30F3;&#x30C8;&#x3092;&#x672B;&#x5C3E;&#x306B;&#x8FFD;&#x52A0;&#x3059;&#x308B;</li>
+<li>&#x3053;&#x308C;&#x3092;15&#x56DE;&#x7E70;&#x308A;&#x8FD4;&#x3059;</li>
+<li>ReactPerfAddon&#x3067;&#x8A08;&#x6E2C;&#x7D50;&#x679C;&#x3092;&#x51FA;&#x3059;<ul>
+<li><code>printWasted()</code> &#x306E; Wasted Time &#x304C;&#x5FC5;&#x8981;&#x304C;&#x306A;&#x3044;&#x66F4;&#x65B0;&#x306B;&#x304B;&#x304B;&#x3063;&#x3066;&#x3044;&#x308B;&#x6642;&#x9593;</li>
+</ul>
+</li>
+</ol>
+<h3 id="&#xFF08;&#x6539;&#x5584;&#x524D;&#xFF09;&#x8A08;&#x6E2C;&#x7D50;&#x679C;">&#xFF08;&#x6539;&#x5584;&#x524D;&#xFF09;&#x8A08;&#x6E2C;&#x7D50;&#x679C;</h3>
+<p>1&#x56DE;&#x76EE;
+<img src="img/4148ce7a-d532-11e7-9960-695a19097514.png" alt="image">
+2&#x56DE;&#x76EE;
+<img src="img/479d2672-d532-11e7-9de9-d7f1f914164d.png" alt="image"></p>
+<h4 id="&#x30D7;&#x30ED;&#x30D5;&#x30A1;&#x30A4;&#x30EB;&#x7D50;&#x679C;">&#x30D7;&#x30ED;&#x30D5;&#x30A1;&#x30A4;&#x30EB;&#x7D50;&#x679C;</h4>
+<p>&#x5408;&#x308F;&#x305B;&#x3066;&#x30BF;&#x30A4;&#x30E0;&#x30E9;&#x30A4;&#x30F3;&#x30C4;&#x30FC;&#x30EB;&#x3067;&#x30D7;&#x30ED;&#x30D5;&#x30A1;&#x30A4;&#x30EB;&#x7D50;&#x679C;&#x3092;&#x8A18;&#x9332;&#x3057;&#x307E;&#x3057;&#x305F;&#x3002;</p>
+<p><img src="img/4e20af82-d532-11e7-9ff7-5ddee47a180d.png" alt="image"></p>
+<p>&#x4E00;&#x5EA6;&#xFF08;10&#x500B;&#x8FFD;&#x52A0;&#xFF09;&#x306E;DataGrid&#x306E;update&#x306B;&#x304B;&#x304B;&#x3063;&#x3066;&#x3044;&#x308B;&#x6642;&#x9593;</p>
+<ul>
+<li>252.63 ~ 300ms</li>
+</ul>
+<h3 id="&#x7D50;&#x679C;&#x304B;&#x3089;&#x5206;&#x304B;&#x308B;&#x3053;&#x3068;">&#x7D50;&#x679C;&#x304B;&#x3089;&#x5206;&#x304B;&#x308B;&#x3053;&#x3068;</h3>
+<p><code>RowComponent</code>&#x3068;&#x3044;&#x3046;<code>DataGrid</code>&#x306E;&#x5185;&#x306E;&#x30B3;&#x30F3;&#x30DD;&#x30FC;&#x30CD;&#x30F3;&#x30C8;&#x304C;&#x7121;&#x99C4;&#x306B;&#x66F4;&#x65B0;&#x3055;&#x308C;&#x3066;&#x3044;&#x308B;&#x3053;&#x3068;&#x304C;&#x308F;&#x304B;&#x308A;&#x307E;&#x3059;&#x3002;&#xFF08;90-110ms&#x7A0B;&#x5EA6;&#x304C;&#x7121;&#x99C4;&#x306B;&#x306A;&#x3063;&#x3066;&#x3044;&#x308B;&#xFF09;
+<code>RowComponent</code>&#x306F;&#x3001;&#x30EA;&#x30B9;&#x30C8;&#x306E;&#x30EA;&#x30B9;&#x30C8;&#x30A2;&#x30A4;&#x30C6;&#x30E0;&#x306E;&#x30B3;&#x30F3;&#x30DD;&#x30FC;&#x30CD;&#x30F3;&#x30C8;&#x3067;&#x3057;&#x305F;&#x3002;</p>
+<p><img src="img/RowComponent.png" alt="RowComponent.png"></p>
+<p>&#x4F55;&#x304C;&#x7121;&#x99C4;&#x306A;&#x306E;&#x304B;&#x3092;&#x5177;&#x4F53;&#x7684;&#x306B;&#x8ABF;&#x3079;&#x3066;&#x307F;&#x308B;&#x3068;&#x3001;&#x6B21;&#x306E;&#x3053;&#x3068;&#x304C;&#x308F;&#x304B;&#x308A;&#x307E;&#x3057;&#x305F;&#x3002;</p>
+<ul>
+<li>DataGrid&#x306B;&#x30B3;&#x30E1;&#x30F3;&#x30C8;&#x3092;&#x8FFD;&#x52A0;&#x3059;&#x308B;&#x6642;&#x3001;&#x65E2;&#x5B58;&#x306E;<code>RowComponent</code>&#x306F;&#x518D;&#x5229;&#x7528;&#x3067;&#x304D;&#x308B;&#x306F;&#x305A;</li>
+<li>&#x5B9F;&#x969B;&#x306B;&#x306F;<code>RowComponent</code>&#x306F;&#x518D;&#x5229;&#x7528;&#x3055;&#x308C;&#x305A;&#x306B;&#x3001;&#x8FFD;&#x52A0;&#x306E;&#x305F;&#x3073;&#x306B;&#x540C;&#x3058;props&#x3067;&#x518D;&#x63CF;&#x753B;&#x3055;&#x308C;&#x3066;&#x3044;&#x305F;</li>
+</ul>
+<p>&#x3053;&#x306E;<code>RowComponent</code>&#x30B3;&#x30F3;&#x30DD;&#x30FC;&#x30CD;&#x30F3;&#x30C8;&#x306E;&#x7121;&#x99C4;&#x306A;&#x63CF;&#x753B;&#x3092;&#x6E1B;&#x3089;&#x305B;&#x3070;<code>&#x7121;&#x99C4;&#x306A;&#x884C;&#x6570; * &#x30B3;&#x30B9;&#x30C8;</code>&#x304C;&#x524A;&#x6E1B;&#x3067;&#x304D;&#x308B;&#x3053;&#x3068;&#x306B;&#x306A;&#x308A;&#x307E;&#x3059;&#x3002;</p>
+<h2 id="&#x4FEE;&#x6B63;&#x65B9;&#x91DD;">&#x4FEE;&#x6B63;&#x65B9;&#x91DD;</h2>
+<p>&#x7121;&#x99C4;&#x306A;&#x518D;&#x63CF;&#x753B;&#x304C;&#x8D77;&#x304D;&#x306A;&#x3044;&#x3088;&#x3046;&#x306B;&#x540C;&#x3058;props&#x306A;&#x3089;&#x540C;&#x3058;&#x30B3;&#x30F3;&#x30DD;&#x30FC;&#x30CD;&#x30F3;&#x30C8;&#x306E;&#x7D50;&#x679C;&#x3092;&#x8FD4;&#x305B;&#x308B;&#x3088;&#x3046;&#x306B;<code>shouldComponentUpdate</code>&#x3092;&#x6B63;&#x3057;&#x304F;&#x5B9F;&#x88C5;&#x3057;&#x3066;&#x3042;&#x3052;&#x308C;&#x3070;&#x3088;&#x3055;&#x305D;&#x3046;&#x3067;&#x3059;&#x3002;
+&#x30EA;&#x30B9;&#x30C8;&#x306E;&#x3088;&#x3046;&#x306B;&#x5DE8;&#x5927;&#x306A;&#x914D;&#x5217;&#x304C;props&#x306B;&#x5165;&#x308B;&#x53EF;&#x80FD;&#x6027;&#x304C;&#x3042;&#x308B;&#x5834;&#x5408;&#x306F;&#x5FC5;&#x305A;shallow equal&#x306E;&#x3088;&#x3046;&#x306A;&#x6D45;&#x3044;&#x6BD4;&#x8F03;&#x3067;&#x6E08;&#x3080;&#x3088;&#x3046;&#x306B;&#x6C17;&#x3092;&#x3064;&#x3051;&#x308B;&#x5FC5;&#x8981;&#x304C;&#x3042;&#x308A;&#x307E;&#x3059;&#x3002;
+&#x305D;&#x3046;&#x3057;&#x306A;&#x3044;&#x3068;<code>shouldComponentUpdate</code>&#x81EA;&#x4F53;&#x306E;&#x51E6;&#x7406;&#x304C;&#x91CD;&#x304F;&#x306A;&#x3063;&#x3066;&#x3057;&#x307E;&#x3063;&#x3066;&#x610F;&#x5473;&#x304C;&#x306A;&#x304F;&#x306A;&#x308A;&#x307E;&#x3059;&#x3002;</p>
+<p><strong>&#x53C2;&#x8003;</strong>:</p>
+<ul>
+<li><a href="https://efcl.info/2017/11/30/shallow-equal/" title="shallow-equal for Object/React props | Web Scratch" target="_blank">shallow-equal for Object/React props | Web Scratch</a></li>
+</ul>
+<h2 id="&#x4FEE;&#x6B63;">&#x4FEE;&#x6B63;</h2>
+<p><code>DataGrid</code>&#x3067;&#x306F;&#x3001;&#x95A2;&#x6570;&#x3092;props&#x3068;&#x3057;&#x3066;&#x53D7;&#x3051;&#x53D6;&#x308A;&#x3001;&#x305D;&#x306E;&#x95A2;&#x6570;&#x304C;<code>RowComponent</code>&#x3092;&#x4F5C;&#x308B;&#x3068;&#x3044;&#x3046;&#x4ED5;&#x7D44;&#x307F;&#x306B;&#x306A;&#x3063;&#x3066;&#x3044;&#x307E;&#x3057;&#x305F;&#x3002;
+&#x7C21;&#x7565;&#x5316;&#x3059;&#x308B;&#x3068;&#x6B21;&#x306E;&#x3088;&#x3046;&#x306A;&#x30B3;&#x30F3;&#x30DD;&#x30FC;&#x30CD;&#x30F3;&#x30C8;&#x3092;&#x8FD4;&#x3059;&#x95A2;&#x6570;&#x3092;&#x53D7;&#x3051;&#x53D6;&#x308A;&#x3001;&#x5185;&#x90E8;&#x3067;&#x305D;&#x306E;&#x95A2;&#x6570;&#x3092;&#x5B9F;&#x884C;&#x3057;&#x3066;<code>RowComponent</code>&#x304C;&#x4F5C;&#x3089;&#x308C;&#x3066;&#x3044;&#x307E;&#x3059;&#x3002;</p>
+<pre><code class="lang-js"><span class="hljs-comment">// `RowComponent`&#x3092;&#x4F5C;&#x308B;&#x95A2;&#x6570;</span>
+<span class="hljs-keyword">const</span> generateRowComponent = (rowInfomation) =&gt; {
+    <span class="hljs-keyword">return</span> &lt;RowCompoment {...rowInformation} /&gt;
+}
+// DataGrid&#x306B;&#x305D;&#x306E;&#x95A2;&#x6570;&#x3092;&#x308F;&#x305F;&#x3059;
+&lt;DataGrid generateRowComponent={generateRowComponent} /&gt;
+// .. DataGrid&#x306E;&#x4E2D;&#x3067;&#x306F; ...
+class DataGrid extends React.Component{
+    render(){
+        const &#x30A2;&#x30A4;&#x30C6;&#x30E0;&#x306E;&#x60C5;&#x5831;&#x4E00;&#x89A7; = this.props.&#x30A2;&#x30A4;&#x30C6;&#x30E0;&#x306E;&#x60C5;&#x5831;&#x4E00;&#x89A7;;
+        const items = &#x30A2;&#x30A4;&#x30C6;&#x30E0;&#x306E;&#x60C5;&#x5831;&#x4E00;&#x89A7;.map(&#x30A2;&#x30A4;&#x30C6;&#x30E0;&#x60C5;&#x5831; =&gt; {
+            return this.props.generateRowComponent(&#x30A2;&#x30A4;&#x30C6;&#x30E0;&#x60C5;&#x5831;);
+        });
+        return &lt;ul&gt;
+            {items}
+        &lt;/ul&gt;
+    }
+}
+</code></pre>
+<p><code>RowComponent</code>&#x3092;&#x4F7F;&#x3044;&#x307E;&#x308F;&#x3059;&#x3088;&#x3046;&#x306B;&#x30AD;&#x30E3;&#x30C3;&#x30B7;&#x30E5;&#x3057;&#x305F;&#x3044;&#x306E;&#x304C;&#x76EE;&#x7684;&#x3067;&#x3042;&#x308B;&#x305F;&#x3081;&#x3001;
+<code>generateRowComponent</code>&#x304C;&#x540C;&#x3058;&#x5F15;&#x6570;&#x306A;&#x3089;&#x540C;&#x3058;&#x7D50;&#x679C;&#x3092;&#x8FD4;&#x3059;&#x3088;&#x3046;&#x306A;&#x30E1;&#x30E2;&#x5316;&#x3092;&#x3059;&#x308C;&#x3070;&#x89E3;&#x6C7A;&#x3067;&#x304D;&#x307E;&#x3059;&#x3002;</p>
+<pre><code class="lang-js"><span class="hljs-keyword">const</span> memorizedGenerateRowComponent = memorize(generateRowComponent)
+<span class="hljs-comment">// DataGrid&#x306B;&#x30E1;&#x30E2;&#x5316;&#x3057;&#x305F;&#x95A2;&#x6570;&#x3092;&#x308F;&#x305F;&#x3059;</span>
+&lt;DataGrid generateRowComponent={generateRowComponent} /&gt;
+</code></pre>
+<p>&#x3057;&#x304B;&#x3057;&#x3001;&#x3067;&#x304D;&#x308B;&#x3060;&#x3051;React&#x306E;&#x52D5;&#x4F5C;&#x30D5;&#x30ED;&#x30FC;&#x3067;&#x89E3;&#x6C7A;&#x3057;&#x305F;&#x304B;&#x3063;&#x305F;&#x306E;&#x3067;&#x3001;<code>generateRowComponent</code>&#x304C;&#x8FD4;&#x3059;&#x30B3;&#x30F3;&#x30DD;&#x30FC;&#x30CD;&#x30F3;&#x30C8;&#x3092;&#x30E9;&#x30C3;&#x30D7;&#x3057;&#x305F;<code>React.Component</code>&#x3092;&#x4F5C;&#x308B;&#x3053;&#x3068;&#x306B;&#x3057;&#x307E;&#x3057;&#x305F;&#x3002;
+&#x6B21;&#x306E;&#x3088;&#x3046;&#x306B;<code>generateRowComponent</code>&#x306E;&#x95A2;&#x6570;&#x3092;&#x30E9;&#x30C3;&#x30D7;&#x3057;&#x3001;&#x540C;&#x3058;Props&#x306A;&#x3089;&#x540C;&#x3058;&#x7D50;&#x679C;&#x304C;&#x30AD;&#x30E3;&#x30C3;&#x30B7;&#x30E5;&#x3055;&#x308C;&#x308B;&#x3088;&#x3046;&#x306B;&#x3057;&#x307E;&#x3057;&#x305F;&#x3002;</p>
+<pre><code>// `RowComponent`&#x3092;&#x4F5C;&#x308B;&#x95A2;&#x6570;
+const generateRowComponent = (rowInfomation) =&gt; {
+    return &lt;RowCompoment {...rowInformation} /&gt;
+}
+// DataGrid&#x306B;&#x305D;&#x306E;&#x95A2;&#x6570;&#x3092;&#x308F;&#x305F;&#x3059;
+&lt;DataGrid generateRowComponent={generateRowComponent} /&gt;
+// &#x3053;&#x3053;&#x307E;&#x3067;&#x306F;&#x540C;&#x3058;
+// .. DataGrid&#x306E;&#x4E2D;&#x3067;&#x306F; ...
+// generateRowComponent&#x3092;&#x30E9;&#x30C3;&#x30D7;&#x3057;&#x30AD;&#x30E3;&#x30C3;&#x30B7;&#x30E5;&#x3067;&#x304D;&#x308B;&#x30B3;&#x30F3;&#x30DD;&#x30FC;&#x30CD;&#x30F3;&#x30C8;&#x3092;&#x4F5C;&#x308B;
+class WrapperRowComponent extends React.Component{
+    shouldComponentUpdate(nextProps){
+        // &#x3053;&#x3053;&#x3067;props&#x306E;&#x5224;&#x5B9A;&#x3092;&#x6B63;&#x3057;&#x304F;&#x3084;&#x308C;&#x3070;WrapperRowComponent&#x306F;&#x4F7F;&#x3044;&#x307E;&#x308F;&#x3055;&#x308C;&#x308B;
+    }
+    render(){
+        // &#x6E21;&#x3055;&#x308C;&#x305F;generateRowComponent()&#x304B;&#x3089;&#x30B3;&#x30F3;&#x30DD;&#x30FC;&#x30CD;&#x30F3;&#x30C8;&#x3092;&#x4F5C;&#x3063;&#x3066;&#x8FD4;&#x3059;
+        reuturn this.props.generateRowComponent(this.props.&#x30A2;&#x30A4;&#x30C6;&#x30E0;&#x60C5;&#x5831;);
+    }
+}
+class DataGrid extends React.Component{
+    render(){
+        const &#x30A2;&#x30A4;&#x30C6;&#x30E0;&#x306E;&#x60C5;&#x5831;&#x4E00;&#x89A7; = this.props.&#x30A2;&#x30A4;&#x30C6;&#x30E0;&#x306E;&#x60C5;&#x5831;&#x4E00;&#x89A7;;
+        const items = &#x30A2;&#x30A4;&#x30C6;&#x30E0;&#x306E;&#x60C5;&#x5831;&#x4E00;&#x89A7;.map(&#x30A2;&#x30A4;&#x30C6;&#x30E0;&#x60C5;&#x5831; =&gt; {
+            return &lt;WrapperRowComponent &#x30A2;&#x30A4;&#x30C6;&#x30E0;&#x60C5;&#x5831;={...&#x30A2;&#x30A4;&#x30C6;&#x30E0;&#x60C5;&#x5831;} generateRowComponent={this.props.generateRowComponent} /&gt;
+        });
+        return &lt;ul&gt;
+            {items}
+        &lt;/ul&gt;
+    }
+}
+</code></pre><p><img src="img/pr-list.png" alt="pr-list"></p>
+<h2 id="&#x8A08;&#x6E2C;">&#x8A08;&#x6E2C;</h2>
+<p>&#x4FEE;&#x6B63;&#x524D;&#x3068;&#x540C;&#x3058;&#x624B;&#x9806;&#x3067;<code>react-addons-perf</code>&#x3092;&#x8A18;&#x9332;&#x3057;&#x307E;&#x3057;&#x305F;&#x3002;</p>
+<p>1&#x56DE;&#x76EE;
+<img src="img/59ac6986-d532-11e7-8d10-f964f9a08fbc.png" alt="image">
+2&#x56DE;&#x76EE;
+<img src="img/60b278ba-d532-11e7-980e-d308561c5a91.png" alt="image"></p>
+<p><strong>Wasted Time</strong>&#x304B;&#x3089;<code>RowComponent</code>&#x304C;&#x6D88;&#x3048;&#x3066;&#x3001;&#x7121;&#x99C4;&#x306A;&#x66F4;&#x65B0;&#x304C;&#x306A;&#x304F;&#x306A;&#x3063;&#x3066;&#x3044;&#x308B;&#x3053;&#x3068;&#x304C;&#x308F;&#x304B;&#x308A;&#x307E;&#x3059;&#x3002;</p>
+<h3 id="&#x30D7;&#x30ED;&#x30D5;&#x30A1;&#x30A4;&#x30EB;">&#x30D7;&#x30ED;&#x30D5;&#x30A1;&#x30A4;&#x30EB;</h3>
+<p><img src="img/6523912c-d532-11e7-8f40-e8caf4747a86.png" alt="image"></p>
+<p>&#x4E00;&#x5EA6;&#xFF08;10&#x500B;&#x8FFD;&#x52A0;&#xFF09;&#x306E;DataGrid&#x306E;update&#x306B;&#x304B;&#x304B;&#x3063;&#x3066;&#x3044;&#x308B;&#x6642;&#x9593;</p>
+<ul>
+<li><strong>150~220ms</strong></li>
+</ul>
+<p>&#x4FEE;&#x6B63;&#x524D;&#x306B;&#x6BD4;&#x3079;&#x308B;&#x3068;&#x66F4;&#x65B0;&#x51E6;&#x7406;&#x304C;100ms&#x7A0B;&#x5EA6;&#x6539;&#x5584;&#x3057;&#x3066;&#x3044;&#x308B;&#x3053;&#x3068;&#x304C;&#x308F;&#x304B;&#x308A;&#x307E;&#x3059;&#x3002;</p>
+<ul>
+<li>Before: <strong>250~300ms</strong></li>
+<li>After: <strong>150~220ms</strong></li>
+</ul>
+
+                                
+                                </section>
+                            
+    </div>
+    <div class="search-results">
+        <div class="has-results">
+            
+            <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+            <ul class="search-results-list"></ul>
+            
+        </div>
+        <div class="no-results">
+            
+            <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+            
+        </div>
+    </div>
+</div>
+
+                        </div>
+                    </div>
+                
+            </div>
+
+            
+                
+                <a href="./" class="navigation navigation-prev " aria-label="Previous page: リストコンポーネントの問題">
+                    <i class="fa fa-angle-left"></i>
+                </a>
+                
+                
+                <a href="throttling.html" class="navigation navigation-next " aria-label="Next page: リストコンポーネントへの追加処理の修正">
+                    <i class="fa fa-angle-right"></i>
+                </a>
+                
+            
+        
+    </div>
+
+    <script>
+        var gitbook = gitbook || [];
+        gitbook.push(function() {
+            gitbook.page.hasChanged({"page":{"title":"リストコンポーネントのshouldComponentUpdateの改善","level":"1.2.4.5","depth":3,"next":{"title":"リストコンポーネントへの追加処理の修正","level":"1.2.4.6","depth":3,"path":"watching/fix-list/throttling.md","ref":"./watching/fix-list/throttling.md","articles":[]},"previous":{"title":"リストコンポーネントの問題","level":"1.2.4.4","depth":3,"path":"watching/fix-list/README.md","ref":"./watching/fix-list/README.md","articles":[]},"dir":"ltr"},"config":{"plugins":["markdown-video"],"root":"./src/","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"markdown-video":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","author":"DWANGO Co., Ltd.","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"IPAexMincho","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"Webフロントエンド パフォーマンス改善ハンドブック","language":"ja","gitbook":">=3.0.0","description":"ウェブアプリケーションのフロントエンドにおけるパフォーマンス改善ハンドブック"},"file":{"path":"watching/fix-list/shouldComponentUpdate.md","mtime":"2018-10-26T06:49:39.500Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2018-10-26T06:51:05.118Z"},"basePath":"../..","book":{"language":""}});
+        });
+    </script>
+</div>
+
+        
+    <script src="../../gitbook/gitbook.js"></script>
+    <script src="../../gitbook/theme.js"></script>
+    
+        
+        <script src="../../gitbook/gitbook-plugin-markdown-video/video.min.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-search/search-engine.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-search/search.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-lunr/lunr.min.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-lunr/search-lunr.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-sharing/buttons.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-fontsettings/fontsettings.js"></script>
+        
+    
+
+    </body>
+</html>
+

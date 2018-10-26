@@ -1,0 +1,543 @@
+
+<!DOCTYPE HTML>
+<html lang="ja" >
+    <head>
+        <meta charset="UTF-8">
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <title>リストコンポーネントの問題 · Webフロントエンド パフォーマンス改善ハンドブック</title>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="description" content="">
+        <meta name="generator" content="GitBook 3.2.3">
+        <meta name="author" content="DWANGO Co., Ltd.">
+        
+        
+    
+    <link rel="stylesheet" href="../../gitbook/style.css">
+
+    
+            
+                
+                <link rel="stylesheet" href="../../gitbook/gitbook-plugin-markdown-video/video-js.min.css">
+                
+            
+                
+                <link rel="stylesheet" href="../../gitbook/gitbook-plugin-highlight/website.css">
+                
+            
+                
+                <link rel="stylesheet" href="../../gitbook/gitbook-plugin-search/search.css">
+                
+            
+                
+                <link rel="stylesheet" href="../../gitbook/gitbook-plugin-fontsettings/website.css">
+                
+            
+        
+
+    
+
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+
+        
+    
+    
+    <meta name="HandheldFriendly" content="true"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="../../gitbook/images/apple-touch-icon-precomposed-152.png">
+    <link rel="shortcut icon" href="../../gitbook/images/favicon.ico" type="image/x-icon">
+
+    
+    <link rel="next" href="shouldComponentUpdate.html" />
+    
+    
+    <link rel="prev" href="../fix-input/" />
+    
+
+    </head>
+    <body>
+        
+<div class="book">
+    <div class="book-summary">
+        
+            
+<div id="book-search-input" role="search">
+    <input type="text" placeholder="検索すると入力" />
+</div>
+
+            
+                <nav role="navigation">
+                
+
+
+<ul class="summary">
+    
+    
+
+    
+
+    
+        
+        
+    
+        <li class="chapter " data-level="1.1" data-path="../../">
+            
+                <a href="../../">
+            
+                    
+                    Introduction
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2" data-path="../">
+            
+                <a href="../">
+            
+                    
+                    視聴中のパフォーマンス改善
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.2.1" data-path="../metrics/">
+            
+                <a href="../metrics/">
+            
+                    
+                    指標の作成
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.2" data-path="../how-to-measure/">
+            
+                <a href="../how-to-measure/">
+            
+                    
+                    パフォーマンスの計測の仕方
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.3" data-path="../no-perf/">
+            
+                <a href="../no-perf/">
+            
+                    
+                    パフォーマンスにおける無駄
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.4" data-path="../fix/">
+            
+                <a href="../fix/">
+            
+                    
+                    パフォーマンス修正の事例
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.2.4.1" data-path="../fix-reflow-componentDidUpdate/">
+            
+                <a href="../fix-reflow-componentDidUpdate/">
+            
+                    
+                    更新ごとの無駄なReflowが発生する問題の修正
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.4.2" data-path="../fix-fullscreen/">
+            
+                <a href="../fix-fullscreen/">
+            
+                    
+                    フルスクリーン時に描画コストの問題の修正
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.4.3" data-path="../fix-input/">
+            
+                <a href="../fix-input/">
+            
+                    
+                    入力欄とControl Componentの改善
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter active" data-level="1.2.4.4" data-path="./">
+            
+                <a href="./">
+            
+                    
+                    リストコンポーネントの問題
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.4.5" data-path="shouldComponentUpdate.html">
+            
+                <a href="shouldComponentUpdate.html">
+            
+                    
+                    リストコンポーネントのshouldComponentUpdateの改善
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.4.6" data-path="throttling.html">
+            
+                <a href="throttling.html">
+            
+                    
+                    リストコンポーネントへの追加処理の修正
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.4.7" data-path="../fix-interval/">
+            
+                <a href="../fix-interval/">
+            
+                    
+                    定期的に動いてる無駄なものを停止する
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.4.8" data-path="../fix-new-function/">
+            
+                <a href="../fix-new-function/">
+            
+                    
+                    毎回関数を作ってpropsに設定する問題の修正
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.4.9" data-path="../fix-mousemove/">
+            
+                <a href="../fix-mousemove/">
+            
+                    
+                    マウスを動かすと再描画する問題の修正
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.5" data-path="../tradeoff/">
+            
+                <a href="../tradeoff/">
+            
+                    
+                    軽量化のトレードオフの検証
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.6" data-path="../fix-library/">
+            
+                <a href="../fix-library/">
+            
+                    
+                    ライブラリを改善する
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3" data-path="../../startup/">
+            
+                <a href="../../startup/">
+            
+                    
+                    ページロードのパフォーマンス改善
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.3.1" data-path="../../startup/stats/">
+            
+                <a href="../../startup/stats/">
+            
+                    
+                    継続的なパフォーマンス計測
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.2" data-path="../../startup/reduce-bundle/">
+            
+                <a href="../../startup/reduce-bundle/">
+            
+                    
+                    パッケージはBundleを配布しない
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.3" data-path="../../startup/module-field/">
+            
+                <a href="../../startup/module-field/">
+            
+                    
+                    "module"フィールド対応
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.4" data-path="../../startup/reduce-size/">
+            
+                <a href="../../startup/reduce-size/">
+            
+                    
+                    ファイルサイズを減らす
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+    
+
+    <li class="divider"></li>
+
+    <li>
+        <a href="https://www.gitbook.com" target="blank" class="gitbook-link">
+            GitBookで公開 
+        </a>
+    </li>
+</ul>
+
+
+                </nav>
+            
+        
+    </div>
+
+    <div class="book-body">
+        
+            <div class="body-inner">
+                
+                    
+
+<div class="book-header" role="navigation">
+    
+
+    <!-- Title -->
+    <h1>
+        <i class="fa fa-circle-o-notch fa-spin"></i>
+        <a href="../.." >リストコンポーネントの問題</a>
+    </h1>
+</div>
+
+
+
+
+                    <div class="page-wrapper" tabindex="-1" role="main">
+                        <div class="page-inner">
+                            
+<div id="book-search-results">
+    <div class="search-noresults">
+    
+                                <section class="normal markdown-section">
+                                
+                                <h1 id="&#x30EA;&#x30B9;&#x30C8;&#x30B3;&#x30F3;&#x30DD;&#x30FC;&#x30CD;&#x30F3;&#x30C8;&#x306E;&#x4FEE;&#x6B63;">&#x30EA;&#x30B9;&#x30C8;&#x30B3;&#x30F3;&#x30DD;&#x30FC;&#x30CD;&#x30F3;&#x30C8;&#x306E;&#x4FEE;&#x6B63;</h1>
+<p>&#x30EA;&#x30B9;&#x30C8;&#x30B3;&#x30F3;&#x30DD;&#x30FC;&#x30CD;&#x30F3;&#x30C8;&#x306F;&#x591A;&#x304F;&#x306E;&#x8981;&#x7D20;&#x3092;&#x6271;&#x3046;&#x6027;&#x8CEA;&#x4E0A;&#x30EC;&#x30F3;&#x30C0;&#x30EA;&#x30F3;&#x30B0;&#x306E;&#x30DC;&#x30C8;&#x30EB;&#x30CD;&#x30C3;&#x30AF;&#x3068;&#x306A;&#x308A;&#x3084;&#x3059;&#x3044;&#x3067;&#x3059;&#x3002;</p>
+<p>&#x751F;&#x653E;&#x9001;&#x306E;&#x8996;&#x8074;&#x30DA;&#x30FC;&#x30B8;&#x306B;&#x3082;&#x30B3;&#x30E1;&#x30F3;&#x30C8;&#x30D1;&#x30CD;&#x30EB;&#x3068;&#x547C;&#x3070;&#x308C;&#x308B;&#x30EA;&#x30B9;&#x30C8;&#x3092;&#x6271;&#x3046;&#x30B3;&#x30F3;&#x30DD;&#x30FC;&#x30CD;&#x30F3;&#x30C8;&#x304C;&#x3042;&#x308A;&#x307E;&#x3059;&#x3002;</p>
+<p><img src="img/list.png" alt="&#x30B3;&#x30E1;&#x30F3;&#x30C8;&#x30D1;&#x30CD;&#x30EB;"></p>
+<p>&#x4F4E;&#x30B9;&#x30DA;&#x30C3;&#x30AF;&#x306E;&#x30C7;&#x30D0;&#x30A4;&#x30B9;&#x3067;&#x306F;&#x3001;&#x3053;&#x306E;&#x30EA;&#x30B9;&#x30C8;&#x30B3;&#x30F3;&#x30DD;&#x30FC;&#x30CD;&#x30F3;&#x30C8;&#x306B;&#x30B3;&#x30E1;&#x30F3;&#x30C8;&#x3092;&#x8FFD;&#x52A0;&#x3059;&#x308B;&#x51E6;&#x7406;&#x304C;&#x5B9A;&#x5E38;&#x7684;&#x306B;&#x6642;&#x9593;&#x304C;&#x304B;&#x304B;&#x3063;&#x3066;&#x3044;&#x308B;&#x3053;&#x3068;&#x304C;&#x89B3;&#x6E2C;&#x3067;&#x304D;&#x3066;&#x3044;&#x307E;&#x3057;&#x305F;&#x3002;</p>
+<p><a href="../metrics/">&#x6307;&#x6A19;</a>&#x3067;&#x4F5C;&#x6210;&#x3057;&#x305F;&#x30D1;&#x30D5;&#x30A9;&#x30FC;&#x30DE;&#x30F3;&#x30B9;&#x30ED;&#x30B0;&#x3092;&#x307F;&#x305F;&#x7D50;&#x679C;&#x3001;&#x30B3;&#x30E1;&#x30F3;&#x30C8;&#x3092;&#x8FFD;&#x52A0;(<code>ADD_COMMENT</code>&#x306E;Flux&#x30ED;&#x30B0;)&#x304C;&#x8D77;&#x304D;&#x308B;&#x5EA6;&#x306B;&#x3001;&#x30B3;&#x30E1;&#x30F3;&#x30C8;&#x306E;Canvas&#x306E;FPS&#x304C;&#x4E0B;&#x304C;&#x3063;&#x3066;&#x3044;&#x308B;&#x3053;&#x3068;&#x304C;&#x308F;&#x304B;&#x308A;&#x307E;&#x3059;&#x3002;</p>
+<p><img src="img/perf-add-comment.png" alt="perf-add-comment.png"></p>
+<p>FPS&#x306E;&#x6025;&#x6FC0;&#x306A;&#x5909;&#x5316;&#x306F;&#x4F53;&#x611F;&#x304C;&#x60AA;&#x3044;&#x305F;&#x3081;&#x3001;&#x30B3;&#x30E1;&#x30F3;&#x30C8;&#xFF08;&#x30A2;&#x30A4;&#x30C6;&#x30E0;&#xFF09;&#x3092;&#x30B3;&#x30E1;&#x30F3;&#x30C8;&#x30D1;&#x30CD;&#x30EB;&#xFF08;&#x30EA;&#x30B9;&#x30C8;&#xFF09;&#x306B;&#x8FFD;&#x52A0;&#x3059;&#x308B;&#x6642;&#x306E;&#x51E6;&#x7406;&#x306F;&#x6539;&#x5584;&#x3059;&#x308B;&#x3079;&#x304D;&#x9805;&#x76EE;&#x3060;&#x3068;&#x5224;&#x65AD;&#x3067;&#x304D;&#x307E;&#x3059;&#x3002;&#xFF08;&#x7DE9;&#x3084;&#x304B;&#x306A;&#x5909;&#x5316;&#x304C;&#x671B;&#x307E;&#x3057;&#x3044;&#xFF09;</p>
+<p>&#x30EA;&#x30B9;&#x30C8;&#x30B3;&#x30F3;&#x30DD;&#x30FC;&#x30CD;&#x30F3;&#x30C8;&#x306F;&#x6700;&#x9069;&#x5316;&#x306E;&#x305F;&#x3081;&#x306B;&#x8868;&#x793A;&#x7BC4;&#x56F2;&#x306E;&#x8981;&#x7D20;&#x3060;&#x3051;&#x3092;&#x63CF;&#x753B;&#x3059;&#x308B;&#x4ED5;&#x7D44;&#x307F;&#x306A;&#x3069;&#x304C;&#x3059;&#x3067;&#x306B;&#x5B9F;&#x88C5;&#x3055;&#x308C;&#x3066;&#x3044;&#x307E;&#x3057;&#x305F;&#x3002;</p>
+<ul>
+<li><a href="https://speakerdeck.com/anatoo/virtual-rendering-introduction" title="&#x30D0;&#x30FC;&#x30C1;&#x30E3;&#x30EB;&#x30EC;&#x30F3;&#x30C0;&#x30EA;&#x30F3;&#x30B0;" target="_blank">&#x30D0;&#x30FC;&#x30C1;&#x30E3;&#x30EB;&#x30EC;&#x30F3;&#x30C0;&#x30EA;&#x30F3;&#x30B0;</a></li>
+<li><a href="http://gihyo.jp/book/2017/978-4-7741-8967-3" title="Web&#x30D5;&#x30ED;&#x30F3;&#x30C8;&#x30A8;&#x30F3;&#x30C9; &#x30CF;&#x30A4;&#x30D1;&#x30D5;&#x30A9;&#x30FC;&#x30DE;&#x30F3;&#x30B9; &#x30C1;&#x30E5;&#x30FC;&#x30CB;&#x30F3;&#x30B0;" target="_blank">Web&#x30D5;&#x30ED;&#x30F3;&#x30C8;&#x30A8;&#x30F3;&#x30C9; &#x30CF;&#x30A4;&#x30D1;&#x30D5;&#x30A9;&#x30FC;&#x30DE;&#x30F3;&#x30B9; &#x30C1;&#x30E5;&#x30FC;&#x30CB;&#x30F3;&#x30B0;</a></li>
+</ul>
+<p>&#x305D;&#x306E;&#x3088;&#x3046;&#x306A;&#x51E6;&#x7406;&#x306E;&#x8EFD;&#x6E1B;&#x304C;&#x3042;&#x3063;&#x3066;&#x3082;&#x3001;&#x30B3;&#x30E1;&#x30F3;&#x30C8;&#x3092;&#x8FFD;&#x52A0;&#x3059;&#x308B;&#x5EA6;&#x306B;&#x6570;&#x5341;&#x500B;&#x306E;&#x8981;&#x7D20;&#x304C;&#x8FFD;&#x52A0;/&#x524A;&#x9664;&#x3055;&#x308C;&#x3066;&#x305F;&#x308A;&#x3057;&#x3066;&#x3044;&#x308B;&#x305F;&#x3081;&#x3001;&#x30B9;&#x30DA;&#x30C3;&#x30AF;&#x306E;&#x4F4E;&#x3044;&#x30C7;&#x30D0;&#x30A4;&#x30B9;&#x3067;&#x306F;&#x30DC;&#x30C8;&#x30EB;&#x30CD;&#x30C3;&#x30AF;&#x3068;&#x306A;&#x308A;&#x307E;&#x3059;&#x3002;</p>
+<p>&#x4F55;&#x304C;&#x539F;&#x56E0;&#x3067;&#x51E6;&#x7406;&#x304C;&#x91CD;&#x304F;&#x306A;&#x3063;&#x3066;&#x3044;&#x308B;&#x306E;&#x304B;&#x3092;&#x8ABF;&#x3079;&#x3064;&#x3064;&#x3001;&#x305D;&#x308C;&#x3089;&#x3092;&#x4FEE;&#x6B63;&#x3057;&#x3066;&#x3044;&#x304D;&#x307E;&#x3059;&#x3002;</p>
+
+                                
+                                </section>
+                            
+    </div>
+    <div class="search-results">
+        <div class="has-results">
+            
+            <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+            <ul class="search-results-list"></ul>
+            
+        </div>
+        <div class="no-results">
+            
+            <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+            
+        </div>
+    </div>
+</div>
+
+                        </div>
+                    </div>
+                
+            </div>
+
+            
+                
+                <a href="../fix-input/" class="navigation navigation-prev " aria-label="Previous page: 入力欄とControl Componentの改善">
+                    <i class="fa fa-angle-left"></i>
+                </a>
+                
+                
+                <a href="shouldComponentUpdate.html" class="navigation navigation-next " aria-label="Next page: リストコンポーネントのshouldComponentUpdateの改善">
+                    <i class="fa fa-angle-right"></i>
+                </a>
+                
+            
+        
+    </div>
+
+    <script>
+        var gitbook = gitbook || [];
+        gitbook.push(function() {
+            gitbook.page.hasChanged({"page":{"title":"リストコンポーネントの問題","level":"1.2.4.4","depth":3,"next":{"title":"リストコンポーネントのshouldComponentUpdateの改善","level":"1.2.4.5","depth":3,"path":"watching/fix-list/shouldComponentUpdate.md","ref":"./watching/fix-list/shouldComponentUpdate.md","articles":[]},"previous":{"title":"入力欄とControl Componentの改善","level":"1.2.4.3","depth":3,"path":"watching/fix-input/README.md","ref":"./watching/fix-input/README.md","articles":[]},"dir":"ltr"},"config":{"plugins":["markdown-video"],"root":"./src/","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"markdown-video":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","author":"DWANGO Co., Ltd.","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"IPAexMincho","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"Webフロントエンド パフォーマンス改善ハンドブック","language":"ja","gitbook":">=3.0.0","description":"ウェブアプリケーションのフロントエンドにおけるパフォーマンス改善ハンドブック"},"file":{"path":"watching/fix-list/README.md","mtime":"2018-10-26T06:49:39.476Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2018-10-26T06:51:05.118Z"},"basePath":"../..","book":{"language":""}});
+        });
+    </script>
+</div>
+
+        
+    <script src="../../gitbook/gitbook.js"></script>
+    <script src="../../gitbook/theme.js"></script>
+    
+        
+        <script src="../../gitbook/gitbook-plugin-markdown-video/video.min.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-search/search-engine.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-search/search.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-lunr/lunr.min.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-lunr/search-lunr.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-sharing/buttons.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-fontsettings/fontsettings.js"></script>
+        
+    
+
+    </body>
+</html>
+

@@ -1,0 +1,830 @@
+
+<!DOCTYPE HTML>
+<html lang="ja" >
+    <head>
+        <meta charset="UTF-8">
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <title>ファイルサイズを減らす · Webフロントエンド パフォーマンス改善ハンドブック</title>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="description" content="">
+        <meta name="generator" content="GitBook 3.2.3">
+        <meta name="author" content="DWANGO Co., Ltd.">
+        
+        
+    
+    <link rel="stylesheet" href="../../gitbook/style.css">
+
+    
+            
+                
+                <link rel="stylesheet" href="../../gitbook/gitbook-plugin-markdown-video/video-js.min.css">
+                
+            
+                
+                <link rel="stylesheet" href="../../gitbook/gitbook-plugin-highlight/website.css">
+                
+            
+                
+                <link rel="stylesheet" href="../../gitbook/gitbook-plugin-search/search.css">
+                
+            
+                
+                <link rel="stylesheet" href="../../gitbook/gitbook-plugin-fontsettings/website.css">
+                
+            
+        
+
+    
+
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+
+        
+    
+    
+    <meta name="HandheldFriendly" content="true"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="../../gitbook/images/apple-touch-icon-precomposed-152.png">
+    <link rel="shortcut icon" href="../../gitbook/images/favicon.ico" type="image/x-icon">
+
+    
+    
+    <link rel="prev" href="../module-field/" />
+    
+
+    </head>
+    <body>
+        
+<div class="book">
+    <div class="book-summary">
+        
+            
+<div id="book-search-input" role="search">
+    <input type="text" placeholder="検索すると入力" />
+</div>
+
+            
+                <nav role="navigation">
+                
+
+
+<ul class="summary">
+    
+    
+
+    
+
+    
+        
+        
+    
+        <li class="chapter " data-level="1.1" data-path="../../">
+            
+                <a href="../../">
+            
+                    
+                    Introduction
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2" data-path="../../watching/">
+            
+                <a href="../../watching/">
+            
+                    
+                    視聴中のパフォーマンス改善
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.2.1" data-path="../../watching/metrics/">
+            
+                <a href="../../watching/metrics/">
+            
+                    
+                    指標の作成
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.2" data-path="../../watching/how-to-measure/">
+            
+                <a href="../../watching/how-to-measure/">
+            
+                    
+                    パフォーマンスの計測の仕方
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.3" data-path="../../watching/no-perf/">
+            
+                <a href="../../watching/no-perf/">
+            
+                    
+                    パフォーマンスにおける無駄
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.4" data-path="../../watching/fix/">
+            
+                <a href="../../watching/fix/">
+            
+                    
+                    パフォーマンス修正の事例
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.2.4.1" data-path="../../watching/fix-reflow-componentDidUpdate/">
+            
+                <a href="../../watching/fix-reflow-componentDidUpdate/">
+            
+                    
+                    更新ごとの無駄なReflowが発生する問題の修正
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.4.2" data-path="../../watching/fix-fullscreen/">
+            
+                <a href="../../watching/fix-fullscreen/">
+            
+                    
+                    フルスクリーン時に描画コストの問題の修正
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.4.3" data-path="../../watching/fix-input/">
+            
+                <a href="../../watching/fix-input/">
+            
+                    
+                    入力欄とControl Componentの改善
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.4.4" data-path="../../watching/fix-list/">
+            
+                <a href="../../watching/fix-list/">
+            
+                    
+                    リストコンポーネントの問題
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.4.5" data-path="../../watching/fix-list/shouldComponentUpdate.html">
+            
+                <a href="../../watching/fix-list/shouldComponentUpdate.html">
+            
+                    
+                    リストコンポーネントのshouldComponentUpdateの改善
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.4.6" data-path="../../watching/fix-list/throttling.html">
+            
+                <a href="../../watching/fix-list/throttling.html">
+            
+                    
+                    リストコンポーネントへの追加処理の修正
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.4.7" data-path="../../watching/fix-interval/">
+            
+                <a href="../../watching/fix-interval/">
+            
+                    
+                    定期的に動いてる無駄なものを停止する
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.4.8" data-path="../../watching/fix-new-function/">
+            
+                <a href="../../watching/fix-new-function/">
+            
+                    
+                    毎回関数を作ってpropsに設定する問題の修正
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.4.9" data-path="../../watching/fix-mousemove/">
+            
+                <a href="../../watching/fix-mousemove/">
+            
+                    
+                    マウスを動かすと再描画する問題の修正
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.5" data-path="../../watching/tradeoff/">
+            
+                <a href="../../watching/tradeoff/">
+            
+                    
+                    軽量化のトレードオフの検証
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.6" data-path="../../watching/fix-library/">
+            
+                <a href="../../watching/fix-library/">
+            
+                    
+                    ライブラリを改善する
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3" data-path="../">
+            
+                <a href="../">
+            
+                    
+                    ページロードのパフォーマンス改善
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.3.1" data-path="../stats/">
+            
+                <a href="../stats/">
+            
+                    
+                    継続的なパフォーマンス計測
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.2" data-path="../reduce-bundle/">
+            
+                <a href="../reduce-bundle/">
+            
+                    
+                    パッケージはBundleを配布しない
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.3" data-path="../module-field/">
+            
+                <a href="../module-field/">
+            
+                    
+                    "module"フィールド対応
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter active" data-level="1.3.4" data-path="./">
+            
+                <a href="./">
+            
+                    
+                    ファイルサイズを減らす
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+    
+
+    <li class="divider"></li>
+
+    <li>
+        <a href="https://www.gitbook.com" target="blank" class="gitbook-link">
+            GitBookで公開 
+        </a>
+    </li>
+</ul>
+
+
+                </nav>
+            
+        
+    </div>
+
+    <div class="book-body">
+        
+            <div class="body-inner">
+                
+                    
+
+<div class="book-header" role="navigation">
+    
+
+    <!-- Title -->
+    <h1>
+        <i class="fa fa-circle-o-notch fa-spin"></i>
+        <a href="../.." >ファイルサイズを減らす</a>
+    </h1>
+</div>
+
+
+
+
+                    <div class="page-wrapper" tabindex="-1" role="main">
+                        <div class="page-inner">
+                            
+<div id="book-search-results">
+    <div class="search-noresults">
+    
+                                <section class="normal markdown-section">
+                                
+                                <h1 id="&#x30D5;&#x30A1;&#x30A4;&#x30EB;&#x30B5;&#x30A4;&#x30BA;&#x3092;&#x6E1B;&#x3089;&#x3059;">&#x30D5;&#x30A1;&#x30A4;&#x30EB;&#x30B5;&#x30A4;&#x30BA;&#x3092;&#x6E1B;&#x3089;&#x3059;</h1>
+<p>&#x30DA;&#x30FC;&#x30B8;&#x30ED;&#x30FC;&#x30C9;&#x3092;&#x65E9;&#x304F;&#x3059;&#x308B;&#x3053;&#x3068;&#x306B;&#x304A;&#x3044;&#x3066;&#x30D5;&#x30A1;&#x30A4;&#x30EB;&#x30B5;&#x30A4;&#x30BA;&#x3092;&#x5C0F;&#x3055;&#x304F;&#x3059;&#x308B;&#x3053;&#x3068;&#x306F;&#x91CD;&#x8981;&#x3067;&#x3059;&#x3002;
+&#x7279;&#x306B;JavaScript&#x306E;&#x3088;&#x3046;&#x306A;&#x30D1;&#x30FC;&#x30B9;&#x3084;&#x30B3;&#x30F3;&#x30D1;&#x30A4;&#x30EB;&#x3068;&#x3044;&#x3063;&#x305F;&#x51E6;&#x7406;&#x3092;&#x5FC5;&#x8981;&#x3059;&#x308B;&#x30B9;&#x30AF;&#x30EA;&#x30D7;&#x30C8;&#x306E;&#x30D5;&#x30A1;&#x30A4;&#x30EB;&#x30B5;&#x30A4;&#x30BA;&#x3092;&#x6E1B;&#x3089;&#x3059;&#x3053;&#x3068;&#x306F;&#x3001;
+&#x305D;&#x306E;&#x307E;&#x307E;&#x51E6;&#x7406;&#x30B3;&#x30B9;&#x30C8;&#x306B;&#x3082;&#x5F71;&#x97FF;&#x3057;&#x307E;&#x3059;&#x3002;</p>
+<p>&#x6B21;&#x306E;&#x8A18;&#x4E8B;&#x3067;&#x3082;&#x3042;&#x308B;&#x3088;&#x3046;&#x306B;&#x540C;&#x3058;&#x30B5;&#x30A4;&#x30BA;&#x306E;JavaScript&#x3068;&#x753B;&#x50CF;&#x306F;&#x540C;&#x3058;&#x30B3;&#x30B9;&#x30C8;&#x3067;&#x306F;&#x3042;&#x308A;&#x307E;&#x305B;&#x3093;&#x3002;</p>
+<ul>
+<li><a href="https://medium.com/@addyosmani/the-cost-of-javascript-in-2018-7d8950fbb5d4" target="_blank">The Cost Of JavaScript In 2018 &#x2013; Addy Osmani &#x2013; Medium</a></li>
+</ul>
+<p>&#x3057;&#x304B;&#x3057;&#x306A;&#x304C;&#x3089;&#x3001;&#x30D5;&#x30A1;&#x30A4;&#x30EB;&#x30B5;&#x30A4;&#x30BA;&#x3092;&#x5C0F;&#x3055;&#x304F;&#x3059;&#x308B;&#x306B;&#x306F;&#x30A2;&#x30D7;&#x30EA;&#x30B1;&#x30FC;&#x30B7;&#x30E7;&#x30F3;&#x306B;&#x3088;&#x3063;&#x3066;&#x3055;&#x307E;&#x3056;&#x307E;&#x306A;&#x30D1;&#x30BF;&#x30FC;&#x30F3;&#x304C;&#x8003;&#x3048;&#x3089;&#x308C;&#x307E;&#x3059;&#x3002;
+&#x3053;&#x3053;&#x3067;&#x306F;&#x3044;&#x304F;&#x3064;&#x304B;&#x306E;&#x30A2;&#x30D7;&#x30ED;&#x30FC;&#x30C1;&#x306B;&#x3064;&#x3044;&#x3066;&#x898B;&#x3066;&#x3044;&#x304D;&#x307E;&#x3059;&#x3002;</p>
+<h2 id="bundle&#x3092;&#x5206;&#x6790;&#x3059;&#x308B;">Bundle&#x3092;&#x5206;&#x6790;&#x3059;&#x308B;</h2>
+<p>&#x3053;&#x308C;&#x306F;&#x5358;&#x7D14;&#x3067;&#x3059;&#x304C;Webpack&#x306A;&#x3069;&#x3067;bundle&#x3057;&#x305F;JavaScript&#x30D5;&#x30A1;&#x30A4;&#x30EB;&#x3092;&#x5206;&#x6790;&#x3059;&#x308B;&#x3068;&#x3044;&#x3046;&#x30A2;&#x30D7;&#x30ED;&#x30FC;&#x30C1;&#x3067;&#x3059;&#x3002;
+&#x3053;&#x3053;&#x3067;&#x898B;&#x3064;&#x3051;&#x308B;&#x554F;&#x984C;&#x3068;&#x3057;&#x3066;&#x306F;&#x610F;&#x56F3;&#x305B;&#x305A;&#x306B;&#x5165;&#x3063;&#x3066;&#x3057;&#x307E;&#x3063;&#x3066;&#x3044;&#x308B;&#x30E9;&#x30A4;&#x30D6;&#x30E9;&#x30EA;&#x3001;&#x60F3;&#x50CF;&#x3088;&#x308A;&#x5927;&#x304D;&#x306A;&#x30E9;&#x30A4;&#x30D6;&#x30E9;&#x30EA;&#x306A;&#x3069;&#x542B;&#x307E;&#x308C;&#x3066;&#x3044;&#x306A;&#x3044;&#x304B;&#x3067;&#x3059;&#x3002;</p>
+<p>&#x7279;&#x5B9A;&#x306E;&#x30E9;&#x30A4;&#x30D6;&#x30E9;&#x30EA;&#x306E;&#x30B5;&#x30A4;&#x30BA;&#x3092;&#x898B;&#x308B;&#x306B;&#x306F;<a href="https://github.com/egoist/package-size" target="_blank">package-size</a>&#x3084;<a href="https://bundlephobia.com/" target="_blank">bundlephobia</a>&#x306A;&#x3069;&#x3092;&#x4F7F;&#x3044;&#x3001;&#x305D;&#x306E;&#x30E9;&#x30A4;&#x30D6;&#x30E9;&#x30EA;&#x306E;&#x4F9D;&#x5B58;&#x3092;&#x542B;&#x3081;&#x3066;&#x30B5;&#x30A4;&#x30BA;&#x3092;&#x898B;&#x307E;&#x3059;&#x3002;
+&#x305D;&#x306E;&#x30E9;&#x30A4;&#x30D6;&#x30E9;&#x30EA;&#x81EA;&#x4F53;&#x306E;&#x30B3;&#x30FC;&#x30C9;&#x91CF;&#x3067;&#x306F;&#x306A;&#x304F;&#x3001;&#x5FC5;&#x305A;bundle&#x3057;&#x3066;minify&#x3057;&#x305F;gzip&#x306E;&#x30B5;&#x30A4;&#x30BA;&#x306A;&#x3069;&#x3067;&#x6BD4;&#x8F03;&#x3057;&#x307E;&#x3059;&#x3002;
+&#x306A;&#x305C;&#x306A;&#x3089;&#x3001;&#x30E9;&#x30A4;&#x30D6;&#x30E9;&#x30EA;&#x81EA;&#x4F53;&#x306E;&#x30B5;&#x30A4;&#x30BA;&#x306B;&#x306F;&#x30B3;&#x30E1;&#x30F3;&#x30C8;&#x306A;&#x3069;&#x5727;&#x7E2E;&#x3059;&#x308B;&#x3068;&#x5927;&#x304D;&#x304F;&#x30B5;&#x30A4;&#x30BA;&#x304C;&#x5909;&#x308F;&#x308B;&#x3082;&#x306E;&#x3084;&#x3001;&#x30E9;&#x30A4;&#x30D6;&#x30E9;&#x30EA;&#x306E;&#x30B3;&#x30FC;&#x30C9;&#x306F;&#x5C11;&#x306A;&#x304F;&#x3066;&#x3082;&#x4F9D;&#x5B58;&#x3057;&#x3066;&#x308B;&#x30E9;&#x30A4;&#x30D6;&#x30E9;&#x30EA;&#x306E;&#x30B5;&#x30A4;&#x30BA;&#x304C;&#x5927;&#x304D;&#x3044;&#x3068;&#x3044;&#x3046;&#x554F;&#x984C;&#x304C;&#x3042;&#x308B;&#x305F;&#x3081;&#x3067;&#x3059;&#x3002;</p>
+<p><a href="https://bundlephobia.com/scan" target="_blank"><img src="img/bundlephobia.png" alt="bundlephobia scan"></a></p>
+<blockquote>
+<p><a href="https://bundlephobia.com/scan" target="_blank">bundlephobia.com/scan</a>&#x3067;<code>pacakge.json</code>&#x306B;&#x66F8;&#x304B;&#x308C;&#x305F;&#x30E9;&#x30A4;&#x30D6;&#x30E9;&#x30EA;&#x306E;&#x30B5;&#x30A4;&#x30BA;&#x3092;&#x4E00;&#x89A7;</p>
+</blockquote>
+<p>&#x3059;&#x3067;&#x306B;&#x30A2;&#x30D7;&#x30EA;&#x30B1;&#x30FC;&#x30B7;&#x30E7;&#x30F3;&#x306E;&#x30B3;&#x30FC;&#x30C9;&#x3092;Webpack&#x3067;bundle&#x3057;&#x3066;&#x3044;&#x308B;&#x5834;&#x5408;&#x306F;<a href="https://github.com/webpack-contrib/webpack-bundle-analyzer" target="_blank">webpack-bundle-analyzer</a>&#x3092;&#x4F7F;&#x3046;&#x3068;&#x30B5;&#x30A4;&#x30BA;&#x304C;&#x308F;&#x304B;&#x308A;&#x3084;&#x3059;&#x304F;&#x53EF;&#x8996;&#x5316;&#x3067;&#x304D;&#x307E;&#x3059;&#x3002;</p>
+<p><img src="img/webpack-bundle-analyzer.png" alt="webpack-bundle-analyzer.png" title="webpack-bundle-analyzer&#x306E;&#x4F8B;"></p>
+<blockquote>
+<p>webpack-bundle-analyzer&#x3067;&#x30E2;&#x30B8;&#x30E5;&#x30FC;&#x30EB;&#x306E;&#x30B5;&#x30A4;&#x30BA;&#x3092;&#x53EF;&#x8996;&#x5316;&#x3057;&#x305F;&#x4F8B;</p>
+</blockquote>
+<p><a href="https://github.com/webpack-contrib/webpack-bundle-analyzer" target="_blank">webpack-bundle-analyzer</a>&#x306A;&#x3069;&#x306F;&#x3001;&#x74B0;&#x5883;&#x5909;&#x6570;&#x306A;&#x3069;&#x3067;&#x666E;&#x6BB5;&#x306E;&#x30D3;&#x30EB;&#x30C9; + bundle-analyzer&#x306E;&#x7D50;&#x679C;&#x3092;&#x51FA;&#x529B;&#x3067;&#x304D;&#x308B;&#x3088;&#x3046;&#x306B;webpack&#x306E;&#x8A2D;&#x5B9A;&#x30D5;&#x30A1;&#x30A4;&#x30EB;&#x3092;&#x4F5C;&#x6210;&#x3057;&#x3066;&#x304A;&#x304F;&#x3068;&#x3088;&#x3044;&#x3067;&#x3059;&#x3002;</p>
+<p>&#x4F8B;) <code>BUILD_STATS=1 webpack</code> &#x306E;&#x3088;&#x3046;&#x306B;&#x74B0;&#x5883;&#x5909;&#x6570;&#x3067;<a href="https://github.com/webpack-contrib/webpack-bundle-analyzer" target="_blank">webpack-bundle-analyzer</a>&#x3092;&#x6709;&#x52B9;&#x5316;&#x3059;&#x308B;</p>
+<pre><code class="lang-js"><span class="hljs-keyword">const</span> path = <span class="hljs-built_in">require</span>(<span class="hljs-string">&apos;path&apos;</span>);
+<span class="hljs-keyword">const</span> webpack = <span class="hljs-built_in">require</span>(<span class="hljs-string">&apos;webpack&apos;</span>);
+<span class="hljs-keyword">const</span> BundleAnalyzerPlugin = <span class="hljs-built_in">require</span>(<span class="hljs-string">&apos;webpack-bundle-analyzer&apos;</span>).BundleAnalyzerPlugin;
+<span class="hljs-keyword">const</span> BUILD_STATS = !!process.env.BUILD_STATS;
+<span class="hljs-built_in">module</span>.exports = {
+    <span class="hljs-comment">// ...&#x7701;&#x7565;...</span>
+    plugins: [].concat(
+      BUILD_STATS
+       ? [
+        <span class="hljs-keyword">new</span> BundleAnalyzerPlugin({
+          analyzerMode: <span class="hljs-string">&apos;static&apos;</span>,
+          reportFilename: path.join(__dirname, <span class="hljs-string">&apos;./build/stats/app.html&apos;</span>),
+          defaultSizes: <span class="hljs-string">&apos;gzip&apos;</span>,
+          openAnalyzer: <span class="hljs-literal">false</span>,
+          generateStatsFile: <span class="hljs-literal">true</span>,
+          statsFilename: path.join(__dirname, <span class="hljs-string">&apos;./build/stats/app.json&apos;</span>),
+          statsOptions: <span class="hljs-literal">null</span>,
+          logLevel: <span class="hljs-string">&apos;info&apos;</span>
+        })
+      ]
+      : []
+      )
+    )
+    .concat([
+      <span class="hljs-keyword">new</span> webpack.ContextReplacementPlugin(<span class="hljs-regexp">/moment[\\/]locale$/</span>, <span class="hljs-regexp">/^\.\/(ja)$/</span>),
+      <span class="hljs-keyword">new</span> LodashModuleReplacementPlugin({ shorthands: <span class="hljs-literal">true</span> })
+    ])
+
+}
+</code></pre>
+<p><a href="https://github.com/webpack-contrib/webpack-bundle-analyzer" target="_blank">webpack-bundle-analyzer</a>&#x3092;&#x4F7F;&#x3063;&#x305F;&#x5206;&#x6790;&#x3068;&#x30D5;&#x30A1;&#x30A4;&#x30EB;&#x30B5;&#x30A4;&#x30BA;&#x306E;&#x524A;&#x6E1B;&#x306B;&#x3064;&#x3044;&#x3066;&#x306F;&#x3001;&#x6B21;&#x306E;&#x8A18;&#x4E8B;&#x3092;&#x53C2;&#x7167;&#x3059;&#x308B;&#x3068;&#x3088;&#x3044;&#x3067;&#x3057;&#x3087;&#x3046;&#x3002;
+&#x30B3;&#x30FC;&#x30C9;&#x3092;minify&#x3059;&#x308B;&#x3068;&#x3044;&#x3063;&#x305F;&#x57FA;&#x672C;&#x7684;&#x306A;&#x3053;&#x3068;&#x304B;&#x3089;moment&#x306E;&#x3088;&#x3046;&#x306A;&#x3088;&#x304F;&#x3042;&#x308B;&#x5927;&#x304D;&#x306A;&#x30E9;&#x30A4;&#x30D6;&#x30E9;&#x30EA;&#x306E;&#x6271;&#x3044;&#x65B9;&#x306B;&#x3001;&#x3088;&#x308A;&#x9AD8;&#x5EA6;&#x306A;&#x30D5;&#x30A1;&#x30A4;&#x30EB;&#x30B5;&#x30A4;&#x30BA;&#x306E;&#x524A;&#x6E1B;&#x65B9;&#x6CD5;&#x306A;&#x3069;&#x306B;&#x3064;&#x3044;&#x3066;&#x66F8;&#x304B;&#x308C;&#x3066;&#x3044;&#x307E;&#x3059;&#x3002;</p>
+<ul>
+<li><a href="https://www.contentful.com/blog/2017/10/10/put-your-webpack-on-a-diet-part-1/" target="_blank">Put Your Webpack Bundle On A Diet - Part 1</a></li>
+<li><a href="https://www.contentful.com/blog/2017/10/19/put-your-webpack-bundle-on-a-diet-part-2/" target="_blank">Put Your Webpack Bundle On A Diet - Part 2</a></li>
+<li><a href="https://www.contentful.com/blog/2017/10/27/put-your-webpack-bundle-on-a-diet-part-3/" target="_blank">Put Your Webpack Bundle On A Diet - Part 3</a></li>
+<li><a href="https://www.contentful.com/blog/2017/11/13/put-your-webpack-bundle-on-a-diet-part-4/" target="_blank">Put Your Webpack Bundle On A Diet - Part 4</a></li>
+</ul>
+<p>&#x3088;&#x308A;&#x5C0F;&#x3055;&#x306A;&#x30E9;&#x30A4;&#x30D6;&#x30E9;&#x30EA;&#x306B;&#x5909;&#x66F4;&#x3057;&#x3066;&#x30B5;&#x30A4;&#x30BA;&#x3092;&#x3078;&#x3089;&#x3059;&#x3053;&#x3068;&#x3082;&#x91CD;&#x8981;&#x3067;&#x3059;&#x304C;&#x3001;&#x307E;&#x305A;&#x306F;&#x4F7F;&#x3063;&#x3066;&#x306A;&#x3044;&#x30E9;&#x30A4;&#x30D6;&#x30E9;&#x30EA;&#x3084;&#x4E0D;&#x7528;&#x610F;&#x306B;&#x5165;&#x3063;&#x3066;&#x3057;&#x307E;&#x3063;&#x3066;&#x3044;&#x308B;&#x3082;&#x306E;&#x3092;&#x53D6;&#x308A;&#x9664;&#x304F;&#x3053;&#x3068;&#x304B;&#x3089;&#x59CB;&#x3081;&#x308B;&#x306E;&#x304C;&#x3088;&#x3044;&#x3067;&#x3059;&#x3002;</p>
+<p>&#x4F8B;) &#x3088;&#x304F;&#x3042;&#x308B;&#x554F;&#x984C;</p>
+<ul>
+<li>&#x610F;&#x56F3;&#x305B;&#x305A;&#x306B;&#x542B;&#x307E;&#x308C;&#x3066;&#x3044;&#x308B;&#x30E9;&#x30A4;&#x30D6;&#x30E9;&#x30EA;&#x3092;&#x53D6;&#x308A;&#x9664;&#x304F;</li>
+<li>&#x7570;&#x306A;&#x308B;&#x30D0;&#x30FC;&#x30B8;&#x30E7;&#x30F3;&#x304C;&#x8907;&#x6570;&#x542B;&#x307E;&#x308C;&#x3066;&#x3044;&#x308B;&#x306E;&#x3092;1&#x3064;&#x306B;&#x7D71;&#x4E00;&#x3059;&#x308B;<ul>
+<li><a href="https://github.com/darrenscerri/duplicate-package-checker-webpack-plugin" target="_blank">duplicate-package-checker-webpack-plugin</a></li>
+</ul>
+</li>
+<li>moment&#x306E;&#x4E0D;&#x8981;&#x306A;&#x30ED;&#x30B1;&#x30FC;&#x30EB;&#x3092;&#x53D6;&#x308A;&#x9664;&#x304F;<ul>
+<li><a href="https://github.com/iamakulov/moment-locales-webpack-plugin" target="_blank">moment-locales-webpack-plugin</a></li>
+</ul>
+</li>
+<li>lodash&#x3067;&#x672A;&#x4F7F;&#x7528;&#x306A;&#x30E1;&#x30BD;&#x30C3;&#x30C9;&#x3092;&#x53D6;&#x308A;&#x9664;&#x304F;<ul>
+<li><a href="https://github.com/lodash/lodash-webpack-plugin" target="_blank">lodash-webpack-plugin</a></li>
+</ul>
+</li>
+</ul>
+<p>&#x30A2;&#x30D7;&#x30EA;&#x30B1;&#x30FC;&#x30B7;&#x30E7;&#x30F3;&#x306E;&#x30B5;&#x30A4;&#x30BA;&#xFF08;&#x7279;&#x306B;JavaScript&#xFF09;&#x306F;&#x30E9;&#x30A4;&#x30D6;&#x30E9;&#x30EA;&#x306B;&#x3088;&#x3063;&#x3066;&#x5927;&#x304D;&#x304F;&#x5897;&#x6E1B;&#x3057;&#x307E;&#x3059;&#x3002;
+&#x305D;&#x306E;&#x305F;&#x3081;&#x3001;&#x7A81;&#x767A;&#x7684;&#x306A;&#x30D5;&#x30A1;&#x30A4;&#x30EB;&#x30B5;&#x30A4;&#x30BA;&#x306E;&#x5897;&#x52A0;&#x3092;&#x9632;&#x3050;&#x305F;&#x3081;&#x306B;&#x3082;<a href="https://github.com/siddharthkp/bundlesize" target="_blank">bundlesize</a>&#x306E;&#x3088;&#x3046;&#x306A;&#x30D5;&#x30A1;&#x30A4;&#x30EB;&#x30B5;&#x30A4;&#x30BA;&#x30C1;&#x30A7;&#x30C3;&#x30AF;&#x3092;PR&#x3054;&#x3068;&#x306B;&#x884C;&#x3063;&#x305F;&#x308A;&#x3001;<a href="https://github.com/GoogleChromeLabs/size-plugin" target="_blank">size-plugin</a>&#x3067;&#x73FE;&#x5728;&#x306E;&#x30D5;&#x30A1;&#x30A4;&#x30EB;&#x30B5;&#x30A4;&#x30BA;&#x3092;&#x30D3;&#x30EB;&#x30C9;&#x6642;&#x306B;&#x53EF;&#x8996;&#x5316;&#x3059;&#x308B;&#x3068;&#x3044;&#x3063;&#x305F;&#x5DE5;&#x592B;&#x3082;&#x5FC5;&#x8981;&#x306B;&#x306A;&#x308A;&#x307E;&#x3059;&#x3002;</p>
+<p>&#x30D5;&#x30A1;&#x30A4;&#x30EB;&#x30B5;&#x30A4;&#x30BA;&#x306E;&#x5909;&#x5316;&#x3092;&#x3069;&#x306E;&#x3088;&#x3046;&#x306B;&#x691C;&#x77E5;&#x3059;&#x308B;&#x304B;&#x306F;&#x3044;&#x308D;&#x3044;&#x308D;&#x306A;&#x30C8;&#x30EC;&#x30FC;&#x30C9;&#x30AA;&#x30D5;&#x304C;&#x3042;&#x308B;&#x306E;&#x3067;&#x3001;&#x30C1;&#x30FC;&#x30E0;&#x306B;&#x3042;&#x3063;&#x305F;&#x3082;&#x306E;&#x3092;&#x9078;&#x629E;&#x3059;&#x308B;&#x306E;&#x304C;&#x3044;&#x3044;&#x3068;&#x601D;&#x3044;&#x307E;&#x3059;&#x3002;</p>
+<p>&#x305F;&#x3068;&#x3048;&#x3070;&#x3001;&#x3042;&#x308B;&#x30C1;&#x30FC;&#x30E0;&#x3067;&#x306F;PR&#x3054;&#x3068;&#x306B;<a href="https://github.com/webpack-contrib/webpack-bundle-analyzer" target="_blank">webpack-bundle-analyzer</a>&#x306E;&#x7D50;&#x679C;&#x3092;&#x30B0;&#x30E9;&#x30D5;&#x3068;&#x3057;&#x3066;&#x898B;&#x3089;&#x308C;&#x308B;&#x3088;&#x3046;&#x306B;&#x3057;&#x3066;&#x3001;&#x30D5;&#x30A1;&#x30A4;&#x30EB;&#x30B5;&#x30A4;&#x30BA;&#x306E;&#x5909;&#x5316;&#x3092;&#x898B;&#x3066;&#x3044;&#x307E;&#x3057;&#x305F;&#x3002;</p>
+<p><img src="img/stats-graph.png" alt="stats-graph"></p>
+<p>&#x3082;&#x3061;&#x308D;&#x3093;<a href="../stats/">&#x5408;&#x6210;&#x30E2;&#x30CB;&#x30BF;&#x30EA;&#x30F3;&#x30B0;&#x30B5;&#x30FC;&#x30D3;&#x30B9;&#x3092;&#x4F7F;&#x3063;&#x305F;&#x8A08;&#x6E2C;</a>&#x3082;&#x4F75;&#x7528;&#x3057;&#x307E;&#x3059;&#x3002;
+&#x3057;&#x304B;&#x3057;&#x3001;&#x5916;&#x90E8;&#x304B;&#x3089;&#x306E;&#x76E3;&#x8996;&#x306F;&#x5B9F;&#x969B;&#x306B;&#x30C7;&#x30D7;&#x30ED;&#x30A4;&#x3059;&#x308B;&#x307E;&#x3067;&#x308F;&#x304B;&#x3089;&#x306A;&#x3044;&#x305F;&#x3081;&#x3001;&#x3053;&#x306E;&#x3088;&#x3046;&#x306A;PR&#x3084;&#x30B3;&#x30DF;&#x30C3;&#x30C8;&#x306A;&#x3069;&#x8907;&#x6570;&#x306E;&#x30EC;&#x30A4;&#x30E4;&#x30FC;&#x3067;&#x30C1;&#x30A7;&#x30C3;&#x30AF;&#x3092;&#x4F75;&#x7528;&#x3057;&#x307E;&#x3059;&#x3002;
+&#x4F75;&#x7528;&#x3057;&#x3066;&#x81EA;&#x52D5;&#x30C1;&#x30A7;&#x30C3;&#x30AF;&#x3067;&#x304D;&#x308B;&#x30EC;&#x30A4;&#x30E4;&#x30FC;&#x3092;&#x5897;&#x3084;&#x3059;&#x3053;&#x3068;&#x3067;&#x554F;&#x984C;&#x306B;&#x65E9;&#x304F;&#x6C17;&#x3065;&#x304F;&#x3053;&#x3068;&#x304C;&#x3067;&#x304D;&#x308B;&#x3088;&#x3046;&#x306B;&#x306A;&#x308A;&#x307E;&#x3059;&#x3002;</p>
+<h2 id="&#x521D;&#x671F;&#x8868;&#x793A;&#x306B;&#x5FC5;&#x8981;&#x306A;&#x3044;&#x3082;&#x306E;&#x3092;&#x9045;&#x5EF6;&#x30ED;&#x30FC;&#x30C9;&#x3059;&#x308B;">&#x521D;&#x671F;&#x8868;&#x793A;&#x306B;&#x5FC5;&#x8981;&#x306A;&#x3044;&#x3082;&#x306E;&#x3092;&#x9045;&#x5EF6;&#x30ED;&#x30FC;&#x30C9;&#x3059;&#x308B;</h2>
+<p>&#x3082;&#x3063;&#x3068;&#x5358;&#x7D14;&#x3067;&#x52B9;&#x679C;&#x304C;&#x3042;&#x308B;&#x30A2;&#x30D7;&#x30ED;&#x30FC;&#x30C1;&#x306F;&#x3001;&#x5FC5;&#x8981;&#x304C;&#x306A;&#x3044;&#x3082;&#x306E;&#x306F;&#x8AAD;&#x307F;&#x8FBC;&#x307E;&#x306A;&#x3044;&#x3053;&#x3068;&#x3067;&#x3059;&#x3002;
+&#x6CE8;&#x610F;&#x3057;&#x306A;&#x3044;&#x3068;&#x521D;&#x671F;&#x8868;&#x793A;&#x306B;&#x4E0D;&#x8981;&#x306A;JavaScript&#x3084;CSS&#x3092;&#x542B;&#x3093;&#x3067;&#x3057;&#x307E;&#x3046;&#x5834;&#x9762;&#x3082;&#x591A;&#x3044;&#x3068;&#x601D;&#x3044;&#x307E;&#x3059;&#x3002;</p>
+<p>&#x3053;&#x308C;&#x306F;&#x7279;&#x306B;&#x30B5;&#x30FC;&#x30C9;&#x30D1;&#x30FC;&#x30C6;&#x30A3;&#x30B9;&#x30AF;&#x30EA;&#x30D7;&#x30C8;&#x306E;&#x8AAD;&#x307F;&#x8FBC;&#x307F;&#x306A;&#x3069;&#x304C;&#x8A72;&#x5F53;&#x3057;&#x3084;&#x3059;&#x3044;&#x3067;&#x3059;&#x3002;
+JavaScript&#x306A;&#x3089;<code>async</code>&#x5C5E;&#x6027;&#x3092;&#x4ED8;&#x3051;&#x3066;&#x9045;&#x5EF6;&#x30ED;&#x30FC;&#x30C9;&#x3055;&#x305B;&#x3001;<a href="https://github.com/filamentgroup/loadCSS" target="_blank">loadCSS</a>&#x306A;&#x3069;&#x3092;&#x4F7F;&#x3063;&#x3066;&#x9045;&#x5EF6;&#x30ED;&#x30FC;&#x30C9;&#x3055;&#x305B;&#x308B;&#x3068;&#x3044;&#x3046;&#x624B;&#x6CD5;&#x304C;&#x5229;&#x7528;&#x3067;&#x304D;&#x307E;&#x3059;&#x3002;</p>
+<pre><code class="lang-diff"><span class="hljs-deletion">- &lt;script src=&quot;https://example.com/script.js&quot; /&gt;,</span>
+<span class="hljs-addition">+ &lt;script src=&quot;https://example.com/script.js&quot; async defer /&gt;,</span>
+</code></pre>
+<ul>
+<li><a href="https://developers.google.com/speed/docs/insights/BlockingJS" target="_blank">&#x30EC;&#x30F3;&#x30C0;&#x30EA;&#x30F3;&#x30B0;&#x3092;&#x59A8;&#x3052;&#x308B; JavaScript &#x3092;&#x524A;&#x9664;&#x3059;&#x308B;  |  PageSpeed Insights  |  Google Developers</a></li>
+<li><a href="https://developers.google.com/web/tools/lighthouse/audits/critical-request-chains?hl=ja" target="_blank">&#x30AF;&#x30EA;&#x30C6;&#x30A3;&#x30AB;&#x30EB; &#x30EA;&#x30AF;&#x30A8;&#x30B9;&#x30C8; &#x30C1;&#x30A7;&#x30FC;&#x30F3;  |  Tools for Web Developers  |  Google Developers</a></li>
+<li><a href="https://www.filamentgroup.com/lab/async-css.html" target="_blank">Modern Asynchronous CSS Loading | Filament Group, Inc., Boston, MA</a></li>
+</ul>
+<p>&#x7279;&#x5B9A;&#x306E;&#x30B3;&#x30F3;&#x30DD;&#x30FC;&#x30CD;&#x30F3;&#x30C8;&#x306B;&#x7D10;&#x4ED8;&#x3044;&#x3066;&#x5FC5;&#x8981;&#x3068;&#x306A;&#x308B;&#x30B9;&#x30AF;&#x30EA;&#x30D7;&#x30C8;&#x306A;&#x3069;&#x3082;&#x3001;&#x305D;&#x306E;&#x30B3;&#x30F3;&#x30DD;&#x30FC;&#x30CD;&#x30F3;&#x30C8;&#x304C;&#x8868;&#x793A;&#x3055;&#x308C;&#x308B;&#x307E;&#x3067;&#x8AAD;&#x307F;&#x8FBC;&#x3080;&#x5FC5;&#x8981;&#x304C;&#x306A;&#x3044;&#x306F;&#x305A;&#x3067;&#x3059;&#x3002;
+&#x3053;&#x308C;&#x306F;&#x3001;&#x5E83;&#x544A;&#x306E;&#x30B9;&#x30AF;&#x30EA;&#x30D7;&#x30C8;&#x3084;SNS&#x30DC;&#x30BF;&#x30F3;&#x306A;&#x3069;&#x7279;&#x5B9A;&#x306E;&#x30B3;&#x30F3;&#x30DD;&#x30FC;&#x30CD;&#x30F3;&#x30C8;&#x306B;&#x7D10;&#x4ED8;&#x304F;&#x3082;&#x306E;&#x306A;&#x3069;&#x304C;&#x8A72;&#x5F53;&#x3057;&#x307E;&#x3059;&#x3002;</p>
+<p>&#x3053;&#x308C;&#x3089;&#x306E;&#x30B3;&#x30F3;&#x30DD;&#x30FC;&#x30CD;&#x30F3;&#x30C8;&#x306B;&#x7D10;&#x3065;&#x304F;&#x30B9;&#x30AF;&#x30EA;&#x30D7;&#x30C8;&#x306A;&#x3069;&#x306F;&#x3001;&#x52D5;&#x7684;&#x306B;&#x30ED;&#x30FC;&#x30C9;&#x3057;&#x3066;&#x305D;&#x308C;&#x304C;&#x8AAD;&#x307F;&#x7D42;&#x308F;&#x3063;&#x305F;&#x30BF;&#x30A4;&#x30DF;&#x30F3;&#x30B0;&#x3067;&#x30B3;&#x30F3;&#x30DD;&#x30FC;&#x30CD;&#x30F3;&#x30C8;&#x3092;&#x66F4;&#x65B0;&#x3059;&#x308B;&#x3068;&#x3044;&#x3063;&#x305F;&#x4F5C;&#x308A;&#x306B;&#x3059;&#x308B;&#x3053;&#x3068;&#x3067;&#x9045;&#x5EF6;&#x30ED;&#x30FC;&#x30C9;&#x3067;&#x304D;&#x307E;&#x3059;&#x3002;</p>
+<p>&#x6B21;&#x306E;&#x30B3;&#x30FC;&#x30C9;&#x306F;&#x3001;&#x52D5;&#x7684;&#x306B;&#x30B9;&#x30AF;&#x30EA;&#x30D7;&#x30C8;&#x3092;&#x30ED;&#x30FC;&#x30C9;&#x3059;&#x308B;Util&#x3068;&#x3001;&#x30B9;&#x30AF;&#x30EA;&#x30D7;&#x30C8;&#x3092;&#x30ED;&#x30FC;&#x30C9;&#x3059;&#x308B;React&#x30B3;&#x30F3;&#x30DD;&#x30FC;&#x30CD;&#x30F3;&#x30C8;&#x306E;&#x4F8B;&#x3067;&#x3059;&#x3002;</p>
+<p><code>ScriptLoaderUtil.ts</code>:</p>
+<pre><code class="lang-ts"><span class="hljs-comment">/**
+ * &lt;script&gt;&#x30BF;&#x30B0;&#x3067;js&#x30D5;&#x30A1;&#x30A4;&#x30EB;&#x3092;&#x52D5;&#x7684;&#x306B;&#x30ED;&#x30FC;&#x30C9;&#x3059;&#x308B;Util
+ */</span>
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">class</span> ScriptLoaderUtil {
+  <span class="hljs-comment">/**
+   * &#x3059;&#x3067;&#x306B;&#x8AAD;&#x307F;&#x8FBC;&#x307F;&#x3092;&#x958B;&#x59CB;&#x3057;&#x305F;URL&#x3092;&#x4FDD;&#x6301;&#x3057;&#x3066;&#x304A;&#x304F;&#x30DE;&#x30C3;&#x30D7;&#x30AA;&#x30D6;&#x30B8;&#x30A7;&#x30AF;&#x30C8;
+   */</span>
+  <span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> srcMap: { [src: <span class="hljs-built_in">string</span>]: Promise&lt;<span class="hljs-built_in">void</span>&gt; } = {};
+
+  <span class="hljs-comment">/**
+   * &#x30C7;&#x30D5;&#x30A9;&#x30EB;&#x30C8;&#x306E;&#x30BF;&#x30A4;&#x30E0;&#x30A2;&#x30A6;&#x30C8;(&#x30DF;&#x30EA;&#x79D2;)
+   */</span>
+  <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> DEFAULT_TIMEOUT = <span class="hljs-number">5</span> * <span class="hljs-number">1000</span>;
+
+  <span class="hljs-comment">/**
+   * script&#x30BF;&#x30B0;&#x3092;&#x5229;&#x7528;&#x3057;&#x3066;&#x5916;&#x90E8;&#x30BD;&#x30FC;&#x30B9;&#x306E;&#x8AAD;&#x307F;&#x8FBC;&#x307F;&#x3092;&#x884C;&#x3046;
+   * @param src &#x8AAD;&#x307F;&#x8FBC;&#x3080;js&#x306E;URL
+   * @param timeout &#x30BF;&#x30A4;&#x30E0;&#x30A2;&#x30A6;&#x30C8;(&#x30DF;&#x30EA;&#x79D2;)
+   */</span>
+  <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> load({ src, timeout }: { src: <span class="hljs-built_in">string</span>; timeout?: <span class="hljs-built_in">number</span> }): Promise&lt;<span class="hljs-built_in">void</span>&gt; {
+    <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> Promise((resolve, reject) =&gt; {
+      <span class="hljs-comment">// &#x3059;&#x3067;&#x306B;&#x8AAD;&#x307F;&#x8FBC;&#x307F;&#x3092;&#x958B;&#x59CB;&#x3057;&#x3066;&#x3044;&#x308B;&#x5834;&#x5408;&#x306F;2&#x91CD;&#x306B;&#x8AAD;&#x307F;&#x8FBC;&#x307E;&#x306A;&#x3044;</span>
+      <span class="hljs-keyword">if</span> (<span class="hljs-keyword">this</span>.srcMap[src]) {
+        <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>.srcMap[src].then(resolve);
+      }
+      <span class="hljs-comment">// &#x65B0;&#x898F; src &#x306E;&#x5834;&#x5408;&#x306F; script &#x30BF;&#x30B0;&#x3092;&#x5229;&#x7528;&#x3057;&#x3066;&#x8AAD;&#x307F;&#x8FBC;&#x307F;&#x3092;&#x958B;&#x59CB;&#x3059;&#x308B;</span>
+      <span class="hljs-keyword">this</span>.srcMap[src] = <span class="hljs-keyword">new</span> Promise((resolve, reject) =&gt; {
+        <span class="hljs-keyword">let</span> isHandled = <span class="hljs-literal">false</span>;
+        <span class="hljs-keyword">const</span> script = <span class="hljs-built_in">document</span>.createElement(<span class="hljs-string">&apos;script&apos;</span>);
+        script.src = src;
+        script.type = <span class="hljs-string">&apos;text/javascript&apos;</span>;
+        script.charset = <span class="hljs-string">&apos;utf-8&apos;</span>;
+        script.async = <span class="hljs-literal">true</span>;
+        <span class="hljs-comment">/* tslint:disable */</span>
+        <span class="hljs-keyword">const</span> onLoad = () =&gt; {
+          isHandled = <span class="hljs-literal">true</span>;
+          resolve();
+          script.removeEventListener(<span class="hljs-string">&apos;load&apos;</span>, onLoad);
+          script.removeEventListener(<span class="hljs-string">&apos;error&apos;</span>, onError);
+        };
+        <span class="hljs-keyword">const</span> onError = () =&gt; {
+          isHandled = <span class="hljs-literal">true</span>;
+          reject(<span class="hljs-keyword">new</span> <span class="hljs-built_in">URIError</span>(<span class="hljs-string">`The script(<span class="hljs-subst">${src}</span>) is not accessible.`</span>));
+          script.removeEventListener(<span class="hljs-string">&apos;load&apos;</span>, onLoad);
+          script.removeEventListener(<span class="hljs-string">&apos;error&apos;</span>, onError);
+          <span class="hljs-keyword">delete</span> <span class="hljs-keyword">this</span>.srcMap[src];
+        };
+        <span class="hljs-comment">/* tslint:enable */</span>
+        script.addEventListener(<span class="hljs-string">&apos;load&apos;</span>, onLoad);
+        script.addEventListener(<span class="hljs-string">&apos;error&apos;</span>, onError);
+        <span class="hljs-built_in">document</span>.body.appendChild(script);
+        <span class="hljs-comment">// &#x30BF;&#x30A4;&#x30E0;&#x30A2;&#x30A6;&#x30C8;&#x51E6;&#x7406;</span>
+        setTimeout(() =&gt; {
+          <span class="hljs-keyword">if</span> (isHandled) {
+            <span class="hljs-keyword">return</span>;
+          }
+          script.removeEventListener(<span class="hljs-string">&apos;load&apos;</span>, onLoad);
+          script.removeEventListener(<span class="hljs-string">&apos;error&apos;</span>, onError);
+          <span class="hljs-keyword">delete</span> <span class="hljs-keyword">this</span>.srcMap[src];
+          reject(<span class="hljs-keyword">new</span> <span class="hljs-built_in">Error</span>(<span class="hljs-string">`The script(<span class="hljs-subst">${src}</span>) load is timeout`</span>));
+        }, timeout || <span class="hljs-keyword">this</span>.DEFAULT_TIMEOUT);
+      });
+      <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>.srcMap[src].then(resolve, reject);
+    });
+  }
+}
+</code></pre>
+<p><code>ScriptLoader.tsx</code>:</p>
+<pre><code class="lang-ts"><span class="hljs-keyword">import</span> * as React from <span class="hljs-string">&apos;react&apos;</span>;
+<span class="hljs-keyword">import</span> classNames from <span class="hljs-string">&apos;classnames&apos;</span>;
+<span class="hljs-keyword">import</span> { ScriptLoaderUtil } from <span class="hljs-string">&apos;./ScriptLoaderUtil&apos;</span>;
+
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">type</span> ScriptLoaderProps = {
+  src: <span class="hljs-built_in">string</span>;
+  className?: <span class="hljs-built_in">string</span>;
+  onLoad?: () =&gt; <span class="hljs-built_in">void</span>;
+  onError?: (error: <span class="hljs-built_in">Error</span>) =&gt; <span class="hljs-built_in">void</span>;
+};
+
+<span class="hljs-comment">/**
+ * &lt;script&gt; &#x3067; JS &#x30D5;&#x30A1;&#x30A4;&#x30EB;&#x3092;&#x8AAD;&#x307F;&#x8FBC;&#x3080;&#x30B3;&#x30F3;&#x30DD;&#x30FC;&#x30CD;&#x30F3;&#x30C8;
+ * &lt;ScriptLoader src=&quot;https://example.com/script.js&quot; onLoad={() =&gt; {}} /&gt;
+ */</span>
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> <span class="hljs-keyword">class</span> ScriptLoader extends React.PureComponent&lt;ScriptLoaderProps&gt; {
+  <span class="hljs-keyword">public</span> componentDidMount() {
+    ScriptLoaderUtil.load({
+      src: <span class="hljs-keyword">this</span>.props.src
+    })
+      .then(() =&gt; {
+        <span class="hljs-keyword">this</span>.props.onLoad &amp;&amp; <span class="hljs-keyword">this</span>.props.onLoad();
+      })
+      .catch(error =&gt; {
+        <span class="hljs-keyword">if</span> (<span class="hljs-keyword">this</span>.props.onError) {
+          <span class="hljs-keyword">this</span>.props.onError(error);
+        } <span class="hljs-keyword">else</span> {
+          <span class="hljs-built_in">console</span>.error(error);
+        }
+      });
+  }
+
+  <span class="hljs-keyword">public</span> render() {
+    <span class="hljs-keyword">return</span> &lt;div className={classNames(<span class="hljs-string">&apos;ScriptLoader&apos;</span>, <span class="hljs-keyword">this</span>.props.className)} /&gt;;
+  }
+}
+</code></pre>
+<h2 id="&#x5206;&#x96E2;&#x3068;&#x81EA;&#x52D5;&#x30C1;&#x30A7;&#x30C3;&#x30AF;">&#x5206;&#x96E2;&#x3068;&#x81EA;&#x52D5;&#x30C1;&#x30A7;&#x30C3;&#x30AF;</h2>
+<p>webpack&#x306A;&#x3069;&#x3067;&#x306F;<a href="https://webpack.js.org/guides/code-splitting/" target="_blank">Code Splitting</a>&#x3067;&#x521D;&#x671F;&#x8868;&#x793A;&#x306B;&#x5FC5;&#x8981;&#x306A;&#x3044;&#x3082;&#x306E;&#x3092;bundle&#x304B;&#x3089;&#x5225;&#x306E;chunk&#x306B;&#x5206;&#x5272;&#x3067;&#x304D;&#x307E;&#x3059;&#x3002;</p>
+<ul>
+<li><a href="https://webpack.js.org/guides/code-splitting/" target="_blank">Code Splitting</a></li>
+<li><a href="https://reactjs.org/docs/code-splitting.html" target="_blank">Code-Splitting &#x2013; React</a></li>
+</ul>
+<p>&#x3053;&#x308C;&#x306B;&#x3088;&#x3063;&#x3066;&#x3001;&#x521D;&#x671F;&#x8868;&#x793A;&#x306B;&#x5FC5;&#x8981;&#x306A;bundle&#x306E;&#x30D5;&#x30A1;&#x30A4;&#x30EB;&#x30B5;&#x30A4;&#x30BA;&#x3092;&#x524A;&#x6E1B;&#x3067;&#x304D;&#x307E;&#x3059;&#x3002;</p>
+<p>&#x3069;&#x306E;&#x3088;&#x3046;&#x306B;&#x5206;&#x5272;&#x3059;&#x308B;&#x304B;&#x306F;&#x30A2;&#x30D7;&#x30EA;&#x30B1;&#x30FC;&#x30B7;&#x30E7;&#x30F3;&#x306B;&#x4F9D;&#x5B58;&#x3057;&#x307E;&#x3059;&#x304C;&#x3001;&#x3082;&#x3063;&#x3068;&#x3088;&#x304F;&#x3042;&#x308B;&#x30B1;&#x30FC;&#x30B9;&#x306F;&#x30EB;&#x30FC;&#x30C6;&#x30A3;&#x30F3;&#x30B0;&#x306B;&#x3088;&#x3063;&#x3066;&#x30DA;&#x30FC;&#x30B8;&#xFF08;URL&#xFF09;&#x3068;&#x3057;&#x3066;&#x5225;&#x308C;&#x3066;&#x3044;&#x308B;&#x30B3;&#x30F3;&#x30DD;&#x30FC;&#x30CD;&#x30F3;&#x30C8;&#x3092;&#x5206;&#x5272;&#x3059;&#x308B;&#x3053;&#x3068;&#x3067;&#x3059;&#x3002;
+&#x307E;&#x305F;&#x3001;&#x540C;&#x3058;&#x30DA;&#x30FC;&#x30B8;&#x5185;&#x3067;&#x3082;&#x4E00;&#x822C;&#x30E6;&#x30FC;&#x30B6;&#x30FC;&#x3068;&#x7BA1;&#x7406;&#x30E6;&#x30FC;&#x30B6;&#x30FC;&#x3067;&#x8868;&#x793A;&#x3055;&#x308C;&#x308B;&#x3082;&#x306E;&#x304C;&#x7570;&#x306A;&#x308B;&#x3068;&#x3044;&#x3046;&#x3053;&#x3068;&#x304C;&#x3042;&#x308A;&#x307E;&#x3059;&#x3002;
+&#x7BA1;&#x7406;&#x30E6;&#x30FC;&#x30B6;&#x30FC;&#x3067;&#x306F;&quot;&#x4E00;&#x822C;&#x30E6;&#x30FC;&#x30B6;&#x30FC;&#x306E;&#x8868;&#x793A;&quot; + &quot;&#x7BA1;&#x7406;&#x30C4;&#x30FC;&#x30EB;&quot;&#x3068;&#x3044;&#x3063;&#x305F;&#x69CB;&#x9020;&#x306B;&#x306A;&#x3063;&#x3066;&#x3044;&#x308B;&#x3053;&#x3068;&#x3082;&#x591A;&#x3044;&#x3067;&#x3059;&#x3002;</p>
+<p>&#x3053;&#x306E;&#x3088;&#x3046;&#x306A;&#x5834;&#x5408;&#x306B;&#x30E1;&#x30A4;&#x30F3;&#x306E;bundle&#x306B;&#x4E00;&#x822C;&#x30E6;&#x30FC;&#x30B6;&#x30FC;&#x306B;&#x4E0D;&#x8981;&#x306A;&quot;&#x7BA1;&#x7406;&#x30C4;&#x30FC;&#x30EB;&quot;&#x306E;&#x30B3;&#x30F3;&#x30DD;&#x30FC;&#x30CD;&#x30F3;&#x30C8;&#x3092;&#x542B;&#x3081;&#x308B;&#x306E;&#x306F;&#x9069;&#x5207;&#x3067;&#x306F;&#x3042;&#x308A;&#x307E;&#x305B;&#x3093;&#x3002;
+&#x305D;&#x306E;&#x305F;&#x3081;&#x3001;&quot;&#x7BA1;&#x7406;&#x30C4;&#x30FC;&#x30EB;&quot;&#x3060;&#x3051;&#x3092;chunk&#x3068;&#x3057;&#x3066;&#x5206;&#x3051;&#x305F;&#x308A;&#x3001;<a href="https://webpack.js.org/guides/code-splitting/#dynamic-imports" target="_blank">Dynamic Imports</a>&#x3067;&#x52D5;&#x7684;&#x306B;&#x30ED;&#x30FC;&#x30C9;&#x3059;&#x308B;&#x3068;&#x3044;&#x3063;&#x305F;&#x3053;&#x3068;&#x304C;&#x3067;&#x304D;&#x307E;&#x3059;&#x3002;</p>
+<p>&#x5177;&#x4F53;&#x7684;&#x306A;&#x4F8B;&#x3068;&#x3057;&#x3066;&#x3001;&#x30CB;&#x30B3;&#x30CB;&#x30B3;&#x751F;&#x653E;&#x9001;&#x3067;&#x306F;&#x8996;&#x8074;&#x8005;&#x304C;&#x307F;&#x308B;&#x8996;&#x8074;&#x30DA;&#x30FC;&#x30B8;&#x3068;&#x914D;&#x4FE1;&#x8005;&#x304C;&#x898B;&#x308B;&#x914D;&#x4FE1;&#x30DA;&#x30FC;&#x30B8;&#x306F;&#x307B;&#x3068;&#x3093;&#x3069;&#x540C;&#x3058;JavaScript&#x3067;&#x52D5;&#x4F5C;&#x3057;&#x3066;&#x3044;&#x307E;&#x3059;&#x3002;
+&#x3057;&#x304B;&#x3057;&#x3001;&#x914D;&#x4FE1;&#x8005;&#x304C;&#x898B;&#x308B;&#x30DA;&#x30FC;&#x30B8;&#x306B;&#x306F;&#x3001;&#x8996;&#x8074;&#x8005;&#x898B;&#x308B;&#x30D7;&#x30EC;&#x30A4;&#x30E4;&#x30FC;&#x306A;&#x3069;&#x306B;&#x52A0;&#x3048;&#x3066;&#x914D;&#x4FE1;&#x8005;&#x5411;&#x3051;&#x306E;&#x30C4;&#x30FC;&#x30EB;&#xFF08;&#x30B3;&#x30F3;&#x30DD;&#x30FC;&#x30CD;&#x30F3;&#x30C8;&#xFF09;&#x304C;&#x8FFD;&#x52A0;&#x3055;&#x308C;&#x3066;&#x3044;&#x307E;&#x3059;&#x3002;</p>
+<p><img src="img/compare.png" alt="&#x5DE6;&#x306F;&#x8996;&#x8074;&#x30DA;&#x30FC;&#x30B8;&#x3001;&#x53F3;&#x306F;&#x914D;&#x4FE1;&#x30DA;&#x30FC;&#x30B8;"></p>
+<blockquote>
+<p>&#x5DE6;&#x306F;&#x8996;&#x8074;&#x8005;&#x304C;&#x898B;&#x308B;&#x30DA;&#x30FC;&#x30B8;&#x3001;&#x53F3;&#x306F;&#x914D;&#x4FE1;&#x8005;&#x304C;&#x898B;&#x308B;&#x30DA;&#x30FC;&#x30B8;</p>
+</blockquote>
+<p>&#x3053;&#x306E;&quot;&#x914D;&#x4FE1;&#x8005;&#x5411;&#x3051;&#x306E;&#x30C4;&#x30FC;&#x30EB;&quot;&#x306F;&#x8996;&#x8074;&#x8005;&#x306B;&#x4E0D;&#x8981;&#x3067;&#x3042;&#x308B;&#x305F;&#x3081;&#x30E1;&#x30A4;&#x30F3;&#x306E;bundle&#x304B;&#x3089;&#x5916;&#x3059;&#x5FC5;&#x8981;&#x3053;&#x3068;&#x3067;&#x30D5;&#x30A1;&#x30A4;&#x30EB;&#x30B5;&#x30A4;&#x30BA;&#x304C;&#x524A;&#x6E1B;&#x3067;&#x304D;&#x307E;&#x3059;&#x3002;</p>
+<p>&#x5B9F;&#x969B;&#x306B;&#x3053;&#x306E;&quot;&#x914D;&#x4FE1;&#x8005;&#x5411;&#x3051;&#x306E;&#x30C4;&#x30FC;&#x30EB;&quot;&#x3092;&#x3001;&#x30E1;&#x30A4;&#x30F3;&#x306E;bundle&#x304B;&#x3089;&#x914D;&#x4FE1;&#x8005;&#x5411;&#x3051;&#x306E;&#x30C4;&#x30FC;&#x30EB;&#x3060;&#x3051;&#x306E;chunk&#xFF08;&#x30D5;&#x30A1;&#x30A4;&#x30EB;&#xFF09;&#x3078;&#x3068;&#x5206;&#x96E2;&#x3057;&#x307E;&#x3057;&#x305F;&#x3002;
+&#x3053;&#x308C;&#x306B;&#x3088;&#x3063;&#x3066;&#x30E1;&#x30A4;&#x30F3;&#x306E;bundle&#x304C;&quot;&#x914D;&#x4FE1;&#x8005;&#x5411;&#x3051;&#x306E;&#x30C4;&#x30FC;&#x30EB;&quot;&#x306E;&#x5206;&#x3067;&#x3042;&#x308B;30kb&#xFF08;gzip&#xFF09;&#x7A0B;&#x5EA6;&#x524A;&#x6E1B;&#x3067;&#x304D;&#x307E;&#x3057;&#x305F;&#x3002;</p>
+<p><img src="img/split-broadcaster-tool.png" alt="&quot;&#x914D;&#x4FE1;&#x8005;&#x5411;&#x3051;&#x306E;&#x30C4;&#x30FC;&#x30EB;&quot;&#x3092;&#x5206;&#x96E2;&#x3059;&#x308B;PR"></p>
+<p>&#x3053;&#x306E;&#x5909;&#x66F4;&#x3067;&#x306F;&#x3001;&#x6B21;&#x306E;&#x3088;&#x3046;&#x306B;&#x30A4;&#x30E1;&#x30FC;&#x30B8;&#x3067;&#x5229;&#x7528;&#x3067;&#x304D;&#x308B;&#x3088;&#x3046;&#x306B;&#x5206;&#x96E2;&#x3055;&#x308C;&#x307E;&#x3057;&#x305F;&#x3002;</p>
+<pre><code>&lt;script src=&quot;main.bundle.js&quot;&gt;
+if (&#x914D;&#x4FE1;&#x8005;&#x30DA;&#x30FC;&#x30B8;&#x306A;&#x3089;) { 
+    &lt;script src=&quot;&#x914D;&#x4FE1;&#x8005;&#x5411;&#x3051;&#x30C4;&#x30FC;&#x30EB;&#x306E;bundle.js&quot;&gt;
+}
+</code></pre><p><strong>bundle&#x306E;&#x518D;&#x7D50;&#x5408;&#x306E;&#x9632;&#x6B62;</strong></p>
+<p>Bundle&#x3092;&#x5206;&#x96E2;&#x3059;&#x308B;&#x3053;&#x3068;&#x306F;&#x3046;&#x307E;&#x304F;&#x3067;&#x304D;&#x3066;&#x3082;&#x3001;&#x305D;&#x306E;&#x72B6;&#x614B;&#x3092;&#x7DAD;&#x6301;&#x3059;&#x308B;&#x5FC5;&#x8981;&#x304C;&#x3042;&#x308A;&#x307E;&#x3059;&#x3002;
+&#x305F;&#x3068;&#x3048;&#x3070;&#x3001;&#x5148;&#x307B;&#x3069;&#x306E;&quot;&#x914D;&#x4FE1;&#x8005;&#x5411;&#x3051;&#x306E;&#x30C4;&#x30FC;&#x30EB;&quot;&#x306E;&#x5206;&#x96E2;&#x3067;&#x306F;&#x3001;&#x30C7;&#x30A3;&#x30EC;&#x30AF;&#x30C8;&#x30EA;&#x3082;&#x6B21;&#x306E;&#x3088;&#x3046;&#x306B;&#x5206;&#x96E2;&#x3057;&#x3066;&#x3044;&#x307E;&#x3057;&#x305F;&#x3002;
+&#x305D;&#x3057;&#x3066;&#x305D;&#x308C;&#x305E;&#x308C;&#x306B;&#x5BFE;&#x5FDC;&#x3059;&#x308B;bundle&#x3068;chunk&#x3092;&#x51FA;&#x529B;&#x3059;&#x308B;&#x3088;&#x3046;&#x306B;&#x306A;&#x3063;&#x3066;&#x3044;&#x307E;&#x3059;&#x3002;</p>
+<pre><code>src/
+&#x251C;&#x2500;&#x2500; broadcaster-tool(&#x914D;&#x4FE1;&#x8005;&#x5411;&#x3051;&#x306E;&#x30C4;&#x30FC;&#x30EB;&#x306E;&#x30B3;&#x30FC;&#x30C9;) ---&gt; broadcaster-tool.js&#x3068;&#x3057;&#x3066;&#x51FA;&#x529B;
+&#x2514;&#x2500;&#x2500; view(&#x8996;&#x8074;&#x8005;&#x5411;&#x3051;&#x306E;&#x30B3;&#x30FC;&#x30C9;)  ---&gt; pc-watch.js&#x3068;&#x3057;&#x3066;&#x51FA;&#x529B;
+</code></pre><p>&#x3053;&#x308C;&#x304C;&#x3046;&#x307E;&#x304F;&#x5206;&#x96E2;&#x3055;&#x308C;&#x308B;&#x306B;&#x306F;<code>view(&#x8996;&#x8074;&#x8005;&#x5411;&#x3051;&#x306E;&#x30B3;&#x30FC;&#x30C9;)</code> &#x3068; <code>broadcaster-tool(&#x914D;&#x4FE1;&#x8005;&#x5411;&#x3051;&#x306E;&#x30C4;&#x30FC;&#x30EB;&#x306E;&#x30B3;&#x30FC;&#x30C9;)</code> &#x306E;&#x9593;&#x306B;&#x4F9D;&#x5B58;&#x95A2;&#x4FC2;&#x3092;&#x4F5C;&#x3089;&#x306A;&#x3044;&#x5FC5;&#x8981;&#x304C;&#x3042;&#x308A;&#x307E;&#x3059;&#x3002;
+&#x306A;&#x305C;&#x306A;&#x3089;&#x3001;<code>view</code>&#x304C;<code>broadcaster-tool</code>&#x306B;&#x4F9D;&#x5B58;&#x95A2;&#x4FC2;&#x304C;&#x3042;&#x308B;&#x3068;webpack&#x306A;&#x3069;&#x306F;chunk&#x3068;&#x3057;&#x3066;&#x5206;&#x96E2;&#x3067;&#x304D;&#x306A;&#x304F;&#x306A;&#x308B;&#x305F;&#x3081;&#x3067;&#x3059;&#x3002;
+&#x305F;&#x3068;&#x3048;&#x3070;&#x3001;<code>view(&#x8996;&#x8074;&#x8005;&#x5411;&#x3051;&#x306E;&#x30B3;&#x30FC;&#x30C9;)</code>&#x304B;&#x3089;<code>broadcaster-tool(&#x914D;&#x4FE1;&#x8005;&#x5411;&#x3051;&#x306E;&#x30C4;&#x30FC;&#x30EB;&#x306E;&#x30B3;&#x30FC;&#x30C9;)</code> &#x306B;&#x4F9D;&#x5B58;&#x304C;&#x3042;&#x308B;<code>pc-watch.js</code>&#x306B;<code>broadcaster-tool.js</code>&#x306E;&#x5185;&#x5BB9;&#x304C;&#x542B;&#x307E;&#x308C;&#x3066;&#x3057;&#x307E;&#x3044;&#x307E;&#x3059;&#x3002;</p>
+<p>&#x3053;&#x308C;&#x306F;&#x3001;JetBrains&#x7CFB;&#x306E;IDE&#x3084;VSCode&#x306A;&#x3069;JavaScript&#x306E;&#x30E2;&#x30B8;&#x30E5;&#x30FC;&#x30EB;&#x3078;&#x306E;&#x30D1;&#x30B9;&#x88DC;&#x5B8C;&#x304C;&#x7C21;&#x5358;&#x3067;&#x304D;&#x308B;&#x3068;&#x3044;&#x3064;&#x306E;&#x9593;&#x306B;&#x304B;&#x8D77;&#x304D;&#x3066;&#x3057;&#x307E;&#x3046;&#x3053;&#x3068;&#x304C;&#x3042;&#x308A;&#x307E;&#x3059;&#x3002;
+&#x30B3;&#x30F3;&#x30DD;&#x30FC;&#x30CD;&#x30F3;&#x30C8;&#x540D;&#x3092;&#x5165;&#x529B;&#x3059;&#x308B;&#x3068;&#x3001;&#x81EA;&#x52D5;&#x7684;&#x306B;&#x305D;&#x306E;&#x30B3;&#x30F3;&#x30DD;&#x30FC;&#x30CD;&#x30F3;&#x30C8;&#x3092;<code>import</code>&#x3057;&#x3066;&#x3057;&#x307E;&#x3063;&#x3066;&#x60F3;&#x5B9A;&#x5916;&#x306E;&#x4F9D;&#x5B58;&#x95A2;&#x4FC2;&#x304C;&#x767A;&#x751F;&#x3059;&#x308B;&#x3068;&#x8A00;&#x3063;&#x305F;&#x3053;&#x3068;&#x304C;&#x304A;&#x304D;&#x307E;&#x3059;&#x3002;</p>
+<p>&#x3053;&#x306E;&#x3088;&#x3046;&#x306A;&#x610F;&#x56F3;&#x3057;&#x306A;&#x3044;&#x65B9;&#x5411;&#x306E;&#x4F9D;&#x5B58;&#x3092;&#x9632;&#x6B62;&#x3059;&#x308B;&#x306B;&#x306F;<a href="https://github.com/sverweij/dependency-cruiser" target="_blank">dependency-cruiser</a>&#x306E;&#x3088;&#x3046;&#x306A;&#x30C1;&#x30A7;&#x30C3;&#x30AF;&#x30C4;&#x30FC;&#x30EB;&#x3092;&#x4F7F;&#x3046;&#x306E;&#x304C;&#x7C21;&#x5358;&#x3067;&#x3059;&#x3002;<code>dependency-cruiser</code>&#x306F;&#x30EB;&#x30FC;&#x30EB;&#x3092;&#x66F8;&#x3044;&#x3066;&#x3001;&#x30E2;&#x30B8;&#x30E5;&#x30FC;&#x30EB;&#x306E;&#x4F9D;&#x5B58;&#x95A2;&#x4FC2;&#x306E;&#x30C1;&#x30A7;&#x30C3;&#x30AF;&#x3092;&#x884C;&#x3048;&#x307E;&#x3059;&#x3002;</p>
+<ul>
+<li><a href="https://github.com/sverweij/dependency-cruiser" target="_blank">sverweij/dependency-cruiser: Validate and visualize dependencies. With your rules. JavaScript, TypeScript, CoffeeScript. ES6, CommonJS, AMD.</a></li>
+</ul>
+<p>&#x5177;&#x4F53;&#x7684;&#x306B;&#x306F;&#x3001;&#x6B21;&#x306E;&#x3088;&#x3046;&#x306A;&#x30EB;&#x30FC;&#x30EB;&#x3092;&#x66F8;&#x304F;&#x3068;<code>src/broadcaster-tool</code> -&gt; <code>src/view</code> &#x3078;&#x306E;&#x53C2;&#x7167;&#x3092;&#x81EA;&#x52D5;&#x7684;&#x306B;&#x30C1;&#x30A7;&#x30C3;&#x30AF;&#x3057;&#x3066;&#x3001;&#x610F;&#x56F3;&#x3057;&#x306A;&#x3044;&#x53C2;&#x7167;&#x3092;&#x9632;&#x6B62;&#x3057;&#x3066;&#x3044;&#x307E;&#x3059;&#x3002;</p>
+<pre><code class="lang-yaml">{
+<span class="hljs-attr">    &quot;forbidden&quot;:</span> [
+        {
+<span class="hljs-attr">            &quot;name&quot;:</span> <span class="hljs-string">&quot;broadcaster-tool-does-not-import-view-index&quot;</span>,
+<span class="hljs-attr">            &quot;comment&quot;:</span> <span class="hljs-string">&quot;broadcaster-tool&#x306F;view/index.ts&#x3092;&#x53C2;&#x7167;&#x3059;&#x308B;&#x3068;code split&#x3067;&#x304D;&#x306A;&#x304F;&#x306A;&#x308B;&#x3002;&#x5206;&#x5272;&#x3057;&#x305F;broadcaster-tool&#x306B;view/index.ts&#x304B;&#x3089;&#x53C2;&#x7167;&#x3059;&#x308B;&#x3059;&#x3079;&#x3066;&#x306E;&#x30D5;&#x30A1;&#x30A4;&#x30EB;&#x304C;&#x542B;&#x307E;&#x308C;&#x3066;&#x3057;&#x307E;&#x3046;&#x306E;&#x3092;&#x907F;&#x3051;&#x308B;&#x305F;&#x3081;&#x3001;&#x76F4;&#x63A5;view&#x4EE5;&#x4E0B;&#x306E;&#x30D5;&#x30A1;&#x30A4;&#x30EB;&#x3092;&#x53C2;&#x7167;&#x3057;&#x3066;&#x304F;&#x3060;&#x3055;&#x3044;&quot;</span>,
+<span class="hljs-attr">            &quot;severity&quot;:</span> <span class="hljs-string">&quot;error&quot;</span>,
+<span class="hljs-attr">            &quot;from&quot;:</span> {
+<span class="hljs-attr">                &quot;path&quot;:</span> <span class="hljs-string">&quot;^src/broadcaster-tool&quot;</span>
+            },
+<span class="hljs-attr">            &quot;to&quot;:</span> {
+<span class="hljs-attr">                &quot;path&quot;:</span> <span class="hljs-string">&quot;^src/view&quot;</span>
+            }
+        }
+    ],
+<span class="hljs-attr">    &quot;options&quot;:</span> {
+<span class="hljs-attr">        &quot;doNotFollow&quot;:</span> <span class="hljs-string">&quot;node_modules&quot;</span>
+    }
+}
+</code></pre>
+<h2 id="&#x985E;&#x4F3C;&#x30B5;&#x30FC;&#x30D3;&#x30B9;&#x3068;&#x6BD4;&#x8F03;&#x3059;&#x308B;">&#x985E;&#x4F3C;&#x30B5;&#x30FC;&#x30D3;&#x30B9;&#x3068;&#x6BD4;&#x8F03;&#x3059;&#x308B;</h2>
+<p>&#x30D5;&#x30A1;&#x30A4;&#x30EB;&#x30B5;&#x30A4;&#x30BA;&#x306F;&#x5927;&#x304D;&#x304F;&#x3066;&#x3082;&#x52D5;&#x304B;&#x306A;&#x304F;&#x306A;&#x308B;&#x308F;&#x3051;&#x3067;&#x306F;&#x306A;&#x3044;&#x306E;&#x305F;&#x3081;&#x3001;&#x3069;&#x3053;&#x306B;&#x539F;&#x56E0;&#x304C;&#x3042;&#x308B;&#x304B;&#x304C;&#x308F;&#x304B;&#x308A;&#x306B;&#x304F;&#x3044;&#x3068;&#x3044;&#x3046;&#x554F;&#x984C;&#x304C;&#x3042;&#x308A;&#x307E;&#x3059;&#x3002;
+&#x305D;&#x306E;&#x3068;&#x304D;&#x306E;&#x5224;&#x65AD;&#x6750;&#x6599;&#x3068;&#x3057;&#x3066;&#x3001;&#x985E;&#x4F3C;&#x3059;&#x308B;&#x30B5;&#x30FC;&#x30D3;&#x30B9;&#x3068;&#x6BD4;&#x8F03;&#x3057;&#x3066;&#x898B;&#x308B;&#x65B9;&#x6CD5;&#x304C;&#x3042;&#x308A;&#x307E;&#x3059;&#x3002;
+(<a href="https://speedcurve.com/" target="_blank">SpeedCurve</a>&#x306A;&#x3069;&#x3067;&#x306F;Competitor&#x306E;URL&#x3068;&#x4E00;&#x7DD2;&#x306B;&#x8A08;&#x6E2C;&#x3057;&#x3066;&#x3001;&#x7D50;&#x679C;&#x3092;&#x6BD4;&#x8F03;&#x3068;&#x3044;&#x3063;&#x305F;&#x65B9;&#x6CD5;&#x3082;&#x3067;&#x304D;&#x307E;&#x3059;&#x3002;)</p>
+<p>&#x305F;&#x3068;&#x3048;&#x3070;&#x3001;&#x30CB;&#x30B3;&#x30CB;&#x30B3;&#x751F;&#x653E;&#x9001;&#x306A;&#x3089;&#x3070;&#x30CB;&#x30B3;&#x30CB;&#x30B3;&#x52D5;&#x753B;&#x3001;Youtube&#x3001;FRESHLIVE&#x306A;&#x3069;&#x985E;&#x4F3C;&#x3059;&#x308B;&#x6A5F;&#x80FD;&#x3092;&#x3082;&#x3064;&#x30B5;&#x30FC;&#x30D3;&#x30B9;&#x306F;&#x3044;&#x308D;&#x3044;&#x308D;&#x3042;&#x308A;&#x307E;&#x3059;&#x3002;
+&#x305D;&#x308C;&#x3089;&#x306E;&#x30B5;&#x30A4;&#x30C8;&#x3068;&#x6BD4;&#x8F03;&#x306E;&#x30D5;&#x30A1;&#x30A4;&#x30EB;&#x30B5;&#x30A4;&#x30BA;&#x3092;&#x6BD4;&#x8F03;&#x3057;&#x3066;&#x3001;&#x554F;&#x984C;&#x3092;&#x898B;&#x3064;&#x3051;&#x308B;&#x3068;&#x3044;&#x3046;&#x306E;&#x3082;1&#x3064;&#x306E;&#x624B;&#x6BB5;&#x3067;&#x3059;&#x3002;</p>
+<p>JavaScript&#x306E;&#x30B5;&#x30A4;&#x30BA;&#x306F;&#x3082;&#x3064;&#x6A5F;&#x80FD;&#x3084;&#x4F5C;&#x308A;&#x306B;&#x3088;&#x3063;&#x3066;&#x5927;&#x304D;&#x306A;&#x5DEE;&#x306F;&#x3067;&#x307E;&#x3059;&#x3002;
+&#x4E00;&#x65B9;&#x3001;CSS&#x306F;&#x753B;&#x9762;&#x3092;&#x69CB;&#x6210;&#x3059;&#x308B;&#x8981;&#x7D20;&#x306B;&#x4F9D;&#x5B58;&#x3057;&#x307E;&#x305F;&#x60F3;&#x5B9A;&#x3059;&#x308B;&#x753B;&#x9762;&#x30B5;&#x30A4;&#x30BA;&#x306B;&#x306F;&#x305D;&#x3053;&#x307E;&#x3067;&#x5DEE;&#x306F;&#x3067;&#x306A;&#x3044;&#x305F;&#x3081;&#x3001;&#x5927;&#x304D;&#x306A;&#x5DEE;&#x304C;&#x51FA;&#x306B;&#x304F;&#x3044;&#x3068;&#x3082;&#x8003;&#x3048;&#x3089;&#x308C;&#x307E;&#x3059;&#x3002;</p>
+<p>&#x30CB;&#x30B3;&#x30CB;&#x30B3;&#x751F;&#x653E;&#x9001;&#x306E;&#x8996;&#x8074;&#x30DA;&#x30FC;&#x30B8;&#x306E;CSS&#x3092;&#x4ED6;&#x306E;&#x30B5;&#x30A4;&#x30C8;&#x6BD4;&#x8F03;&#x3057;&#x3066;&#x307F;&#x308B;&#x3068;&#x3001;&#x306A;&#x305C;&#x304B;3&#x500D;&#x7A0B;&#x5EA6;&#x5927;&#x304D;&#x3044;&#x3068;&#x3044;&#x3046;&#x554F;&#x984C;&#x3053;&#x3068;&#x304C;&#x308F;&#x304B;&#x308A;&#x307E;&#x3057;&#x305F;&#x3002;
+CSS&#x304C;&#x5927;&#x304D;&#x304F;&#x306A;&#x3063;&#x3066;&#x3044;&#x308B;&#x539F;&#x56E0;&#x3092;&#x6B21;&#x306E;&#x30C4;&#x30FC;&#x30EB;&#x306A;&#x3069;&#x3067;&#x8ABF;&#x3079;&#x3066;&#x307F;&#x308B;&#x3068;&#x3001;&#x3044;&#x304F;&#x3064;&#x304B;&#x306E;&#x554F;&#x984C;&#x304C;&#x3042;&#x308B;&#x3068;&#x3044;&#x3046;&#x3053;&#x3068;&#x304C;&#x308F;&#x304B;&#x308A;&#x307E;&#x3057;&#x305F;&#x3002;</p>
+<ul>
+<li><a href="http://www.testmycss.com/" target="_blank">TestMyCSS | Optimize and Check CSS Performance</a></li>
+<li><a href="https://cssstats.com/" target="_blank">CSS Stats</a></li>
+</ul>
+<p>&#x5177;&#x4F53;&#x7684;&#x306B;&#x898B;&#x3064;&#x304B;&#x3063;&#x305F;&#x554F;&#x984C;&#x306F;&#x6B21;&#x306E;&#x3068;&#x304A;&#x308A;&#x3067;&#x3059;&#x3002;</p>
+<ul>
+<li>Base64 Length&#x304C;&#x3067;&#x304B;&#x3044;&#xFF08;Base 64&#x306E;&#x30B5;&#x30A4;&#x30BA;&#x304C;&#x5927;&#x304D;&#x3044;&#xFF09;<ul>
+<li>&#x524D;&#x8005;&#x306F;CSS&#x306B;&#x753B;&#x50CF;&#x3084;font&#x304C;Base64&#x3067;&#x305D;&#x306E;&#x307E;&#x307E;&#x57CB;&#x3081;&#x8FBC;&#x307E;&#x308C;&#x3066;&#x3044;&#x305F;</li>
+</ul>
+</li>
+<li>Empty Rules&#x306E;&#x6570;&#x304C;&#x591A;&#x3044;&#xFF08;&#x7A7A;&#x306E;&#x30BB;&#x30EC;&#x30AF;&#x30BF;&#x306B;&#x30B3;&#x30E1;&#x30F3;&#x30C8;&#x3060;&#x3051;&#x304C;&#x6B8B;&#x3063;&#x3066;&#x3044;&#x308B;&#x554F;&#x984C;&#x304C;&#x3042;&#x3063;&#x305F;&#xFF09;</li>
+</ul>
+<p>&#x3053;&#x308C;&#x3089;&#x306E;&#x554F;&#x984C;&#x306B;&#x5BFE;&#x3057;&#x3066;&#x305D;&#x308C;&#x305E;&#x308C;&#x6B21;&#x306E;&#x3088;&#x3046;&#x306A;&#x89E3;&#x6C7A;&#x65B9;&#x6CD5;&#x3092;&#x53D6;&#x308A;&#x307E;&#x3057;&#x305F;&#x3002;</p>
+<ul>
+<li>&#x753B;&#x50CF;&#x3084;font&#x306A;&#x3069;&#x306E;&#x30EA;&#x30BD;&#x30FC;&#x30B9;&#x3092;Base 64&#x3067;&#x306F;&#x306A;&#x304F;URL&#x3068;&#x3057;&#x3066;&#x6307;&#x5B9A;&#x3059;&#x308B;&#x3088;&#x3046;&#x306B;&#x3057;&#x305F;<ul>
+<li>font&#x306F;&#x5B9F;&#x969B;&#x306B;&#x4F7F;&#x7528;&#x3055;&#x308C;&#x308B;&#x307E;&#x3067;&#x30C0;&#x30A6;&#x30F3;&#x30ED;&#x30FC;&#x30C9;&#x3055;&#x308C;&#x306A;&#x304F;&#x306A;&#x3063;&#x305F;</li>
+</ul>
+</li>
+<li>cssnano&#x306E;<a href="https://cssnano.co/optimisations/discardcomments/" target="_blank">discardComments</a>&#x30EB;&#x30FC;&#x30EB;&#x3092;&#x9069;&#x7528;&#x3057;&#x3066;&#x30B3;&#x30E1;&#x30F3;&#x30C8;&#x3092;&#x6D88;&#x3057;&#x3066;&#x3001;minify&#x3067;&#x7A7A;&#x30BB;&#x30EC;&#x30AF;&#x30BF;&#x304C;&#x304D;&#x3048;&#x308B;&#x3088;&#x3046;&#x306B;&#x3057;&#x305F;</li>
+</ul>
+<p>CSS&#x306F;Sass&#x3084;PostCSS&#x306A;&#x3069;&#x306E;&#x3055;&#x307E;&#x3056;&#x307E;&#x306A;&#x30C4;&#x30FC;&#x30EB;&#x3092;&#x7D4C;&#x7531;&#x3057;&#x3066;&#x51FA;&#x529B;&#x3055;&#x308C;&#x308B;&#x3053;&#x3068;&#x304C;&#x591A;&#x3044;&#x305F;&#x3081;&#x3001;&#x4E0D;&#x7528;&#x610F;&#x306B;&#x30B5;&#x30A4;&#x30BA;&#x304C;&#x5897;&#x3048;&#x3066;&#x3057;&#x307E;&#x3063;&#x3066;&#x3044;&#x308B;&#x3053;&#x3068;&#x304C;&#x3042;&#x308A;&#x307E;&#x3059;&#x3002;
+&#x305D;&#x306E;&#x305F;&#x3081;&#x3001;<a href="https://speedcurve.com/blog/performance-budgets-in-action/" target="_blank">Performance budgets</a>&#x3092;&#x8A2D;&#x5B9A;&#x3059;&#x308B;&#x306A;&#x3069;&#x4E0D;&#x81EA;&#x7136;&#x306A;&#x5897;&#x3048;&#x65B9;&#x3092;&#x3057;&#x305F;&#x5834;&#x5408;&#x306B;&#x6C17;&#x3065;&#x304F;&#x4ED5;&#x7D44;&#x307F;&#x304C;&#x5FC5;&#x8981;&#x306B;&#x306A;&#x308B;&#x3067;&#x3057;&#x3087;&#x3046;&#x3002;</p>
+
+                                
+                                </section>
+                            
+    </div>
+    <div class="search-results">
+        <div class="has-results">
+            
+            <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+            <ul class="search-results-list"></ul>
+            
+        </div>
+        <div class="no-results">
+            
+            <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+            
+        </div>
+    </div>
+</div>
+
+                        </div>
+                    </div>
+                
+            </div>
+
+            
+                
+                <a href="../module-field/" class="navigation navigation-prev navigation-unique" aria-label="Previous page: "module"フィールド対応">
+                    <i class="fa fa-angle-left"></i>
+                </a>
+                
+                
+            
+        
+    </div>
+
+    <script>
+        var gitbook = gitbook || [];
+        gitbook.push(function() {
+            gitbook.page.hasChanged({"page":{"title":"ファイルサイズを減らす","level":"1.3.4","depth":2,"previous":{"title":"\"module\"フィールド対応","level":"1.3.3","depth":2,"path":"startup/module-field/README.md","ref":"./startup/module-field/README.md","articles":[]},"dir":"ltr"},"config":{"plugins":["markdown-video"],"root":"./src/","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"markdown-video":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","author":"DWANGO Co., Ltd.","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"IPAexMincho","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"Webフロントエンド パフォーマンス改善ハンドブック","language":"ja","gitbook":">=3.0.0","description":"ウェブアプリケーションのフロントエンドにおけるパフォーマンス改善ハンドブック"},"file":{"path":"startup/reduce-size/README.md","mtime":"2018-10-26T06:49:39.388Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2018-10-26T06:51:05.118Z"},"basePath":"../..","book":{"language":""}});
+        });
+    </script>
+</div>
+
+        
+    <script src="../../gitbook/gitbook.js"></script>
+    <script src="../../gitbook/theme.js"></script>
+    
+        
+        <script src="../../gitbook/gitbook-plugin-markdown-video/video.min.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-search/search-engine.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-search/search.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-lunr/lunr.min.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-lunr/search-lunr.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-sharing/buttons.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-fontsettings/fontsettings.js"></script>
+        
+    
+
+    </body>
+</html>
+

@@ -1,0 +1,599 @@
+
+<!DOCTYPE HTML>
+<html lang="ja" >
+    <head>
+        <meta charset="UTF-8">
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <title>軽量化のトレードオフの検証 · Webフロントエンド パフォーマンス改善ハンドブック</title>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="description" content="">
+        <meta name="generator" content="GitBook 3.2.3">
+        <meta name="author" content="DWANGO Co., Ltd.">
+        
+        
+    
+    <link rel="stylesheet" href="../../gitbook/style.css">
+
+    
+            
+                
+                <link rel="stylesheet" href="../../gitbook/gitbook-plugin-markdown-video/video-js.min.css">
+                
+            
+                
+                <link rel="stylesheet" href="../../gitbook/gitbook-plugin-highlight/website.css">
+                
+            
+                
+                <link rel="stylesheet" href="../../gitbook/gitbook-plugin-search/search.css">
+                
+            
+                
+                <link rel="stylesheet" href="../../gitbook/gitbook-plugin-fontsettings/website.css">
+                
+            
+        
+
+    
+
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+
+        
+    
+    
+    <meta name="HandheldFriendly" content="true"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="../../gitbook/images/apple-touch-icon-precomposed-152.png">
+    <link rel="shortcut icon" href="../../gitbook/images/favicon.ico" type="image/x-icon">
+
+    
+    <link rel="next" href="../fix-library/" />
+    
+    
+    <link rel="prev" href="../fix-mousemove/" />
+    
+
+    </head>
+    <body>
+        
+<div class="book">
+    <div class="book-summary">
+        
+            
+<div id="book-search-input" role="search">
+    <input type="text" placeholder="検索すると入力" />
+</div>
+
+            
+                <nav role="navigation">
+                
+
+
+<ul class="summary">
+    
+    
+
+    
+
+    
+        
+        
+    
+        <li class="chapter " data-level="1.1" data-path="../../">
+            
+                <a href="../../">
+            
+                    
+                    Introduction
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2" data-path="../">
+            
+                <a href="../">
+            
+                    
+                    視聴中のパフォーマンス改善
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.2.1" data-path="../metrics/">
+            
+                <a href="../metrics/">
+            
+                    
+                    指標の作成
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.2" data-path="../how-to-measure/">
+            
+                <a href="../how-to-measure/">
+            
+                    
+                    パフォーマンスの計測の仕方
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.3" data-path="../no-perf/">
+            
+                <a href="../no-perf/">
+            
+                    
+                    パフォーマンスにおける無駄
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.4" data-path="../fix/">
+            
+                <a href="../fix/">
+            
+                    
+                    パフォーマンス修正の事例
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.2.4.1" data-path="../fix-reflow-componentDidUpdate/">
+            
+                <a href="../fix-reflow-componentDidUpdate/">
+            
+                    
+                    更新ごとの無駄なReflowが発生する問題の修正
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.4.2" data-path="../fix-fullscreen/">
+            
+                <a href="../fix-fullscreen/">
+            
+                    
+                    フルスクリーン時に描画コストの問題の修正
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.4.3" data-path="../fix-input/">
+            
+                <a href="../fix-input/">
+            
+                    
+                    入力欄とControl Componentの改善
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.4.4" data-path="../fix-list/">
+            
+                <a href="../fix-list/">
+            
+                    
+                    リストコンポーネントの問題
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.4.5" data-path="../fix-list/shouldComponentUpdate.html">
+            
+                <a href="../fix-list/shouldComponentUpdate.html">
+            
+                    
+                    リストコンポーネントのshouldComponentUpdateの改善
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.4.6" data-path="../fix-list/throttling.html">
+            
+                <a href="../fix-list/throttling.html">
+            
+                    
+                    リストコンポーネントへの追加処理の修正
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.4.7" data-path="../fix-interval/">
+            
+                <a href="../fix-interval/">
+            
+                    
+                    定期的に動いてる無駄なものを停止する
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.4.8" data-path="../fix-new-function/">
+            
+                <a href="../fix-new-function/">
+            
+                    
+                    毎回関数を作ってpropsに設定する問題の修正
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.4.9" data-path="../fix-mousemove/">
+            
+                <a href="../fix-mousemove/">
+            
+                    
+                    マウスを動かすと再描画する問題の修正
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter active" data-level="1.2.5" data-path="./">
+            
+                <a href="./">
+            
+                    
+                    軽量化のトレードオフの検証
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.6" data-path="../fix-library/">
+            
+                <a href="../fix-library/">
+            
+                    
+                    ライブラリを改善する
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3" data-path="../../startup/">
+            
+                <a href="../../startup/">
+            
+                    
+                    ページロードのパフォーマンス改善
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.3.1" data-path="../../startup/stats/">
+            
+                <a href="../../startup/stats/">
+            
+                    
+                    継続的なパフォーマンス計測
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.2" data-path="../../startup/reduce-bundle/">
+            
+                <a href="../../startup/reduce-bundle/">
+            
+                    
+                    パッケージはBundleを配布しない
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.3" data-path="../../startup/module-field/">
+            
+                <a href="../../startup/module-field/">
+            
+                    
+                    "module"フィールド対応
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.4" data-path="../../startup/reduce-size/">
+            
+                <a href="../../startup/reduce-size/">
+            
+                    
+                    ファイルサイズを減らす
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+    
+
+    <li class="divider"></li>
+
+    <li>
+        <a href="https://www.gitbook.com" target="blank" class="gitbook-link">
+            GitBookで公開 
+        </a>
+    </li>
+</ul>
+
+
+                </nav>
+            
+        
+    </div>
+
+    <div class="book-body">
+        
+            <div class="body-inner">
+                
+                    
+
+<div class="book-header" role="navigation">
+    
+
+    <!-- Title -->
+    <h1>
+        <i class="fa fa-circle-o-notch fa-spin"></i>
+        <a href="../.." >軽量化のトレードオフの検証</a>
+    </h1>
+</div>
+
+
+
+
+                    <div class="page-wrapper" tabindex="-1" role="main">
+                        <div class="page-inner">
+                            
+<div id="book-search-results">
+    <div class="search-noresults">
+    
+                                <section class="normal markdown-section">
+                                
+                                <h1 id="&#x30C8;&#x30EC;&#x30FC;&#x30C9;&#x30AA;&#x30D5;&#x306E;&#x691C;&#x8A3C;">&#x30C8;&#x30EC;&#x30FC;&#x30C9;&#x30AA;&#x30D5;&#x306E;&#x691C;&#x8A3C;</h1>
+<p><a href="../fix/">&#x7D39;&#x4ECB;&#x3057;&#x305F;&#x4FEE;&#x6B63;&#x4F8B;</a>&#x3067;&#x306F;&#x65E2;&#x5B58;&#x306E;&#x6319;&#x52D5;&#x306F;&#x7DAD;&#x6301;&#x3057;&#x305F;&#x307E;&#x307E;&#x3001;&#x76EE;&#x306B;&#x306F;&#x898B;&#x3048;&#x306A;&#x3044;&#x6539;&#x5584;&#x3092;&#x3057;&#x3066;&#x3044;&#x307E;&#x3057;&#x305F;&#x3002;
+&#x73FE;&#x5B9F;&#x7684;&#x306B;&#x306F;&#x305D;&#x306E;&#x30A2;&#x30D7;&#x30EA;&#x30B1;&#x30FC;&#x30B7;&#x30E7;&#x30F3;&#x81EA;&#x4F53;&#x306E;&#x6A5F;&#x80FD;&#x3092;&#x6E1B;&#x3089;&#x3055;&#x306A;&#x3044;&#x3068;&#x3001;&#x4F4E;&#x30B9;&#x30DA;&#x30C3;&#x30AF;&#x306E;&#x30C7;&#x30D0;&#x30A4;&#x30B9;&#x3067;&#x306F;&#x305D;&#x3082;&#x305D;&#x3082;&#x7121;&#x7406;&#x306A;&#x5834;&#x5408;&#x304C;&#x3042;&#x308A;&#x307E;&#x3059;&#x3002;</p>
+<p>&#x305D;&#x306E;&#x3088;&#x3046;&#x306A;&#x6A5F;&#x80FD;&#x306E;&#x524A;&#x6E1B;&#x3068;&#x30D1;&#x30D5;&#x30A9;&#x30FC;&#x30DE;&#x30F3;&#x30B9;&#x306E;&#x30C8;&#x30EC;&#x30FC;&#x30C9;&#x30AA;&#x30D5;&#x3092;&#x691C;&#x8A3C;&#x3059;&#x308B;&#x5FC5;&#x8981;&#x304C;&#x3042;&#x308A;&#x307E;&#x3059;&#x3002;</p>
+<p>&#x751F;&#x653E;&#x9001;&#x306E;&#x8996;&#x8074;&#x30DA;&#x30FC;&#x30B8;&#x3067;&#x306F;&#x3053;&#x306E;&#x30C8;&#x30EC;&#x30FC;&#x30C9;&#x30AA;&#x30D5;&#x3092;&quot;&#x8EFD;&#x91CF;&#x30E2;&#x30FC;&#x30C9;&quot;&#x3068;&#x3044;&#x3046;&#x30B9;&#x30BF;&#x30F3;&#x30B9;&#x3067;&#x9032;&#x3081;&#x308B;&#x3053;&#x3068;&#x306B;&#x3057;&#x307E;&#x3057;&#x305F;&#x3002;
+&#x8EFD;&#x91CF;&#x30E2;&#x30FC;&#x30C9;&#x3068;&#x306F;&#x6700;&#x7D42;&#x7684;&#x306B;&#x30E6;&#x30FC;&#x30B6;&#x304C;&#x8A2D;&#x5B9A;&#x3067;&#x9078;&#x629E;&#x3057;&#x3066;&#x521D;&#x3081;&#x3066;&#x6A5F;&#x80FD;&#x3092;&#x843D;&#x3068;&#x3059;&#x3001;&#x30AA;&#x30D7;&#x30C8;&#x30A4;&#x30F3;&#x65B9;&#x5F0F;&#x306E;&#x8A2D;&#x5B9A;&#x3067;&#x3059;&#x3002;</p>
+<h2 id="&#x8EFD;&#x91CF;&#x30E2;&#x30FC;&#x30C9;">&#x8EFD;&#x91CF;&#x30E2;&#x30FC;&#x30C9;</h2>
+<p>&#x8272;&#x3005;&#x306A;&#x6A5F;&#x80FD;&#x3092;&#x524A;&#x3063;&#x3066;&#x307F;&#x3066;&#x3001;&#x4F55;&#x304C;&#x52B9;&#x679C;&#x7684;&#x306A;&#x306E;&#x304B;&#x3092;&#x691C;&#x8A3C;&#x3059;&#x308B;&#x5FC5;&#x8981;&#x304C;&#x3042;&#x308A;&#x307E;&#x3059;&#x3002;
+&#x6A5F;&#x80FD;&#x3092;&#x66F4;&#x65B0;&#x3059;&#x308B;&#x305F;&#x3073;&#x30B9;&#x30C6;&#x30FC;&#x30B8;&#x30F3;&#x30B0;&#x30B5;&#x30A4;&#x30C8;&#x306B;&#x3042;&#x3052;&#x3066;&#x691C;&#x8A3C;&#x3068;&#x3044;&#x3046;&#x306E;&#x306F;&#x5927;&#x5909;&#x306A;&#x306E;&#x3067;&#x3001;&#x7C21;&#x5358;&#x306A;URL&#x3067;&#x5207;&#x308A;&#x66FF;&#x3048;&#x308B;&#x3067;&#x304D;&#x308B;&#x4ED5;&#x7D44;&#x307F;&#x3092;&#x8FFD;&#x52A0;&#x3057;&#x3066;&#x691C;&#x8A3C;&#x3057;&#x307E;&#x3057;&#x305F;&#x3002;</p>
+<p>&#x5B9F;&#x969B;&#x306B;&#x4F7F;&#x3063;&#x305F;&#x5B9F;&#x88C5;&#x306F;&#x3082;&#x306E;&#x3059;&#x3054;&#x304F;&#x5358;&#x7D14;&#x3067;&#x3059;&#x3002;
+production&#x30D3;&#x30EB;&#x30C9;&#x3067;&#x306F;&#x5FC5;&#x305A;&#x7121;&#x52B9;&#x306B;&#x3059;&#x308B;guard&#x3092;&#x5165;&#x308C;&#x3066;&#x304A;&#x304D;&#x3001;&#x5F8C;&#x306F;URL&#x306E;&#x30AF;&#x30A8;&#x30EA;&#x3067;&#x5207;&#x308A;&#x66FF;&#x3048;&#x3067;&#x304D;&#x308B;&#x3068;&#x3044;&#x3046;&#x4ED5;&#x7D44;&#x307F;&#x3067;&#x3059;&#x3002;</p>
+<pre><code class="lang-ts"><span class="hljs-keyword">const</span> enableLightMode = process.env.NODE_ENV !== <span class="hljs-string">&quot;production&quot;</span> &amp;&amp; <span class="hljs-regexp">/[?&amp;]leo_light_mode\b/</span>.test(location.href);
+<span class="hljs-comment">// &#x307E;&#x3068;&#x3081;&#x3066;&#x6709;&#x52B9;&#x5316;</span>
+<span class="hljs-comment">// &amp;leo_light_mode=comment-panel-hidden,comment-panel-fixed-bottom,comment-fps,comment-resolution</span>
+<span class="hljs-comment">// &#x30B3;&#x30E1;&#x30F3;&#x30C8;&#x30D1;&#x30CD;&#x30EB;&#x306E;&#x975E;&#x8868;&#x793A;&#x5316;</span>
+<span class="hljs-comment">// &amp;leo_light_mode=comment-panel-hidden</span>
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">const</span> isHiddenCommentPanel = enableLightMode
+    &amp;&amp; <span class="hljs-regexp">/[?&amp;]leo_light_mode=.*comment-panel-hidden\b/</span>.test(location.href);
+<span class="hljs-comment">// &#x30B3;&#x30E1;&#x30F3;&#x30C8;&#x30D1;&#x30CD;&#x30EB;&#x306E;&#x6700;&#x4E0B;&#x90E8;&#x3078;&#x306E;&#x8FFD;&#x5F93;&#x3092;&#x505C;&#x6B62;</span>
+<span class="hljs-comment">// &amp;leo_light_mode=comment-panel-fixed-bottom</span>
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">const</span> isDisabledCommentPanelFixedBottom = enableLightMode
+    &amp;&amp; <span class="hljs-regexp">/[?&amp;]leo_light_mode=.*comment-panel-fixed-bottom\b/</span>.test(location.href);
+<span class="hljs-comment">// &#x30B3;&#x30E1;&#x30F3;&#x30C8;&#x30D1;&#x30CD;&#x30EB;&#x306E;&#x30D0;&#x30C3;&#x30D5;&#x30A1;&#x30B5;&#x30A4;&#x30BA;&#x3092;&#x6307;&#x5B9A;</span>
+<span class="hljs-comment">// &amp;leo_light_mode=comment-panel-buffer-size:0</span>
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">const</span> commentPanelBufferSizeMatch = enableLightMode
+    &amp;&amp; location.href.match(<span class="hljs-regexp">/[?&amp;]leo_light_mode=.*comment-panel-buffer-size:([\d.]+)\b/</span>);
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">const</span> commentPanelBufferSize = commentPanelBufferSizeMatch !== <span class="hljs-literal">false</span> &amp;&amp; commentPanelBufferSizeMatch !== <span class="hljs-literal">null</span>
+    ? <span class="hljs-built_in">parseFloat</span>(commentPanelBufferSizeMatch[<span class="hljs-number">1</span>])
+    : <span class="hljs-literal">undefined</span>;
+<span class="hljs-comment">// &#x6620;&#x50CF;&#x8981;&#x7D20;&#x3092;&#x975E;&#x8868;&#x793A;&#x5316;</span>
+<span class="hljs-comment">// &amp;leo_light_mode=video-hidden</span>
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">const</span> isHiddenEdgeStream = enableLightMode
+    &amp;&amp; <span class="hljs-regexp">/[?&amp;]leo_light_mode=.*video-hidden\b/</span>.test(location.href);
+<span class="hljs-comment">// &#x30B3;&#x30E1;&#x30F3;&#x30C8;&#x30EC;&#x30F3;&#x30C0;&#x30E9;&#x30FC;&#x306E;WebGL&#x306E;&#x6709;&#x52B9;&#x5316;</span>
+<span class="hljs-comment">// &amp;leo_light_mode=comment-render-webgl</span>
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">const</span> useWebGLCommentRenderer = enableLightMode
+    &amp;&amp; <span class="hljs-regexp">/[?&amp;]leo_light_mode=.*comment-render-webgl\b/</span>.test(location.href);
+<span class="hljs-keyword">if</span> (enableLightMode) {
+    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">`
+# &#x8EFD;&#x91CF;&#x30E2;&#x30FC;&#x30C9;&#x306E;&#x30D5;&#x30E9;&#x30B0;&#x72B6;&#x614B;
+&#x30B3;&#x30E1;&#x30F3;&#x30C8;&#x30D1;&#x30CD;&#x30EB;&#x306E;&#x975E;&#x8868;&#x793A;&#x5316;: <span class="hljs-subst">${isHiddenCommentPanel}</span>
+&#x30B3;&#x30E1;&#x30F3;&#x30C8;&#x30D1;&#x30CD;&#x30EB;&#x306E;&#x6700;&#x4E0B;&#x90E8;&#x3078;&#x306E;&#x8FFD;&#x5F93;&#x3092;&#x505C;&#x6B62;: <span class="hljs-subst">${isDisabledCommentPanelFixedBottom}</span>
+&#x30B3;&#x30E1;&#x30F3;&#x30C8;&#x30D1;&#x30CD;&#x30EB;&#x306E;&#x30D0;&#x30C3;&#x30D5;&#x30A1;&#x30B5;&#x30A4;&#x30BA;: <span class="hljs-subst">${commentPanelBufferSize}</span>
+&#x6620;&#x50CF;&#x8981;&#x7D20;&#x3092;&#x975E;&#x8868;&#x793A;&#x5316;: <span class="hljs-subst">${isHiddenEdgeStream}</span>
+&#x30B3;&#x30E1;&#x30F3;&#x30C8;&#x63CF;&#x753B;&#x306E;WebGL&#x6709;&#x52B9;&#x5316;: <span class="hljs-subst">${useWebGLCommentRenderer}</span>
+`</span>);
+}
+</code></pre>
+<p>&#x305D;&#x306E;&#x8EFD;&#x91CF;&#x30E2;&#x30FC;&#x30C9;&#x306E;&#x30C9;&#x30AD;&#x30E5;&#x30E1;&#x30F3;&#x30C8;&#x306F;&#x6B21;&#x306E;&#x3088;&#x3046;&#x306A;&#x5358;&#x7D14;&#x306A;&#x3082;&#x306E;&#x3067;&#x3057;&#x305F;&#x3002;</p>
+<pre><code class="lang-markdpwon">## &#x6709;&#x52B9;&#x5316;&#x306E;&#x65B9;&#x6CD5;
+
+URL&#x306B; `&amp;leo_light_mode=comment-panel-hidden,comment-panel-fixed-bottom,comment-fps,comment-resolution` &#x306A;&#x3069;&#x305D;&#x308C;&#x305E;&#x308C;&#x306E;&#x6A5F;&#x80FD;&#x3092;&#x7121;&#x52B9;&#x5316;&#x3067;&#x304D;&#x308B;&#x30D5;&#x30E9;&#x30B0;&#x3092;&#x8A2D;&#x5B9A;&#x3067;&#x304D;&#x308B;&#x3002;&#x8907;&#x6570;&#x6E21;&#x3059;&#x6642;&#x306F; `,` &#x306A;&#x3069;&#x9069;&#x5F53;&#x306A;&#x3082;&#x306E;&#x3067;&#x533A;&#x5207;&#x308B;&#x3002;
+
+## &#x8EFD;&#x91CF;&#x30E2;&#x30FC;&#x30C9;&#x306E;&#x7A2E;&#x985E;
+
+- &#x30B3;&#x30E1;&#x30F3;&#x30C8;&#x30D1;&#x30CD;&#x30EB;&#x306E;&#x975E;&#x8868;&#x793A;&#x5316;
+  - `&amp;leo_light_mode=comment-panel-hidden`
+- &#x30B3;&#x30E1;&#x30F3;&#x30C8;&#x30D1;&#x30CD;&#x30EB;&#x306E;- &#x6700;&#x4E0B;&#x90E8;&#x3078;&#x306E;&#x8FFD;&#x5F93;&#x3092;&#x505C;&#x6B62;
+  - `&amp;leo_light_mode=comment-panel-fixed-bottom`
+- &#x30B3;&#x30E1;&#x30F3;&#x30C8;&#x30D1;&#x30CD;&#x30EB;&#x306E;&#x30D0;&#x30C3;&#x30D5;&#x30A1;&#x30B5;&#x30A4;&#x30BA;&#x3092;&#x6307;&#x5B9A;
+  - `&amp;leo_light_mode=comment-panel-buffer-size:&#x30D0;&#x30C3;&#x30D5;&#x30A1;&#x30B5;&#x30A4;&#x30BA;`
+  - &#x4F8B;) &#x30D0;&#x30C3;&#x30D5;&#x30A1;&#x30B5;&#x30A4;&#x30BA;&#x3092;`0`&#x306B;&#x3059;&#x308B;
+  - `&amp;leo_light_mode=comment-panel-buffer-size:0`
+- &#x6620;&#x50CF;&#x8981;&#x7D20;&#x3092;&#x975E;&#x8868;&#x793A;&#x5316;
+  - `&amp;leo_light_mode=video-hidden`
+- &#x30B3;&#x30E1;&#x30F3;&#x30C8;&#x30EC;&#x30F3;&#x30C0;&#x30E9;&#x30FC;&#x306E;WebGL&#x306E;&#x6709;&#x52B9;&#x5316;
+  - `&amp;leo_light_mode=comment-render-webgl`
+</code></pre>
+<h2 id="&#x691C;&#x8A3C;">&#x691C;&#x8A3C;</h2>
+<p>&#x5F8C;&#x306F;&#x3001;&#x5B9F;&#x969B;&#x306B;URL&#x306B;&#x30AF;&#x30A8;&#x30EA;&#x3092;&#x3064;&#x3051;&#x3066;&#x4F55;&#x3092;&#x5916;&#x3057;&#x305F;&#x3089;&#x4F55;&#x304C;&#x3088;&#x304F;&#x306A;&#x308B;&#x304B;&#x3068;&#x3044;&#x3046;&#x30C8;&#x30EC;&#x30FC;&#x30C9;&#x30AA;&#x30D5;&#x3092;&#x5730;&#x9053;&#x306B;&#x691C;&#x8A3C;&#x3057;&#x3066;&#x3044;&#x304F;&#x3060;&#x3051;&#x3067;&#x3059;&#x3002;</p>
+<p>&#x305D;&#x306E;&#x5F8C;&#x3001;&quot;&#x8EFD;&#x91CF;&#x30E2;&#x30FC;&#x30C9;&quot;&#x3092;&#x30AA;&#x30D7;&#x30B7;&#x30E7;&#x30F3;&#x3068;&#x3057;&#x3066;&#x672C;&#x5F53;&#x306B;&#x5B9F;&#x88C5;&#x3059;&#x308B;&#x3068;&#x304D;&#x306B;&#x30D5;&#x30E9;&#x30B0;&#x3092;&#x53D6;&#x308A;&#x9664;&#x3051;&#x3070;&#x3088;&#x3044;&#x3060;&#x3051;&#x3067;&#x3059;&#x3002;</p>
+
+                                
+                                </section>
+                            
+    </div>
+    <div class="search-results">
+        <div class="has-results">
+            
+            <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+            <ul class="search-results-list"></ul>
+            
+        </div>
+        <div class="no-results">
+            
+            <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+            
+        </div>
+    </div>
+</div>
+
+                        </div>
+                    </div>
+                
+            </div>
+
+            
+                
+                <a href="../fix-mousemove/" class="navigation navigation-prev " aria-label="Previous page: マウスを動かすと再描画する問題の修正">
+                    <i class="fa fa-angle-left"></i>
+                </a>
+                
+                
+                <a href="../fix-library/" class="navigation navigation-next " aria-label="Next page: ライブラリを改善する">
+                    <i class="fa fa-angle-right"></i>
+                </a>
+                
+            
+        
+    </div>
+
+    <script>
+        var gitbook = gitbook || [];
+        gitbook.push(function() {
+            gitbook.page.hasChanged({"page":{"title":"軽量化のトレードオフの検証","level":"1.2.5","depth":2,"next":{"title":"ライブラリを改善する","level":"1.2.6","depth":2,"path":"watching/fix-library/README.md","ref":"./watching/fix-library/README.md","articles":[]},"previous":{"title":"マウスを動かすと再描画する問題の修正","level":"1.2.4.9","depth":3,"path":"watching/fix-mousemove/README.md","ref":"./watching/fix-mousemove/README.md","articles":[]},"dir":"ltr"},"config":{"plugins":["markdown-video"],"root":"./src/","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"markdown-video":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","author":"DWANGO Co., Ltd.","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"IPAexMincho","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"Webフロントエンド パフォーマンス改善ハンドブック","language":"ja","gitbook":">=3.0.0","description":"ウェブアプリケーションのフロントエンドにおけるパフォーマンス改善ハンドブック"},"file":{"path":"watching/tradeoff/README.md","mtime":"2018-10-26T06:49:39.564Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2018-10-26T06:51:05.118Z"},"basePath":"../..","book":{"language":""}});
+        });
+    </script>
+</div>
+
+        
+    <script src="../../gitbook/gitbook.js"></script>
+    <script src="../../gitbook/theme.js"></script>
+    
+        
+        <script src="../../gitbook/gitbook-plugin-markdown-video/video.min.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-search/search-engine.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-search/search.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-lunr/lunr.min.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-lunr/search-lunr.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-sharing/buttons.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-fontsettings/fontsettings.js"></script>
+        
+    
+
+    </body>
+</html>
+

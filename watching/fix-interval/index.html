@@ -1,0 +1,583 @@
+
+<!DOCTYPE HTML>
+<html lang="ja" >
+    <head>
+        <meta charset="UTF-8">
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <title>定期的に動いてる無駄なものを停止する · Webフロントエンド パフォーマンス改善ハンドブック</title>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="description" content="">
+        <meta name="generator" content="GitBook 3.2.3">
+        <meta name="author" content="DWANGO Co., Ltd.">
+        
+        
+    
+    <link rel="stylesheet" href="../../gitbook/style.css">
+
+    
+            
+                
+                <link rel="stylesheet" href="../../gitbook/gitbook-plugin-markdown-video/video-js.min.css">
+                
+            
+                
+                <link rel="stylesheet" href="../../gitbook/gitbook-plugin-highlight/website.css">
+                
+            
+                
+                <link rel="stylesheet" href="../../gitbook/gitbook-plugin-search/search.css">
+                
+            
+                
+                <link rel="stylesheet" href="../../gitbook/gitbook-plugin-fontsettings/website.css">
+                
+            
+        
+
+    
+
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+
+        
+    
+    
+    <meta name="HandheldFriendly" content="true"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="../../gitbook/images/apple-touch-icon-precomposed-152.png">
+    <link rel="shortcut icon" href="../../gitbook/images/favicon.ico" type="image/x-icon">
+
+    
+    <link rel="next" href="../fix-new-function/" />
+    
+    
+    <link rel="prev" href="../fix-list/throttling.html" />
+    
+
+    </head>
+    <body>
+        
+<div class="book">
+    <div class="book-summary">
+        
+            
+<div id="book-search-input" role="search">
+    <input type="text" placeholder="検索すると入力" />
+</div>
+
+            
+                <nav role="navigation">
+                
+
+
+<ul class="summary">
+    
+    
+
+    
+
+    
+        
+        
+    
+        <li class="chapter " data-level="1.1" data-path="../../">
+            
+                <a href="../../">
+            
+                    
+                    Introduction
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2" data-path="../">
+            
+                <a href="../">
+            
+                    
+                    視聴中のパフォーマンス改善
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.2.1" data-path="../metrics/">
+            
+                <a href="../metrics/">
+            
+                    
+                    指標の作成
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.2" data-path="../how-to-measure/">
+            
+                <a href="../how-to-measure/">
+            
+                    
+                    パフォーマンスの計測の仕方
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.3" data-path="../no-perf/">
+            
+                <a href="../no-perf/">
+            
+                    
+                    パフォーマンスにおける無駄
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.4" data-path="../fix/">
+            
+                <a href="../fix/">
+            
+                    
+                    パフォーマンス修正の事例
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.2.4.1" data-path="../fix-reflow-componentDidUpdate/">
+            
+                <a href="../fix-reflow-componentDidUpdate/">
+            
+                    
+                    更新ごとの無駄なReflowが発生する問題の修正
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.4.2" data-path="../fix-fullscreen/">
+            
+                <a href="../fix-fullscreen/">
+            
+                    
+                    フルスクリーン時に描画コストの問題の修正
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.4.3" data-path="../fix-input/">
+            
+                <a href="../fix-input/">
+            
+                    
+                    入力欄とControl Componentの改善
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.4.4" data-path="../fix-list/">
+            
+                <a href="../fix-list/">
+            
+                    
+                    リストコンポーネントの問題
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.4.5" data-path="../fix-list/shouldComponentUpdate.html">
+            
+                <a href="../fix-list/shouldComponentUpdate.html">
+            
+                    
+                    リストコンポーネントのshouldComponentUpdateの改善
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.4.6" data-path="../fix-list/throttling.html">
+            
+                <a href="../fix-list/throttling.html">
+            
+                    
+                    リストコンポーネントへの追加処理の修正
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter active" data-level="1.2.4.7" data-path="./">
+            
+                <a href="./">
+            
+                    
+                    定期的に動いてる無駄なものを停止する
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.4.8" data-path="../fix-new-function/">
+            
+                <a href="../fix-new-function/">
+            
+                    
+                    毎回関数を作ってpropsに設定する問題の修正
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.4.9" data-path="../fix-mousemove/">
+            
+                <a href="../fix-mousemove/">
+            
+                    
+                    マウスを動かすと再描画する問題の修正
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.5" data-path="../tradeoff/">
+            
+                <a href="../tradeoff/">
+            
+                    
+                    軽量化のトレードオフの検証
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.6" data-path="../fix-library/">
+            
+                <a href="../fix-library/">
+            
+                    
+                    ライブラリを改善する
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3" data-path="../../startup/">
+            
+                <a href="../../startup/">
+            
+                    
+                    ページロードのパフォーマンス改善
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.3.1" data-path="../../startup/stats/">
+            
+                <a href="../../startup/stats/">
+            
+                    
+                    継続的なパフォーマンス計測
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.2" data-path="../../startup/reduce-bundle/">
+            
+                <a href="../../startup/reduce-bundle/">
+            
+                    
+                    パッケージはBundleを配布しない
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.3" data-path="../../startup/module-field/">
+            
+                <a href="../../startup/module-field/">
+            
+                    
+                    "module"フィールド対応
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.4" data-path="../../startup/reduce-size/">
+            
+                <a href="../../startup/reduce-size/">
+            
+                    
+                    ファイルサイズを減らす
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+    
+
+    <li class="divider"></li>
+
+    <li>
+        <a href="https://www.gitbook.com" target="blank" class="gitbook-link">
+            GitBookで公開 
+        </a>
+    </li>
+</ul>
+
+
+                </nav>
+            
+        
+    </div>
+
+    <div class="book-body">
+        
+            <div class="body-inner">
+                
+                    
+
+<div class="book-header" role="navigation">
+    
+
+    <!-- Title -->
+    <h1>
+        <i class="fa fa-circle-o-notch fa-spin"></i>
+        <a href="../.." >定期的に動いてる無駄なものを停止する</a>
+    </h1>
+</div>
+
+
+
+
+                    <div class="page-wrapper" tabindex="-1" role="main">
+                        <div class="page-inner">
+                            
+<div id="book-search-results">
+    <div class="search-noresults">
+    
+                                <section class="normal markdown-section">
+                                
+                                <h1 id="&#x5B9A;&#x671F;&#x7684;&#x306B;&#x66F4;&#x65B0;&#x3055;&#x308C;&#x3066;&#x3044;&#x308B;&#x3082;&#x306E;&#x3092;&#x6B62;&#x3081;&#x308B;">&#x5B9A;&#x671F;&#x7684;&#x306B;&#x66F4;&#x65B0;&#x3055;&#x308C;&#x3066;&#x3044;&#x308B;&#x3082;&#x306E;&#x3092;&#x6B62;&#x3081;&#x308B;</h1>
+<p>&#x6620;&#x50CF;&#x3092;&#x8996;&#x8074;&#x3059;&#x308B;&#x76EE;&#x7684;&#x3067;&#x30DA;&#x30FC;&#x30B8;&#x3092;&#x95B2;&#x89A7;&#x3057;&#x3066;&#x3044;&#x308B;&#x3068;&#x3001;&#x601D;&#x3063;&#x3066;&#x3044;&#x308B;&#x4EE5;&#x4E0A;&#x306B;&#x64CD;&#x4F5C;&#x3092;&#x884C;&#x3046;&#x3053;&#x3068;&#x306F;&#x5C11;&#x306A;&#x3044;&#x3067;&#x3059;&#x3002;
+&#x305D;&#x306E;&#x305F;&#x3081;&#x3001;&#x4F55;&#x3082;&#x3057;&#x3066;&#x306A;&#x3044;&#x3068;&#x304D;&#x306B;&#x7121;&#x99C4;&#x306A;&#x51E6;&#x7406;&#x3092;&#x3057;&#x3066;&#x3044;&#x308B;&#x3082;&#x306E;&#x304C;&#x3044;&#x306A;&#x3044;&#x304B;&#x3092;&#x898B;&#x3064;&#x3051;&#x308B;&#x3053;&#x3068;&#x306F;&#x52B9;&#x679C;&#x304C;&#x3042;&#x308B;&#x304B;&#x3082;&#x3057;&#x308C;&#x307E;&#x305B;&#x3093;&#x3002;</p>
+<p>&#x30D6;&#x30E9;&#x30A6;&#x30B6;&#x306E;&#x591A;&#x304F;&#x306E;&#x51E6;&#x7406;&#x306F;&#x30A4;&#x30D9;&#x30F3;&#x30C8;&#x99C6;&#x52D5;&#x306A;&#x306E;&#x3067;&#x3001;&#x4F55;&#x3082;&#x3057;&#x3066;&#x306A;&#x3044;&#x72B6;&#x614B;&#x3067;&#x81EA;&#x52D5;&#x7684;&#x306B;&#x51E6;&#x7406;&#x3068;&#x3057;&#x3066;&#x30BF;&#x30A4;&#x30DE;&#x30FC;&#x3092;&#x4F7F;&#x3063;&#x305F;&#x51E6;&#x7406;&#x304C;&#x3042;&#x308A;&#x307E;&#x3059;&#x3002;
+&#x30D6;&#x30E9;&#x30A6;&#x30B6;&#x3067;&#x5B9A;&#x671F;&#x7684;&#x306A;&#x51E6;&#x7406;&#x3092;&#x884C;&#x3046;&#x5834;&#x5408;&#x306B;&#x4F7F;&#x308F;&#x308C;&#x308B;&#x30BF;&#x30A4;&#x30DE;&#x30FC;&#x306F;&#x6B21;&#x306E;&#x3082;&#x306E;&#x304C;&#x3042;&#x308A;&#x307E;&#x3059;&#x3002;</p>
+<ul>
+<li><code>setTimeout</code></li>
+<li><code>setInterval</code></li>
+<li><code>requestAnimationFrame</code></li>
+</ul>
+<p>&#x3053;&#x308C;&#x3089;&#x306E;&#x95A2;&#x6570;&#x3092;&#x76E3;&#x8996;&#x3057;&#x3066;&#x307F;&#x308C;&#x3070;&#x3001;&#x7121;&#x99C4;&#x306A;&#x51E6;&#x7406;&#x3092;&#x898B;&#x3064;&#x3051;&#x308B;&#x3053;&#x3068;&#x304C;&#x3067;&#x304D;&#x305D;&#x3046;&#x3067;&#x3059;&#x3002;</p>
+<p>&#x5225;&#x306E;&#x65B9;&#x6CD5;&#x3068;&#x3057;&#x3066;Chrome&#x306B;&#x306F;Performance Monitor&#x304C;&#x3042;&#x308B;&#x306E;&#x3067;&#x3001;&#x3053;&#x308C;&#x3092;&#x3058;&#x3063;&#x3068;&#x898B;&#x3066;&#x3044;&#x308B;&#x3068;&#x5909;&#x5316;&#x306B;&#x6C17;&#x3065;&#x304F;&#x3053;&#x3068;&#x304C;&#x3067;&#x304D;&#x307E;&#x3059;&#x3002;
+&#x3053;&#x306E;&#x554F;&#x984C;&#x3082;&#x5143;&#x3005;&#x306F;Performance Monitor&#x3092;&#x898B;&#x3066;&#x3044;&#x3066;&#x5909;&#x306A;&#x51E6;&#x7406;&#x304C;&#x3042;&#x308B;&#x3053;&#x3068;&#x3092;&#x898B;&#x3064;&#x3051;&#x305F;&#x306E;&#x304C;&#x51FA;&#x767A;&#x70B9;&#x3067;&#x3059;&#x3002;</p>
+<ul>
+<li><a href="https://developers.google.com/web/updates/2017/11/devtools-release-notes" title="What&apos;s New In DevTools (Chrome 64)  |  Web  |  Google Developers" target="_blank">What&apos;s New In DevTools (Chrome 64)  |  Web  |  Google Developers</a></li>
+</ul>
+<h2 id="&#x89B3;&#x6E2C;">&#x89B3;&#x6E2C;</h2>
+<p>&#x6B21;&#x306E;&#x3088;&#x3046;&#x306A;&#x30B9;&#x30AF;&#x30EA;&#x30D7;&#x30C8;&#x3092;&#x66F8;&#x304D;&#x3001;&#x3053;&#x306E;&#x72B6;&#x614B;&#x3067;&#x653E;&#x7F6E;&#x3057;&#x3066;&#x52D5;&#x3044;&#x3066;&#x308B;&#x30BF;&#x30A4;&#x30DE;&#x30FC;&#x3092;&#x898B;&#x3064;&#x3051;&#x307E;&#x3059;&#x3002;</p>
+<p><img src="img/found-timer.png" alt="image"></p>
+<script src="https://gist.github.com/azu/d7942102dc5282b0eca859149791c3f0.js"></script>
+
+<p><strong>&#x53C2;&#x8003;</strong></p>
+<ul>
+<li><a href="https://efcl.info/2017/12/07/capture-living-timer/" title="&#x30DA;&#x30FC;&#x30B8;&#x4E0A;&#x3067;&#x305A;&#x3063;&#x3068;&#x52D5;&#x3044;&#x3066;&#x3044;&#x308B;setTimeout&#x3001;setInterval&#x3001;requestAnimationFrame&#x3092;&#x898B;&#x3064;&#x3051;&#x3066;&#x30D1;&#x30D5;&#x30A9;&#x30FC;&#x30DE;&#x30F3;&#x30B9;&#x6539;&#x5584;&#x3059;&#x308B; | Web Scratch" target="_blank">&#x30DA;&#x30FC;&#x30B8;&#x4E0A;&#x3067;&#x305A;&#x3063;&#x3068;&#x52D5;&#x3044;&#x3066;&#x3044;&#x308B;setTimeout&#x3001;setInterval&#x3001;requestAnimationFrame&#x3092;&#x898B;&#x3064;&#x3051;&#x3066;&#x30D1;&#x30D5;&#x30A9;&#x30FC;&#x30DE;&#x30F3;&#x30B9;&#x6539;&#x5584;&#x3059;&#x308B; | Web Scratch</a></li>
+</ul>
+<p>&#x89B3;&#x6E2C;&#x3057;&#x3066;&#x3044;&#x308B;&#x3068;&#x5B9A;&#x671F;&#x7684;&#x306B;&#x52D5;&#x3044;&#x3066;&#x308B;&#x3082;&#x306E;&#x3068;&#x3057;&#x3066;&#x3001;&#x6B21;&#x306E;&#x3088;&#x3046;&#x306A;&#x3082;&#x306E;&#x304C;&#x3042;&#x308A;&#x307E;&#x3057;&#x305F;&#x3002;</p>
+<ul>
+<li>Live Stream&#x306E;&#x6620;&#x50CF;&#x53D6;&#x5F97;</li>
+<li>&#x30B3;&#x30E1;&#x30F3;&#x30C8;&#x306E;&#x53D6;&#x5F97;</li>
+<li>&#x30B3;&#x30E1;&#x30F3;&#x30C8;&#x306E;&#x63CF;&#x753B;<ul>
+<li>Canvas&#x3067;&#x63CF;&#x753B;&#x3055;&#x308C;&#x3066;&#x3044;&#x308B;</li>
+<li><code>requestAnimation</code>&#x3067;&#x30E1;&#x30A4;&#x30F3;&#x30EB;&#x30FC;&#x30D7;&#x3092;&#x56DE;&#x3057;&#x3066;&#x3044;&#x308B;</li>
+</ul>
+</li>
+<li>&#x756A;&#x7D44;&#x306E;&#x72B6;&#x614B;&#x306E;&#x53D6;&#x5F97;&#xFF08;&#x8996;&#x8074;&#x6570;&#x3084;&#x30B3;&#x30E1;&#x30F3;&#x30C8;&#x6570;&#xFF09;</li>
+<li>&#x30A2;&#x30F3;&#x30B1;&#x30FC;&#x30C8;&#x753B;&#x9762;&#x306E;&#x66F4;&#x65B0;&#x51E6;&#x7406;<ul>
+<li>&#x30A2;&#x30F3;&#x30B1;&#x30FC;&#x30C8;&#x306F;&#x30B2;&#x30FC;&#x30E0;&#x306E;&#x3088;&#x3046;&#x306A;&#x30E1;&#x30A4;&#x30F3;&#x30EB;&#x30FC;&#x30D7;&#x3067;&#x63CF;&#x753B;&#x3092;&#x66F4;&#x65B0;&#x3057;&#x3066;&#x3044;&#x308B;&#x3002;</li>
+<li>&#x305D;&#x306E;&#x305F;&#x3081;<code>requestAnimation</code>&#x3067;&#x30E1;&#x30A4;&#x30F3;&#x30EB;&#x30FC;&#x30D7;&#x3092;&#x56DE;&#x3057;&#x3066;&#x3044;&#x308B;</li>
+</ul>
+</li>
+</ul>
+<p>&#x3053;&#x306E;&#x4E2D;&#x3067;&#x3001;&#x30A2;&#x30F3;&#x30B1;&#x30FC;&#x30C8;&#x753B;&#x9762;&#x304C;&#x8868;&#x793A;&#x3055;&#x308C;&#x3066;&#x3044;&#x306A;&#x3044;&#x306B;&#x3082;&#x304B;&#x304B;&#x308F;&#x3089;&#x305A;&#x3001;&#x30A2;&#x30F3;&#x30B1;&#x30FC;&#x30C8;&#x306E;&#x30E1;&#x30A4;&#x30F3;&#x30EB;&#x30FC;&#x30D7;(<code>requestAnimation</code>)&#x304C;&#x52D5;&#x3044;&#x3066;&#x3044;&#x308B;&#x3053;&#x3068;&#x304C;&#x308F;&#x304B;&#x308A;&#x307E;&#x3057;&#x305F;&#x3002;&#x3053;&#x308C;&#x306F;&#x7121;&#x99C4;&#x306A;&#x51E6;&#x7406;&#x3068;&#x3044;&#x3048;&#x305D;&#x3046;&#x3067;&#x3059;&#x3002;</p>
+<hr>
+<h2 id="&#x4FEE;&#x6B63;&#x65B9;&#x91DD;">&#x4FEE;&#x6B63;&#x65B9;&#x91DD;</h2>
+<p>&#x30A2;&#x30F3;&#x30B1;&#x30FC;&#x30C8;&#x304C;&#x975E;&#x8868;&#x793A;&#x306B;&#x306E;&#x3068;&#x304D;&#x306B;&#x3082;&#x30A2;&#x30F3;&#x30B1;&#x30FC;&#x30C8;&#x306E;&#x30E1;&#x30A4;&#x30F3;&#x30EB;&#x30FC;&#x30D7;&#x304C;&#x52D5;&#x3044;&#x3066;&#x3044;&#x308B;&#x306E;&#x554F;&#x984C;&#x3060;&#x3063;&#x305F;&#x3002;
+&#x539F;&#x56E0;&#x3068;&#x3057;&#x3066;&#x306F;&#x3001;&#x30A2;&#x30F3;&#x30B1;&#x30FC;&#x30C8;&#x304C;&#x306A;&#x3044;&#x6642;&#x306F;&#x5358;&#x306B;CSS&#x3067;&#x8868;&#x793A;&#x3092;&#x6D88;&#x3057;&#x3066;&#x3044;&#x308B;&#x3060;&#x3051;&#x306B;&#x904E;&#x304E;&#x306A;&#x3044;&#x72B6;&#x614B;&#x3060;&#x3063;&#x305F;&#x3002;</p>
+<p>&#x305D;&#x306E;&#x305F;&#x3081;&#x3001;&#x30A2;&#x30F3;&#x30B1;&#x30FC;&#x30C8;&#x304C;&#x884C;&#x308F;&#x308C;&#x3066;&#x3044;&#x306A;&#x3044;&#x6642;&#x306F;&#x3001;&#x30A2;&#x30F3;&#x30B1;&#x30FC;&#x30C8;&#x306E;&#x30D7;&#x30ED;&#x30B0;&#x30E9;&#x30E0;&#x3092;&#x5B8C;&#x5168;&#x306B;&#x6D88;&#x3059;&#x3088;&#x3046;&#x306B;&#x3059;&#x308C;&#x3070;&#x4FEE;&#x6B63;&#x3067;&#x304D;&#x305D;&#x3046;&#x3067;&#x3059;&#x3002;</p>
+<h2 id="&#x4FEE;&#x6B63;">&#x4FEE;&#x6B63;</h2>
+<p>&#x30A2;&#x30F3;&#x30B1;&#x30FC;&#x30C8;&#x304C;&#x884C;&#x308F;&#x308C;&#x3066;&#x3044;&#x306A;&#x3044;&#x6642;&#x306F;&#x3001;&#x30A2;&#x30F3;&#x30B1;&#x30FC;&#x30C8;&#x3092;DOM&#x304B;&#x3089;&#x3082;&#x524A;&#x9664;&#x3059;&#x308B;&#x3088;&#x3046;&#x306B;&#x3057;&#x307E;&#x3057;&#x305F;&#x3002;</p>
+<p><img src="img/pr-interaction.png" alt="&#x5B9F;&#x969B;&#x306E;PR"></p>
+<h2 id="&#x8A08;&#x6E2C;">&#x8A08;&#x6E2C;</h2>
+<p>&#x89B3;&#x6E2C;&#x3067;&#x5229;&#x7528;&#x3057;&#x305F;&#x30B9;&#x30AF;&#x30EA;&#x30D7;&#x30C8;&#x3092;&#x4F7F;&#x3044;&#x3001;&#x4FEE;&#x6B63;&#x5F8C;&#x306B;<code>requestAnimation</code>&#x304C;&#x6E1B;&#x3063;&#x3066;&#x3044;&#x308B;&#x3053;&#x3068;&#x304C;&#x78BA;&#x8A8D;&#x3067;&#x304D;&#x307E;&#x3057;&#x305F;&#x3002;</p>
+<ul>
+<li><a href="https://efcl.info/2017/12/07/capture-living-timer/" title="&#x30DA;&#x30FC;&#x30B8;&#x4E0A;&#x3067;&#x305A;&#x3063;&#x3068;&#x52D5;&#x3044;&#x3066;&#x3044;&#x308B;setTimeout&#x3001;setInterval&#x3001;requestAnimationFrame&#x3092;&#x898B;&#x3064;&#x3051;&#x3066;&#x30D1;&#x30D5;&#x30A9;&#x30FC;&#x30DE;&#x30F3;&#x30B9;&#x6539;&#x5584;&#x3059;&#x308B; | Web Scratch" target="_blank">&#x30DA;&#x30FC;&#x30B8;&#x4E0A;&#x3067;&#x305A;&#x3063;&#x3068;&#x52D5;&#x3044;&#x3066;&#x3044;&#x308B;setTimeout&#x3001;setInterval&#x3001;requestAnimationFrame&#x3092;&#x898B;&#x3064;&#x3051;&#x3066;&#x30D1;&#x30D5;&#x30A9;&#x30FC;&#x30DE;&#x30F3;&#x30B9;&#x6539;&#x5584;&#x3059;&#x308B; | Web Scratch</a></li>
+</ul>
+
+                                
+                                </section>
+                            
+    </div>
+    <div class="search-results">
+        <div class="has-results">
+            
+            <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+            <ul class="search-results-list"></ul>
+            
+        </div>
+        <div class="no-results">
+            
+            <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+            
+        </div>
+    </div>
+</div>
+
+                        </div>
+                    </div>
+                
+            </div>
+
+            
+                
+                <a href="../fix-list/throttling.html" class="navigation navigation-prev " aria-label="Previous page: リストコンポーネントへの追加処理の修正">
+                    <i class="fa fa-angle-left"></i>
+                </a>
+                
+                
+                <a href="../fix-new-function/" class="navigation navigation-next " aria-label="Next page: 毎回関数を作ってpropsに設定する問題の修正">
+                    <i class="fa fa-angle-right"></i>
+                </a>
+                
+            
+        
+    </div>
+
+    <script>
+        var gitbook = gitbook || [];
+        gitbook.push(function() {
+            gitbook.page.hasChanged({"page":{"title":"定期的に動いてる無駄なものを停止する","level":"1.2.4.7","depth":3,"next":{"title":"毎回関数を作ってpropsに設定する問題の修正","level":"1.2.4.8","depth":3,"path":"watching/fix-new-function/README.md","ref":"./watching/fix-new-function/README.md","articles":[]},"previous":{"title":"リストコンポーネントへの追加処理の修正","level":"1.2.4.6","depth":3,"path":"watching/fix-list/throttling.md","ref":"./watching/fix-list/throttling.md","articles":[]},"dir":"ltr"},"config":{"plugins":["markdown-video"],"root":"./src/","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"markdown-video":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","author":"DWANGO Co., Ltd.","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"IPAexMincho","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"Webフロントエンド パフォーマンス改善ハンドブック","language":"ja","gitbook":">=3.0.0","description":"ウェブアプリケーションのフロントエンドにおけるパフォーマンス改善ハンドブック"},"file":{"path":"watching/fix-interval/README.md","mtime":"2018-10-26T06:49:39.468Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2018-10-26T06:51:05.118Z"},"basePath":"../..","book":{"language":""}});
+        });
+    </script>
+</div>
+
+        
+    <script src="../../gitbook/gitbook.js"></script>
+    <script src="../../gitbook/theme.js"></script>
+    
+        
+        <script src="../../gitbook/gitbook-plugin-markdown-video/video.min.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-search/search-engine.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-search/search.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-lunr/lunr.min.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-lunr/search-lunr.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-sharing/buttons.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-fontsettings/fontsettings.js"></script>
+        
+    
+
+    </body>
+</html>
+

@@ -1,0 +1,710 @@
+
+<!DOCTYPE HTML>
+<html lang="ja" >
+    <head>
+        <meta charset="UTF-8">
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <title>パフォーマンスの計測の仕方 · Webフロントエンド パフォーマンス改善ハンドブック</title>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="description" content="">
+        <meta name="generator" content="GitBook 3.2.3">
+        <meta name="author" content="DWANGO Co., Ltd.">
+        
+        
+    
+    <link rel="stylesheet" href="../../gitbook/style.css">
+
+    
+            
+                
+                <link rel="stylesheet" href="../../gitbook/gitbook-plugin-markdown-video/video-js.min.css">
+                
+            
+                
+                <link rel="stylesheet" href="../../gitbook/gitbook-plugin-highlight/website.css">
+                
+            
+                
+                <link rel="stylesheet" href="../../gitbook/gitbook-plugin-search/search.css">
+                
+            
+                
+                <link rel="stylesheet" href="../../gitbook/gitbook-plugin-fontsettings/website.css">
+                
+            
+        
+
+    
+
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+
+        
+    
+    
+    <meta name="HandheldFriendly" content="true"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="../../gitbook/images/apple-touch-icon-precomposed-152.png">
+    <link rel="shortcut icon" href="../../gitbook/images/favicon.ico" type="image/x-icon">
+
+    
+    <link rel="next" href="../no-perf/" />
+    
+    
+    <link rel="prev" href="../metrics/" />
+    
+
+    </head>
+    <body>
+        
+<div class="book">
+    <div class="book-summary">
+        
+            
+<div id="book-search-input" role="search">
+    <input type="text" placeholder="検索すると入力" />
+</div>
+
+            
+                <nav role="navigation">
+                
+
+
+<ul class="summary">
+    
+    
+
+    
+
+    
+        
+        
+    
+        <li class="chapter " data-level="1.1" data-path="../../">
+            
+                <a href="../../">
+            
+                    
+                    Introduction
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2" data-path="../">
+            
+                <a href="../">
+            
+                    
+                    視聴中のパフォーマンス改善
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.2.1" data-path="../metrics/">
+            
+                <a href="../metrics/">
+            
+                    
+                    指標の作成
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter active" data-level="1.2.2" data-path="./">
+            
+                <a href="./">
+            
+                    
+                    パフォーマンスの計測の仕方
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.3" data-path="../no-perf/">
+            
+                <a href="../no-perf/">
+            
+                    
+                    パフォーマンスにおける無駄
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.4" data-path="../fix/">
+            
+                <a href="../fix/">
+            
+                    
+                    パフォーマンス修正の事例
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.2.4.1" data-path="../fix-reflow-componentDidUpdate/">
+            
+                <a href="../fix-reflow-componentDidUpdate/">
+            
+                    
+                    更新ごとの無駄なReflowが発生する問題の修正
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.4.2" data-path="../fix-fullscreen/">
+            
+                <a href="../fix-fullscreen/">
+            
+                    
+                    フルスクリーン時に描画コストの問題の修正
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.4.3" data-path="../fix-input/">
+            
+                <a href="../fix-input/">
+            
+                    
+                    入力欄とControl Componentの改善
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.4.4" data-path="../fix-list/">
+            
+                <a href="../fix-list/">
+            
+                    
+                    リストコンポーネントの問題
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.4.5" data-path="../fix-list/shouldComponentUpdate.html">
+            
+                <a href="../fix-list/shouldComponentUpdate.html">
+            
+                    
+                    リストコンポーネントのshouldComponentUpdateの改善
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.4.6" data-path="../fix-list/throttling.html">
+            
+                <a href="../fix-list/throttling.html">
+            
+                    
+                    リストコンポーネントへの追加処理の修正
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.4.7" data-path="../fix-interval/">
+            
+                <a href="../fix-interval/">
+            
+                    
+                    定期的に動いてる無駄なものを停止する
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.4.8" data-path="../fix-new-function/">
+            
+                <a href="../fix-new-function/">
+            
+                    
+                    毎回関数を作ってpropsに設定する問題の修正
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.4.9" data-path="../fix-mousemove/">
+            
+                <a href="../fix-mousemove/">
+            
+                    
+                    マウスを動かすと再描画する問題の修正
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.5" data-path="../tradeoff/">
+            
+                <a href="../tradeoff/">
+            
+                    
+                    軽量化のトレードオフの検証
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.6" data-path="../fix-library/">
+            
+                <a href="../fix-library/">
+            
+                    
+                    ライブラリを改善する
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3" data-path="../../startup/">
+            
+                <a href="../../startup/">
+            
+                    
+                    ページロードのパフォーマンス改善
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.3.1" data-path="../../startup/stats/">
+            
+                <a href="../../startup/stats/">
+            
+                    
+                    継続的なパフォーマンス計測
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.2" data-path="../../startup/reduce-bundle/">
+            
+                <a href="../../startup/reduce-bundle/">
+            
+                    
+                    パッケージはBundleを配布しない
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.3" data-path="../../startup/module-field/">
+            
+                <a href="../../startup/module-field/">
+            
+                    
+                    "module"フィールド対応
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.4" data-path="../../startup/reduce-size/">
+            
+                <a href="../../startup/reduce-size/">
+            
+                    
+                    ファイルサイズを減らす
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+    
+
+    <li class="divider"></li>
+
+    <li>
+        <a href="https://www.gitbook.com" target="blank" class="gitbook-link">
+            GitBookで公開 
+        </a>
+    </li>
+</ul>
+
+
+                </nav>
+            
+        
+    </div>
+
+    <div class="book-body">
+        
+            <div class="body-inner">
+                
+                    
+
+<div class="book-header" role="navigation">
+    
+
+    <!-- Title -->
+    <h1>
+        <i class="fa fa-circle-o-notch fa-spin"></i>
+        <a href="../.." >パフォーマンスの計測の仕方</a>
+    </h1>
+</div>
+
+
+
+
+                    <div class="page-wrapper" tabindex="-1" role="main">
+                        <div class="page-inner">
+                            
+<div id="book-search-results">
+    <div class="search-noresults">
+    
+                                <section class="normal markdown-section">
+                                
+                                <h1 id="&#x30D1;&#x30D5;&#x30A9;&#x30FC;&#x30DE;&#x30F3;&#x30B9;&#x306E;&#x8A08;&#x6E2C;&#x306E;&#x4ED5;&#x65B9;">&#x30D1;&#x30D5;&#x30A9;&#x30FC;&#x30DE;&#x30F3;&#x30B9;&#x306E;&#x8A08;&#x6E2C;&#x306E;&#x4ED5;&#x65B9;</h1>
+<blockquote>
+<p>&#x8A08;&#x6E2C;&#x3067;&#x304D;&#x306A;&#x3044;&#x306A;&#x3089;&#x5B89;&#x6613;&#x306B;&#x76F4;&#x3055;&#x306A;&#x3044;</p>
+</blockquote>
+<p>&#x30D1;&#x30D5;&#x30A9;&#x30FC;&#x30DE;&#x30F3;&#x30B9;&#x306E;&#x8A08;&#x6E2C;&#x306E;&#x4ED5;&#x65B9;&#x306F;&#x3055;&#x307E;&#x3056;&#x307E;&#x3067;&#x3059;&#x3002;
+&#x8A08;&#x6E2C;&#x65B9;&#x6CD5;&#x306F;&#x30DC;&#x30C8;&#x30EB;&#x30CD;&#x30C3;&#x30AF;&#x3068;&#x306A;&#x308B;&#x90E8;&#x5206;&#xFF08;&#x30CD;&#x30C3;&#x30C8;&#x30EF;&#x30FC;&#x30AF;&#x3084;&#x30EC;&#x30F3;&#x30C0;&#x30EA;&#x30F3;&#x30B0;&#x3068;&#x3044;&#x3063;&#x305F;&#x7B87;&#x6240;&#xFF09;&#x306B;&#x3088;&#x3063;&#x3066;&#x7570;&#x306A;&#x308A;&#x307E;&#x3059;&#x3002;</p>
+<p>&#x8A08;&#x6E2C;&#x65B9;&#x6CD5;&#x3082;&#x5927;&#x4E8B;&#x3067;&#x3059;&#x304C;&#x3001;&#x8A08;&#x6E2C;&#x3059;&#x308B;&#x74B0;&#x5883;&#x3082;&#x91CD;&#x8981;&#x3067;&#x3059;&#x3002;</p>
+<h2 id="&#x30B9;&#x30ED;&#x30C3;&#x30C8;&#x30EA;&#x30F3;&#x30B0;">&#x30B9;&#x30ED;&#x30C3;&#x30C8;&#x30EA;&#x30F3;&#x30B0;</h2>
+<p>&#x958B;&#x767A;&#x306B;&#x4F7F;&#x3046;&#x3088;&#x3046;&#x306A;&#x30DE;&#x30B7;&#x30F3;&#x306F;&#x30CF;&#x30A4;&#x30B9;&#x30DA;&#x30C3;&#x30AF;&#x3067;&#x3059;&#x3002;
+&#x30D1;&#x30D5;&#x30A9;&#x30FC;&#x30DE;&#x30F3;&#x30B9;&#x306E;&#x8A08;&#x6E2C;&#x3092;&#x884C;&#x3046;&#x969B;&#x306F;&#x3001;&#x5FC5;&#x305A;CPU&#x30B9;&#x30ED;&#x30C3;&#x30C8;&#x30EA;&#x30F3;&#x30B0;&#x306A;&#x3069;&#x306E;&#x30B9;&#x30ED;&#x30C3;&#x30C8;&#x30EA;&#x30F3;&#x30B0;&#x3092;&#x884C;&#x3063;&#x305F;&#x72B6;&#x614B;&#x3067;&#x4E00;&#x5EA6;&#x8A08;&#x6E2C;&#x3059;&#x308B;&#x3079;&#x304D;&#x3067;&#x3059;&#x3002;</p>
+<ul>
+<li>CPU&#x30B9;&#x30ED;&#x30C3;&#x30C8;&#x30EA;&#x30F3;&#x30B0;&#x3092;&#x884C;&#x3046;<ul>
+<li><code>6x</code> 6&#x500D;&#x9045;&#x3044;&#x72B6;&#x614B;</li>
+</ul>
+</li>
+<li>&#x30CD;&#x30C3;&#x30C8;&#x30EF;&#x30FC;&#x30AF;&#x30B9;&#x30ED;&#x30C3;&#x30C8;&#x30EA;&#x30F3;&#x30B0;&#x3092;&#x884C;&#x3046;</li>
+</ul>
+<h2 id="&#x5B9F;&#x969B;&#x306B;&#x5229;&#x7528;&#x3057;&#x305F;&#x8A2D;&#x5B9A;">&#x5B9F;&#x969B;&#x306B;&#x5229;&#x7528;&#x3057;&#x305F;&#x8A2D;&#x5B9A;</h2>
+<p>&#x3053;&#x306E;<strong>&#x8996;&#x8074;&#x4E2D;&#x306E;&#x30D1;&#x30D5;&#x30A9;&#x30FC;&#x30DE;&#x30F3;&#x30B9;&#x6539;&#x5584;</strong>&#x3067;&#x306F;&#x6B21;&#x306E;&#x3088;&#x3046;&#x306A;&#x8A2D;&#x5B9A;&#x3092;&#x5229;&#x7528;&#x3057;&#x3066;&#x8A08;&#x6E2C;&#x3057;&#x3066;&#x3044;&#x307E;&#x3059;&#x3002;
+&#x30CD;&#x30C3;&#x30C8;&#x30EF;&#x30FC;&#x30AF;&#x30B9;&#x30ED;&#x30C3;&#x30C8;&#x30EA;&#x30F3;&#x30B0;&#x306B;&#x3064;&#x3044;&#x3066;&#x306F;&#x30E9;&#x30F3;&#x30BF;&#x30A4;&#x30E0;&#x3067;&#x306F;&#x3042;&#x307E;&#x308A;&#x95A2;&#x4FC2;&#x306A;&#x3044;&#x3082;&#x306E;&#x304C;&#x591A;&#x304B;&#x3063;&#x305F;&#x305F;&#x3081;&#x7279;&#x306B;&#x8A2D;&#x5B9A;&#x3057;&#x3066;&#x3044;&#x307E;&#x305B;&#x3093;&#x3067;&#x3057;&#x305F;&#x3002;</p>
+<ul>
+<li>&#x5024;&#x306E;&#x8A08;&#x6E2C;: Chrome<ul>
+<li>CPU&#x30B9;&#x30ED;&#x30C3;&#x30C8;&#x30EA;&#x30F3;&#x30B0;: 6x</li>
+<li>&#x30CD;&#x30C3;&#x30C8;&#x30EF;&#x30FC;&#x30AF;&#x30B9;&#x30ED;&#x30C3;&#x30C8;&#x30EA;&#x30F3;&#x30B0;: &#x306A;&#x3057;</li>
+</ul>
+</li>
+<li>&#x52D5;&#x4F5C;&#x306E;&#x78BA;&#x8A8D;: IE/Edge/Firefox/Chrome/Safari</li>
+</ul>
+<p><strong>&#x53C2;&#x8003;</strong></p>
+<ul>
+<li><a href="https://umaar.com/dev-tips/88-cpu-throttling/" target="_blank">CPU Throttling - Chrome DevTools - Dev Tips</a></li>
+<li><a href="https://developers.google.com/web/tools/chrome-devtools/network-performance/network-conditions?hl=ja" target="_blank">&#x3055;&#x307E;&#x3056;&#x307E;&#x306A;&#x30CD;&#x30C3;&#x30C8;&#x30EF;&#x30FC;&#x30AF;&#x72B6;&#x614B;&#x3067;&#x306E;&#x30D1;&#x30D5;&#x30A9;&#x30FC;&#x30DE;&#x30F3;&#x30B9;&#x306E;&#x6700;&#x9069;&#x5316;  |  Tools for Web Developers  |  Google Developers</a></li>
+<li><a href="https://tech.mercari.com/entry/2017/12/13/103000" target="_blank">&#x30E2;&#x30D0;&#x30A4;&#x30EB;&#x958B;&#x767A;&#x306B;&#x5F79;&#x7ACB;&#x3064;JS&#x30C7;&#x30D0;&#x30C3;&#x30B0;&#x8853; - Mercari Engineering Blog</a></li>
+</ul>
+<p>&#x307E;&#x305F;&#x3001;Chrome&#x306E;&#x30CD;&#x30C3;&#x30C8;&#x30EF;&#x30FC;&#x30AF;&#x30B9;&#x30ED;&#x30C3;&#x30C8;&#x30EA;&#x30F3;&#x30B0;&#x306F;&#x30EA;&#x30AF;&#x30A8;&#x30B9;&#x30C8;&#x30EC;&#x30D9;&#x30EB;&#x306E;&#x30B9;&#x30ED;&#x30C3;&#x30C8;&#x30EA;&#x30F3;&#x30B0;&#x306B;&#x306A;&#x308A;&#x307E;&#x3059;&#x3002;&#x305D;&#x306E;&#x305F;&#x3081;&#x30D1;&#x30B1;&#x30C3;&#x30C8;&#x30EC;&#x30D9;&#x30EB;&#x306E;&#x30B9;&#x30ED;&#x30C3;&#x30C8;&#x30EA;&#x30F3;&#x30B0;&#x3092;&#x3059;&#x308B;&#x5834;&#x5408;&#x306F;&#x5225;&#x306E;&#x30C4;&#x30FC;&#x30EB;&#x3092;&#x4F7F;&#x3063;&#x305F;&#x307B;&#x3046;&#x304C;&#x5B89;&#x5B9A;&#x3057;&#x307E;&#x3059;&#x3002;</p>
+<ul>
+<li><a href="https://github.com/GoogleChrome/lighthouse/blob/master/docs/throttling.md" title="lighthouse/throttling.md at master &#xB7; GoogleChrome/lighthouse" target="_blank">lighthouse/throttling.md at master &#xB7; GoogleChrome/lighthouse</a></li>
+</ul>
+<h2 id="&#x5B9F;&#x6A5F;&#x78BA;&#x8A8D;">&#x5B9F;&#x6A5F;&#x78BA;&#x8A8D;</h2>
+<p>&#x6620;&#x50CF;&#x306E;&#x30C7;&#x30B3;&#x30FC;&#x30C9;&#x306A;&#x3069;&#x30CF;&#x30FC;&#x30C9;&#x30A6;&#x30A7;&#x30A2;&#x306E;&#x6A5F;&#x80FD;&#x3092;&#x4F7F;&#x3046;&#x3082;&#x306E;&#x307B;&#x3069;&#x5B9F;&#x6A5F;&#x3067;&#x78BA;&#x8A8D;&#x3059;&#x308B;&#x3079;&#x304D;&#x3067;&#x3059;&#x3002;
+VM&#x306E;Windows&#x3067;&#x306F;&#x518D;&#x73FE;&#x3057;&#x306A;&#x3044;&#x304C;&#x3001;&#x5B9F;&#x6A5F;&#x3067;&#x306F;&#x518D;&#x73FE;&#x3059;&#x308B;&#x3068;&#x3044;&#x3063;&#x305F;&#x9055;&#x3044;&#x306A;&#x3069;&#x304C;&#x767A;&#x751F;&#x3057;&#x307E;&#x3059;&#x3002;</p>
+<h2 id="&#x8A08;&#x6E2C;&#x30C4;&#x30FC;&#x30EB;">&#x8A08;&#x6E2C;&#x30C4;&#x30FC;&#x30EB;</h2>
+<ul>
+<li><a href="https://developers.google.com/web/tools/chrome-devtools/?hl=ja" title="Chrome DevTools" target="_blank">Chrome DevTools</a><ul>
+<li>&#x3082;&#x3063;&#x3068;&#x3082;&#x591A;&#x6A5F;&#x80FD;&#x3067;&#x5927;&#x90E8;&#x5206;&#x3092;&#x30AB;&#x30D0;&#x30FC;&#x3067;&#x304D;&#x307E;&#x3059;</li>
+</ul>
+</li>
+<li><a href="https://www.chromium.org/developers/how-tos/trace-event-profiling-tool" title="The Trace Event Profiling Tool (about:tracing) - The Chromium Projects" target="_blank"><code>about:tracing</code></a><ul>
+<li>&#x30B0;&#x30E9;&#x30D5;&#x30A3;&#x30C3;&#x30AF;&#x3084;&#x5165;&#x529B;&#x30EC;&#x30A4;&#x30C6;&#x30F3;&#x30B7;&#x30FC;&#x306A;&#x3069;&#x30EC;&#x30D9;&#x30EB;&#x306B;&#x8FD1;&#x3044;&#x60C5;&#x5831;&#x3092;&#x898B;&#x3089;&#x308C;&#x307E;&#x3059;</li>
+<li><a href="https://qiita.com/keishi/items/5f1af0851901e9021488" title="&#x30D1;&#x30D5;&#x30A9;&#x30FC;&#x30DE;&#x30F3;&#x30B9;&#x8A08;&#x6E2C;&#x306B;&#x56F0;&#x3089;&#x306A;&#x3044;&#xFF01;tracing&#x6D3B;&#x7528;&#x8853;100 - Qiita" target="_blank">&#x30D1;&#x30D5;&#x30A9;&#x30FC;&#x30DE;&#x30F3;&#x30B9;&#x8A08;&#x6E2C;&#x306B;&#x56F0;&#x3089;&#x306A;&#x3044;&#xFF01;tracing&#x6D3B;&#x7528;&#x8853;100 - Qiita</a></li>
+</ul>
+</li>
+<li>&#x30E9;&#x30A4;&#x30D6;&#x30E9;&#x30EA;&#x306E;&#x30C7;&#x30D0;&#x30C3;&#x30AC;<ul>
+<li>&#x6700;&#x8FD1;&#x306E;&#x30E9;&#x30A4;&#x30D6;&#x30E9;&#x30EA;&#x306B;&#x306F;&#x305F;&#x3044;&#x3066;&#x3044;&#x30C7;&#x30D0;&#x30C3;&#x30AC;&#x304C;&#x7740;&#x3044;&#x3066;&#x3044;&#x307E;&#x3059;</li>
+<li><a href="https://github.com/facebook/react-devtools" title="facebook/react-devtools: An extension that allows inspection of React component hierarchy in the Chrome and Firefox Developer Tools." target="_blank">facebook/react-devtools: An extension that allows inspection of React component hierarchy in the Chrome and Firefox Developer Tools.</a></li>
+</ul>
+</li>
+<li><code>performance.mark</code>&#x3001;<code>performance.measures</code><ul>
+<li><a href="https://www.html5rocks.com/ja/tutorials/webperformance/usertiming/" target="_blank">User Timing API: &#x3042;&#x306A;&#x305F;&#x306E; Web &#x30A2;&#x30D7;&#x30EA;&#x3092;&#x3082;&#x3063;&#x3068;&#x7406;&#x89E3;&#x3059;&#x308B;&#x305F;&#x3081;&#x306B; - HTML5 Rocks</a></li>
+<li><a href="https://qiita.com/makotot/items/70bd392a62afd43d3189" target="_blank">&#x30D1;&#x30D5;&#x30A9;&#x30FC;&#x30DE;&#x30F3;&#x30B9;&#x307E;&#x308F;&#x308A;&#x306E;API&#x306B;&#x3064;&#x3044;&#x3066; - Qiita</a></li>
+<li><a href="https://developer.mozilla.org/en-US/docs/Web/API/User_Timing_API" target="_blank">User Timing API - Web APIs | MDN</a></li>
+</ul>
+</li>
+</ul>
+<h2 id="user-timing-api">User Timing API</h2>
+<p>User Timing API&#x3068;&#x547C;&#x3070;&#x308C;&#x308B;&#x3082;&#x306E;&#x306B;&#x306F;<code>performance.mark</code>&#x3001;<code>performance.measures</code>&#x306A;&#x3069;&#x304C;&#x3042;&#x308A;&#x307E;&#x3059;&#x3002;
+&#x3053;&#x308C;&#x3089;&#x306F;&#x3001;&#x81EA;&#x5206;&#x3067;&#x6307;&#x5B9A;&#x3057;&#x305F;&#x7BC4;&#x56F2;&#x3092;&#x30DE;&#x30FC;&#x30AD;&#x30F3;&#x30B0;&#x3067;&#x304D;&#x307E;&#x3059;&#x3002;
+&#x95B2;&#x89A7;&#x4E2D;&#xFF08;&#x8996;&#x8074;&#x4E2D;&#xFF09;&#x306E;&#x30D1;&#x30D5;&#x30A9;&#x30FC;&#x30DE;&#x30F3;&#x30B9;&#x3068;&#x3044;&#x3046;&#x306E;&#x306F;&#x3001;&#x6A5F;&#x68B0;&#x7684;&#x306B;&#x53D6;&#x308B;&#x3053;&#x3068;&#x304C;&#x96E3;&#x3057;&#x3044;&#x3067;&#x3059;&#x3002;</p>
+<p>&#x305D;&#x306E;&#x305F;&#x3081;&#x3001;<code>performance.mark</code>&#x3001;<code>performance.measures</code>&#x3092;&#x4F7F;&#x3063;&#x3066;&#x30A2;&#x30D7;&#x30EA;&#x30B1;&#x30FC;&#x30B7;&#x30E7;&#x30F3;&#x306B;&#x9069;&#x3057;&#x305F;&#x300C;&#x6307;&#x5B9A;&#x7BC4;&#x56F2;&#x300D;&#x3092;&#x4F5C;&#x308B;&#x3053;&#x3068;&#x304C;&#x30D1;&#x30D5;&#x30A9;&#x30FC;&#x30DE;&#x30F3;&#x30B9;&#x306E;&#x8A08;&#x6E2C;&#x306B;&#x5F79;&#x7ACB;&#x3061;&#x307E;&#x3059;&#x3002;</p>
+<p><a href="../metrics/">&#x6307;&#x6A19;</a>&#x3067;&#x4F5C;&#x6210;&#x3057;&#x305F;&#x30D1;&#x30D5;&#x30A9;&#x30FC;&#x30DE;&#x30F3;&#x30B9;&#x30ED;&#x30B0;&#x3082;&#x3053;&#x308C;&#x3089;&#x306E;API&#x3092;&#x4F7F;&#x3063;&#x3066;&#x3044;&#x307E;&#x3059;&#x3002;</p>
+<ul>
+<li><a href="https://efcl.info/2016/08/15/performance.mark/" title="performance.mark&#x3067;&#x30D1;&#x30D5;&#x30A9;&#x30FC;&#x30DE;&#x30F3;&#x30B9;&#x8A08;&#x6E2C;&#x3059;&#x308B; | Web Scratch" target="_blank">performance.mark&#x3067;&#x30D1;&#x30D5;&#x30A9;&#x30FC;&#x30DE;&#x30F3;&#x30B9;&#x8A08;&#x6E2C;&#x3059;&#x308B; | Web Scratch</a></li>
+<li><a href="https://efcl.info/2017/11/15/performance.mark-metadata/" target="_blank">performance.mark&#x306B;&#x30E1;&#x30BF;&#x30C7;&#x30FC;&#x30BF;&#x3092;&#x7D10;&#x4ED8;&#x3051;&#x3067;&#x304D;&#x308B;&#x30E9;&#x30A4;&#x30D6;&#x30E9;&#x30EA;&#x3092;&#x66F8;&#x3044;&#x305F; | Web Scratch</a></li>
+<li><a href="https://dev.to/azu/performancemark-with-medata-is-useful-for-real-user-monitoring-54p" target="_blank"><code>performance.mark</code> with metadata is useful for Real user monitoring</a></li>
+</ul>
+<p>&#x307E;&#x305F;&#x3001;&#x6700;&#x8FD1;&#x306F;Flux&#x3084;Redux&#x306A;&#x3069;&#x30A4;&#x30D9;&#x30F3;&#x30C8;&#x3092;&#x767A;&#x706B;&#x3057;&#x3066;View&#x3092;&#x66F4;&#x65B0;&#x3059;&#x308B;&#x30B9;&#x30BF;&#x30A4;&#x30EB;&#x3092;&#x53D6;&#x3063;&#x3066;&#x3044;&#x308B;&#x3053;&#x3068;&#x304C;&#x591A;&#x3044;&#x3068;&#x601D;&#x3044;&#x307E;&#x3059;&#x3002;
+&#x30A4;&#x30D9;&#x30F3;&#x30C8;&#x304C;&#x8D77;&#x70B9;&#x3068;&#x306A;&#x3063;&#x3066;&#x3044;&#x308B;&#x3068;&#x304D;&#x306E;&#x5229;&#x70B9;&#x3068;&#x3057;&#x3066;&#x3001;&#x4F55;&#x306E;&#x30A4;&#x30D9;&#x30F3;&#x30C8;&#x306B;&#x3088;&#x3063;&#x3066;&#x8868;&#x793A;&#x304C;&#x66F4;&#x65B0;&#x3055;&#x308C;&#x305F;&#x304B;&#x3068;&#x3044;&#x3046;&#x95A2;&#x9023;&#x4ED8;&#x3051;&#x304C;&#x7C21;&#x5358;&#x306A;&#x3068;&#x3053;&#x308D;&#x306B;&#x3042;&#x308A;&#x307E;&#x3059;&#x3002;</p>
+<p>&#x751F;&#x653E;&#x9001;&#x306E;&#x8996;&#x8074;&#x30DA;&#x30FC;&#x30B8;&#x3067;&#x306F;<a href="https://github.com/facebook/flux" title="flux" target="_blank">flux</a>&#x3068;<a href="https://reactjs.org/" title="React" target="_blank">React</a>&#x304C;&#x4F7F;&#x308F;&#x308C;&#x3066;&#x3044;&#x307E;&#x3057;&#x305F;&#x3002;</p>
+<p>&#x3053;&#x306E;&#xFF12;&#x3064;&#x306A;&#x3089;&#x30A4;&#x30D9;&#x30F3;&#x30C8;&#xFF08;Flux&#x306E;Dispatch&#xFF09;&#x3068;&#x8868;&#x793A;&#x306E;&#x66F4;&#x65B0;&#xFF08;React&#x306E;render&#xFF09;&#x3092;&#x95A2;&#x9023;&#x4ED8;&#x3051;&#x3066;&#x53EF;&#x8996;&#x5316;&#x3059;&#x308B;&#x3053;&#x3068;&#x306F;&#x7C21;&#x5358;&#x3067;&#x3059;&#x3002;
+Vue&#x3084;Almin&#x306A;&#x3069;&#x6700;&#x8FD1;&#x306E;&#x30E9;&#x30A4;&#x30D6;&#x30E9;&#x30EA;&#x306A;&#x3089;&#x5927;&#x62B5;&#x4F55;&#x3068;&#x304B;&#x306A;&#x308A;&#x307E;&#x3059;&#x3002;</p>
+<ul>
+<li><a href="https://efcl.info/2017/09/20/almin-performance-profile-0.14.0/" title="Almin + React/Vue.js&#x306E;&#x30D1;&#x30D5;&#x30A9;&#x30FC;&#x30DE;&#x30F3;&#x30B9;&#x30D7;&#x30ED;&#x30D5;&#x30A1;&#x30A4;&#x30EB;&#x3092;&#x30BF;&#x30A4;&#x30E0;&#x30E9;&#x30A4;&#x30F3;&#x8868;&#x793A;&#x3067;&#x304D;&#x308B;&#x3088;&#x3046;&#x306B; | Web Scratch" target="_blank">Almin + React/Vue.js&#x306E;&#x30D1;&#x30D5;&#x30A9;&#x30FC;&#x30DE;&#x30F3;&#x30B9;&#x30D7;&#x30ED;&#x30D5;&#x30A1;&#x30A4;&#x30EB;&#x3092;&#x30BF;&#x30A4;&#x30E0;&#x30E9;&#x30A4;&#x30F3;&#x8868;&#x793A;&#x3067;&#x304D;&#x308B;&#x3088;&#x3046;&#x306B; | Web Scratch</a></li>
+</ul>
+<h3 id="&#x30A4;&#x30D9;&#x30F3;&#x30C8;&#x3068;&#x66F4;&#x65B0;&#x306E;&#x53EF;&#x8996;&#x5316;">&#x30A4;&#x30D9;&#x30F3;&#x30C8;&#x3068;&#x66F4;&#x65B0;&#x306E;&#x53EF;&#x8996;&#x5316;</h3>
+<p><a href="https://github.com/facebook/flux" title="flux" target="_blank">flux</a>&#x306E;&#x30A4;&#x30D9;&#x30F3;&#x30C8;&#x3068;<a href="https://reactjs.org/" title="React" target="_blank">React</a>&#x306E;&#x66F4;&#x65B0;&#x306E;&#x95A2;&#x4FC2;&#x3092;User Timing API&#x3092;&#x4F7F;&#x3063;&#x3066;&#x53EF;&#x8996;&#x5316;&#x3057;&#x3066;&#x307F;&#x307E;&#x3057;&#x3087;&#x3046;&#x3002;</p>
+<p>&#x3068;&#x3044;&#x3063;&#x3066;&#x3082;&#x96E3;&#x3057;&#x3044;&#x8A71;&#x3067;&#x306F;&#x306A;&#x304F;&#x3001;Flux&#x304C;dispatch&#x3057;&#x305F;&#x30BF;&#x30A4;&#x30DF;&#x30F3;&#x30B0;&#x3067;<code>performance.mark</code>&#x3092;&#x8CBC;&#x308A;&#x3001;Store&#x304C;&#x66F4;&#x65B0;&#x3055;&#x308C;&#x305F;&#x30BF;&#x30A4;&#x30DF;&#x30F3;&#x30B0;&#x3082;&#x3046;&#x4E00;&#x5EA6;<code>performance.mark</code>&#x3092;&#x8CBC;&#x308B;&#x3060;&#x3051;&#x3067;&#x3059;&#x3002;
+React&#x306F;<code>?react_perf</code>&#xFF08;React 16&#x304B;&#x3089;&#x306F;&#x30C7;&#x30D5;&#x30A9;&#x30EB;&#x30C8;&#xFF09;&#x3092;&#x4ED8;&#x3051;&#x308B;&#x3060;&#x3051;&#x3067;&#x3001;&#x81EA;&#x52D5;&#x7684;&#x306B;<code>performance.mark</code>&#x3092;&#x3064;&#x3051;&#x3066;&#x304F;&#x308C;&#x307E;&#x3059;&#x3002;</p>
+<ul>
+<li><a href="https://reactjs.org/docs/optimizing-performance.html#profiling-components-with-the-chrome-performance-tab" title="Profiling Components with the Chrome Performance Tab" target="_blank">Profiling Components with the Chrome Performance Tab</a></li>
+</ul>
+<p>Flux&#x306E;Dispatch&#x306E;&#x5B9F;&#x88C5;&#x306F;&#x6B21;&#x306E;&#x3088;&#x3046;&#x306A;&#x5F62;&#x306B;&#x3057;&#x307E;&#x3057;&#x305F;&#x3002;</p>
+<p><code>Dispatcher</code>&#x306E;&#x30B7;&#x30F3;&#x30B0;&#x30EB;&#x30C8;&#x30F3;&#x3092;&#x4F5C;&#x308B;&#x3068;&#x304D;&#x306B;User Timing&#x306E;&#x51E6;&#x7406;&#x3092;&#x8FFD;&#x52A0;</p>
+<pre><code class="lang-ts"><span class="hljs-keyword">import</span> * as flux from <span class="hljs-string">&quot;flux&quot;</span>;
+<span class="hljs-comment">/**
+ * &#x30A2;&#x30AF;&#x30B7;&#x30E7;&#x30F3;&#x3092;&#x767A;&#x884C;&#x3057;&#x305F;&#x969B;&#x306B;&#x53D7;&#x3051;&#x6E21;&#x3059;&#x60C5;&#x5831;.
+ */</span>
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">interface</span> ActionPayload {
+    <span class="hljs-keyword">type</span>: <span class="hljs-built_in">string</span>;
+}
+
+<span class="hljs-comment">/**
+ * &#x30A2;&#x30AF;&#x30B7;&#x30E7;&#x30F3;&#x3092;&#x767A;&#x884C;&#x3059;&#x308B;&#x3082;&#x306E;.
+ */</span>
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">const</span> Dispatcher = <span class="hljs-keyword">new</span> flux.Dispatcher&lt;ActionPayload&gt;();
+
+<span class="hljs-comment">/**
+ * &#x958B;&#x767A;&#x5411;&#x3051;&#x306E;Flux&#x306E;Dispatch&#x30ED;&#x30AC;&#x30FC;
+ *
+ * - Flux&#x3067;dispatch&#x3057;&#x305F;&#x30A2;&#x30AF;&#x30B7;&#x30E7;&#x30F3;&#x3092;&#x30B3;&#x30F3;&#x30BD;&#x30FC;&#x30EB;&#x3078;&#x51FA;&#x529B;
+ * - &#x30BF;&#x30A4;&#x30E0;&#x30E9;&#x30A4;&#x30F3;&#x30C4;&#x30FC;&#x30EB;&#x306B;&#x30A2;&#x30AF;&#x30B7;&#x30E7;&#x30F3;&#x306E;&#x5B9F;&#x884C;&#x3092;&#x8A18;&#x9332;
+ *  - &#x6B63;&#x78BA;&#x306A;&#x5B9F;&#x884C;&#x6642;&#x9593;&#x306F;&#x8A18;&#x9332;&#x3067;&#x304D;&#x306A;&#x3044;&#x306E;&#x3067;&#x3042;&#x304F;&#x307E;&#x3067;&#x53C2;&#x8003;
+ *  - &#x5B9F;&#x884C;&#x6642;&#x9593;&#x306F;dispatch&#x3057;&#x3066;&#x304B;&#x3089;&#x6B21;&#x306E;requestFrameAnimation&#x304C;&#x8D77;&#x304D;&#x308B;&#x307E;&#x3067;&#x306E;&#x6642;&#x9593;&#x304C;&#x8A18;&#x9332;&#x3055;&#x308C;&#x3066;&#x3044;&#x308B;
+ *
+ * URL&#x306B;`?react_perf&#x3092;&#x4ED8;&#x3051;&#x308B;&#x3053;&#x3068;&#x3067;Action&#x3068;View&#x306E;&#x51E6;&#x7406;&#x306E;&#x95A2;&#x4FC2;&#x3092;&#x30BF;&#x30A4;&#x30E0;&#x30E9;&#x30A4;&#x30F3;&#x30C4;&#x30FC;&#x30EB;&#x3067;&#x307F;&#x308B;&#x3053;&#x3068;&#x304C;&#x3067;&#x304D;&#x308B;
+ *
+ * - https://developers.google.com/web/tools/chrome-devtools/evaluate-performance/timeline-tool?hl=ja
+ * - https://reactjs.org/docs/optimizing-performance.html#profiling-components-with-the-chrome-performance-tab
+ *
+ * &#x7121;&#x52B9;&#x5316;&#x3059;&#x308B;&#x65B9;&#x6CD5;:
+ *
+ * &#x4EE5;&#x4E0B;&#x306E;&#x74B0;&#x5883;&#x5909;&#x6570;&#x3068;&#x5171;&#x306B;&#x8D77;&#x52D5;&#x3059;&#x308B;&#x3053;&#x3068;&#x3067;&#x7121;&#x52B9;&#x5316;&#x3055;&#x308C;&#x308B;(production&#x6642;&#x306F;&#x81EA;&#x52D5;&#x3067;&#x7121;&#x52B9;&#x5316;&#x3055;&#x308C;&#x308B;)
+ *
+ * DISABLE_FLUX_LOG=1 npm start
+ *
+ */</span>
+<span class="hljs-keyword">if</span> (process.env.NODE_ENV !== <span class="hljs-string">&quot;production&quot;</span> &amp;&amp; process.env.DISABLE_FLUX_LOG !== <span class="hljs-string">&quot;1&quot;</span>) {
+    <span class="hljs-keyword">let</span> requestAnimationFrameId: <span class="hljs-built_in">number</span> | <span class="hljs-literal">null</span> = <span class="hljs-literal">null</span>;
+    <span class="hljs-comment">// &#x540C;&#x671F;&#x7684;&#x306B;&#x8907;&#x6570;&#x306E;Payload&#x304C;&#x6765;&#x308B;&#x3053;&#x3068;&#x304C;&#x3042;&#x308B;&#x306E;&#x3067;&#x8CAF;&#x3081;&#x308B;</span>
+    <span class="hljs-keyword">let</span> currentPendingPayloads: ActionPayload[] = [];
+    Dispatcher.register((payload: ActionPayload) =&gt; {
+        <span class="hljs-comment">// 1. performance.mark&#x306E;&#x8A08;&#x6E2C;&#x958B;&#x59CB;</span>
+        performance.mark(payload.type);
+        <span class="hljs-keyword">if</span> (requestAnimationFrameId) {
+            cancelAnimationFrame(requestAnimationFrameId);
+        }
+        currentPendingPayloads.push(payload);
+        <span class="hljs-comment">// &#x73FE;&#x5728;&#x306F;Store&#x306E;DispatcherToken&#x3092;&#x53D6;&#x308B;&#x65B9;&#x6CD5;&#x304C;&#x306A;&#x3044;&#x305F;&#x3081;&#x3001;&#x975E;&#x540C;&#x671F;&#x3067;&#x3061;&#x3087;&#x3063;&#x3068;&#x3060;&#x3051;&#x5F85;&#x3064;&#x3053;&#x3068;&#x3067;&#x5909;&#x5316;&#x3057;&#x305F;Store&#x4E00;&#x89A7;&#x3092;&#x53D6;&#x5F97;&#x3057;&#x3066;&#x3044;&#x308B;</span>
+        requestAnimationFrameId = requestAnimationFrame(() =&gt; {
+            currentPendingPayloads.forEach(payload =&gt; {
+                <span class="hljs-keyword">const</span> <span class="hljs-keyword">type</span> = payload.type;
+                <span class="hljs-comment">// 2. performance.mark&#x306E;&#x8A08;&#x6E2C;&#x7D42;&#x4E86;</span>
+                <span class="hljs-keyword">const</span> measureMark = <span class="hljs-string">`<span class="hljs-subst">${type}</span> [Action]`</span>;
+                performance.measure(
+                    measureMark,
+                    payload.type
+                );
+                <span class="hljs-comment">// &#x8A08;&#x6E2C;&#x306B;&#x4F7F;&#x3063;&#x305F;mark&#x306F;&#x524A;&#x9664;&#x3059;&#x308B;</span>
+                performance.clearMarks(<span class="hljs-keyword">type</span>);
+                performance.clearMeasures(measureMark);
+            });
+            currentPendingPayloads = [];
+            requestAnimationFrameId = <span class="hljs-literal">null</span>;
+        });
+    });
+}
+</code></pre>
+<p>&#x3053;&#x308C;&#x3067;&#x3001;Flux&#x304C;dispatch&#x3057;&#x305F;&#x3089;&#x305D;&#x306E;Action&#x306E;&#x540D;&#x524D;&#x304C;Chrome&#x306E;&#x30BF;&#x30A4;&#x30E0;&#x30E9;&#x30A4;&#x30F3;&#x30C4;&#x30FC;&#x30EB;&#x3067;&#x898B;&#x308C;&#x307E;&#x3059;&#x3002;
+&#x5F8C;&#x306F;&#x3001;<a href="https://developers.google.com/web/tools/chrome-devtools/evaluate-performance/timeline-tool?hl=ja" title="Timeline &#x30C4;&#x30FC;&#x30EB;" target="_blank">Timeline &#x30C4;&#x30FC;&#x30EB;</a>&#x3067;&#x5358;&#x7D14;&#x306B;&#x8A18;&#x9332;&#x3059;&#x308B;&#x3060;&#x3051;&#x3067;&#x3001;&#x300C;&#x3069;&#x306E;&#x30A2;&#x30AF;&#x30B7;&#x30E7;&#x30F3;&#x300D;&#x306B;&#x3088;&#x3063;&#x3066;&#x300C;&#x3069;&#x306E;&#x30B3;&#x30F3;&#x30DD;&#x30FC;&#x30CD;&#x30F3;&#x30C8;&#x300D;&#x304C;&#x66F4;&#x65B0;&#x3055;&#x308C;&#x3066;&#x3044;&#x308B;&#x304B;&#x304C;&#x53EF;&#x8996;&#x5316;&#x3067;&#x304D;&#x307E;&#x3059;&#x3002;</p>
+<p><img src="img/timeline.png" alt="timeline.png"></p>
+<p>&#x554F;&#x984C;&#x306E;&#x7CF8;&#x53E3;&#x3092;&#x63A2;&#x3059;&#x306B;&#x306F;&#x60C5;&#x5831;&#x306E;&#x53EF;&#x8996;&#x5316;&#x304C;&#x5927;&#x5207;&#x3067;&#x3059;&#x3002;</p>
+<h2 id="&#x60C5;&#x5831;&#x91CF;&#x306E;&#x524A;&#x6E1B;">&#x60C5;&#x5831;&#x91CF;&#x306E;&#x524A;&#x6E1B;</h2>
+<p>Chrome&#x306E;&#x958B;&#x767A;&#x8005;&#x30C4;&#x30FC;&#x30EB;&#x306F;&#x60C5;&#x5831;&#x91CF;&#x304C;&#x591A;&#x3044;&#x305F;&#x3081;&#x3001;&#x9006;&#x306B;&#x4F55;&#x304C;&#x91CD;&#x8981;&#x306A;&#x306E;&#x304B;&#x304C;&#x308F;&#x304B;&#x3089;&#x306A;&#x304F;&#x306A;&#x308B;&#x554F;&#x984C;&#x3082;&#x3042;&#x308A;&#x307E;&#x3059;&#x3002;
+&#x305D;&#x306E;&#x3088;&#x3046;&#x306A;&#x5834;&#x5408;&#x306F;&#x3001;&#x30D5;&#x30A3;&#x30EB;&#x30BF;&#x30EA;&#x30F3;&#x30B0;&#x3092;&#x5DE5;&#x592B;&#x3059;&#x308B;&#x304B;&#x5FC5;&#x8981;&#x306A;&#x60C5;&#x5831;&#x3060;&#x3051;&#x3092;&#x51FA;&#x3059;&#x30ED;&#x30B0;&#x30C4;&#x30FC;&#x30EB;&#x3092;&#x81EA;&#x5206;&#x3067;&#x66F8;&#x304F;&#x306E;&#x304C;&#x7C21;&#x5358;&#x3067;&#x3059;&#x3002;</p>
+<p>&#x5927;&#x3052;&#x3055;&#x306A;&#x4ED5;&#x7D44;&#x307F;&#x5316;&#x3092;&#x3057;&#x306A;&#x3051;&#x308C;&#x3070;&#x65E2;&#x5B58;&#x306E;&#x6A5F;&#x80FD;&#x3092;&#x4E57;&#x3063;&#x53D6;&#x3063;&#x305F;&#x308A;&#x3057;&#x3066;&#x30ED;&#x30B0;&#x3092;&#x5F97;&#x308B;&#x3053;&#x3068;&#x306F;&#x3067;&#x304D;&#x308B;&#x306F;&#x305A;&#x3002;
+&#x3053;&#x306E;&#x969B;&#x306B;&#x3001;&#x30A8;&#x30B3;&#x30B7;&#x30B9;&#x30C6;&#x30E0;&#x304C;&#x5927;&#x304D;&#x306A;&#x30E9;&#x30A4;&#x30D6;&#x30E9;&#x30EA;&#x306F;&#x305D;&#x306E;&#x3088;&#x3046;&#x306A;&#x30C4;&#x30FC;&#x30EB;&#x3082;&#x3059;&#x3067;&#x306B;&#x3042;&#x308B;&#x3053;&#x3068;&#x304C;&#x591A;&#x3044;&#x3068;&#x3044;&#x3046;&#x5229;&#x70B9;&#x304C;&#x3042;&#x308A;&#x307E;&#x3059;&#x3002;</p>
+<p>React&#x3067;&#x306F;&#x3055;&#x307E;&#x3056;&#x307E;&#x306A;&#x30C4;&#x30FC;&#x30EB;&#x304C;&#x3042;&#x308A;&#x307E;&#x3059;&#x304C;&#x3001;&#x5FC5;&#x8981;&#x306B;&#x5FDC;&#x3058;&#x3066;&#x4F7F;&#x3044;&#x5206;&#x3051;&#x308B;&#x3053;&#x3068;&#x304C;&#x5927;&#x5207;&#x3067;&#x3059;&#x3002;</p>
+<ul>
+<li><a href="https://github.com/maicki/why-did-you-update" title="why-did-you-update" target="_blank">why-did-you-update</a></li>
+<li><a href="https://www.npmjs.com/package/react-addons-perf" title="react-addons-perf" target="_blank">react-addons-perf</a>&#xFF08;React 15&#x9650;&#x5B9A;&#xFF09;</li>
+<li><a href="https://github.com/nitin42/react-perf-devtool" title="React Performance Devtool" target="_blank">React Performance Devtool</a>&#xFF08;React 16&#x5BFE;&#x5FDC;&#xFF09;</li>
+<li><a href="https://github.com/amsul/react-performance" target="_blank">amsul/react-performance: Helpers to debug and record component render performance &#x1F680;</a></li>
+<li><a href="https://github.com/nitin42/react-perf-devtool" target="_blank">nitin42/react-perf-devtool: A Chrome developer tool extension to inspect performance of React components.</a></li>
+</ul>
+<p>CPU&#x30D7;&#x30ED;&#x30D5;&#x30A1;&#x30A4;&#x30E9;&#x3092;&#x81EA;&#x4F5C;&#x3059;&#x308B;&#x4F8B;</p>
+<ul>
+<li><a href="https://itchyny.hatenablog.com/entry/2015/07/01/120000" title="&#x30B7;&#x30F3;&#x30D7;&#x30EB;&#x3067;&#x304B;&#x3064;&#x6700;&#x9AD8;&#x306E;JavaScript&#x30D7;&#x30ED;&#x30D5;&#x30A1;&#x30A4;&#x30E9; sjsp &#x3092;&#x4F5C;&#x308A;&#x307E;&#x3057;&#x305F;&#xFF01; &#x2015; Web&#x30A2;&#x30D7;&#x30EA;&#x30B1;&#x30FC;&#x30B7;&#x30E7;&#x30F3;&#x304C;&#x8907;&#x96D1;&#x5316;&#x3059;&#x308B;&#x4E2D;&#x3067;&#x30D7;&#x30ED;&#x30D5;&#x30A1;&#x30A4;&#x30E9;&#x306B;&#x6C42;&#x3081;&#x3089;&#x308C;&#x308B;&#x3082;&#x306E;&#x3068;&#x306F;&#x4F55;&#x304B; - &#x30D7;&#x30ED;&#x30B0;&#x30E9;&#x30E0;&#x30E2;&#x30B0;&#x30E2;&#x30B0;" target="_blank">&#x30B7;&#x30F3;&#x30D7;&#x30EB;&#x3067;&#x304B;&#x3064;&#x6700;&#x9AD8;&#x306E;JavaScript&#x30D7;&#x30ED;&#x30D5;&#x30A1;&#x30A4;&#x30E9; sjsp &#x3092;&#x4F5C;&#x308A;&#x307E;&#x3057;&#x305F;&#xFF01; &#x2015; Web&#x30A2;&#x30D7;&#x30EA;&#x30B1;&#x30FC;&#x30B7;&#x30E7;&#x30F3;&#x304C;&#x8907;&#x96D1;&#x5316;&#x3059;&#x308B;&#x4E2D;&#x3067;&#x30D7;&#x30ED;&#x30D5;&#x30A1;&#x30A4;&#x30E9;&#x306B;&#x6C42;&#x3081;&#x3089;&#x308C;&#x308B;&#x3082;&#x306E;&#x3068;&#x306F;&#x4F55;&#x304B; - &#x30D7;&#x30ED;&#x30B0;&#x30E9;&#x30E0;&#x30E2;&#x30B0;&#x30E2;&#x30B0;</a></li>
+<li><a href="https://github.com/45deg/node-sjsp" title="45deg/node-sjsp: sjsp (Simple JavaScript Profiler) implemented in Node.js" target="_blank">45deg/node-sjsp: sjsp (Simple JavaScript Profiler) implemented in Node.js</a></li>
+</ul>
+<p>Video&#x8981;&#x7D20;&#x3084;hls.js&#x306E;&#x30A4;&#x30D9;&#x30F3;&#x30C8;&#x3092;&#x8ABF;&#x3079;&#x308B;&#x30C4;&#x30FC;&#x30EB;</p>
+<ul>
+<li><a href="https://github.com/azu/video-events-debugger" title="azu/video-events-debugger: [WIP] HTML5 Video element events debugging tools." target="_blank">azu/video-events-debugger: [WIP] HTML5 Video element events debugging tools.</a></li>
+</ul>
+
+                                
+                                </section>
+                            
+    </div>
+    <div class="search-results">
+        <div class="has-results">
+            
+            <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+            <ul class="search-results-list"></ul>
+            
+        </div>
+        <div class="no-results">
+            
+            <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+            
+        </div>
+    </div>
+</div>
+
+                        </div>
+                    </div>
+                
+            </div>
+
+            
+                
+                <a href="../metrics/" class="navigation navigation-prev " aria-label="Previous page: 指標の作成">
+                    <i class="fa fa-angle-left"></i>
+                </a>
+                
+                
+                <a href="../no-perf/" class="navigation navigation-next " aria-label="Next page: パフォーマンスにおける無駄">
+                    <i class="fa fa-angle-right"></i>
+                </a>
+                
+            
+        
+    </div>
+
+    <script>
+        var gitbook = gitbook || [];
+        gitbook.push(function() {
+            gitbook.page.hasChanged({"page":{"title":"パフォーマンスの計測の仕方","level":"1.2.2","depth":2,"next":{"title":"パフォーマンスにおける無駄","level":"1.2.3","depth":2,"path":"watching/no-perf/README.md","ref":"./watching/no-perf/README.md","articles":[]},"previous":{"title":"指標の作成","level":"1.2.1","depth":2,"path":"watching/metrics/README.md","ref":"./watching/metrics/README.md","articles":[]},"dir":"ltr"},"config":{"plugins":["markdown-video"],"root":"./src/","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"markdown-video":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","author":"DWANGO Co., Ltd.","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"IPAexMincho","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"Webフロントエンド パフォーマンス改善ハンドブック","language":"ja","gitbook":">=3.0.0","description":"ウェブアプリケーションのフロントエンドにおけるパフォーマンス改善ハンドブック"},"file":{"path":"watching/how-to-measure/README.md","mtime":"2018-10-26T06:49:39.548Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2018-10-26T06:51:05.118Z"},"basePath":"../..","book":{"language":""}});
+        });
+    </script>
+</div>
+
+        
+    <script src="../../gitbook/gitbook.js"></script>
+    <script src="../../gitbook/theme.js"></script>
+    
+        
+        <script src="../../gitbook/gitbook-plugin-markdown-video/video.min.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-search/search-engine.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-search/search.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-lunr/lunr.min.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-lunr/search-lunr.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-sharing/buttons.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-fontsettings/fontsettings.js"></script>
+        
+    
+
+    </body>
+</html>
+

@@ -1,0 +1,603 @@
+
+<!DOCTYPE HTML>
+<html lang="ja" >
+    <head>
+        <meta charset="UTF-8">
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <title>リストコンポーネントへの追加処理の修正 · Webフロントエンド パフォーマンス改善ハンドブック</title>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="description" content="">
+        <meta name="generator" content="GitBook 3.2.3">
+        <meta name="author" content="DWANGO Co., Ltd.">
+        
+        
+    
+    <link rel="stylesheet" href="../../gitbook/style.css">
+
+    
+            
+                
+                <link rel="stylesheet" href="../../gitbook/gitbook-plugin-markdown-video/video-js.min.css">
+                
+            
+                
+                <link rel="stylesheet" href="../../gitbook/gitbook-plugin-highlight/website.css">
+                
+            
+                
+                <link rel="stylesheet" href="../../gitbook/gitbook-plugin-search/search.css">
+                
+            
+                
+                <link rel="stylesheet" href="../../gitbook/gitbook-plugin-fontsettings/website.css">
+                
+            
+        
+
+    
+
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+
+        
+    
+    
+    <meta name="HandheldFriendly" content="true"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="../../gitbook/images/apple-touch-icon-precomposed-152.png">
+    <link rel="shortcut icon" href="../../gitbook/images/favicon.ico" type="image/x-icon">
+
+    
+    <link rel="next" href="../fix-interval/" />
+    
+    
+    <link rel="prev" href="shouldComponentUpdate.html" />
+    
+
+    </head>
+    <body>
+        
+<div class="book">
+    <div class="book-summary">
+        
+            
+<div id="book-search-input" role="search">
+    <input type="text" placeholder="検索すると入力" />
+</div>
+
+            
+                <nav role="navigation">
+                
+
+
+<ul class="summary">
+    
+    
+
+    
+
+    
+        
+        
+    
+        <li class="chapter " data-level="1.1" data-path="../../">
+            
+                <a href="../../">
+            
+                    
+                    Introduction
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2" data-path="../">
+            
+                <a href="../">
+            
+                    
+                    視聴中のパフォーマンス改善
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.2.1" data-path="../metrics/">
+            
+                <a href="../metrics/">
+            
+                    
+                    指標の作成
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.2" data-path="../how-to-measure/">
+            
+                <a href="../how-to-measure/">
+            
+                    
+                    パフォーマンスの計測の仕方
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.3" data-path="../no-perf/">
+            
+                <a href="../no-perf/">
+            
+                    
+                    パフォーマンスにおける無駄
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.4" data-path="../fix/">
+            
+                <a href="../fix/">
+            
+                    
+                    パフォーマンス修正の事例
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.2.4.1" data-path="../fix-reflow-componentDidUpdate/">
+            
+                <a href="../fix-reflow-componentDidUpdate/">
+            
+                    
+                    更新ごとの無駄なReflowが発生する問題の修正
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.4.2" data-path="../fix-fullscreen/">
+            
+                <a href="../fix-fullscreen/">
+            
+                    
+                    フルスクリーン時に描画コストの問題の修正
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.4.3" data-path="../fix-input/">
+            
+                <a href="../fix-input/">
+            
+                    
+                    入力欄とControl Componentの改善
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.4.4" data-path="./">
+            
+                <a href="./">
+            
+                    
+                    リストコンポーネントの問題
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.4.5" data-path="shouldComponentUpdate.html">
+            
+                <a href="shouldComponentUpdate.html">
+            
+                    
+                    リストコンポーネントのshouldComponentUpdateの改善
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter active" data-level="1.2.4.6" data-path="throttling.html">
+            
+                <a href="throttling.html">
+            
+                    
+                    リストコンポーネントへの追加処理の修正
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.4.7" data-path="../fix-interval/">
+            
+                <a href="../fix-interval/">
+            
+                    
+                    定期的に動いてる無駄なものを停止する
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.4.8" data-path="../fix-new-function/">
+            
+                <a href="../fix-new-function/">
+            
+                    
+                    毎回関数を作ってpropsに設定する問題の修正
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.4.9" data-path="../fix-mousemove/">
+            
+                <a href="../fix-mousemove/">
+            
+                    
+                    マウスを動かすと再描画する問題の修正
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.5" data-path="../tradeoff/">
+            
+                <a href="../tradeoff/">
+            
+                    
+                    軽量化のトレードオフの検証
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.6" data-path="../fix-library/">
+            
+                <a href="../fix-library/">
+            
+                    
+                    ライブラリを改善する
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3" data-path="../../startup/">
+            
+                <a href="../../startup/">
+            
+                    
+                    ページロードのパフォーマンス改善
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.3.1" data-path="../../startup/stats/">
+            
+                <a href="../../startup/stats/">
+            
+                    
+                    継続的なパフォーマンス計測
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.2" data-path="../../startup/reduce-bundle/">
+            
+                <a href="../../startup/reduce-bundle/">
+            
+                    
+                    パッケージはBundleを配布しない
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.3" data-path="../../startup/module-field/">
+            
+                <a href="../../startup/module-field/">
+            
+                    
+                    "module"フィールド対応
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.4" data-path="../../startup/reduce-size/">
+            
+                <a href="../../startup/reduce-size/">
+            
+                    
+                    ファイルサイズを減らす
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+    
+
+    <li class="divider"></li>
+
+    <li>
+        <a href="https://www.gitbook.com" target="blank" class="gitbook-link">
+            GitBookで公開 
+        </a>
+    </li>
+</ul>
+
+
+                </nav>
+            
+        
+    </div>
+
+    <div class="book-body">
+        
+            <div class="body-inner">
+                
+                    
+
+<div class="book-header" role="navigation">
+    
+
+    <!-- Title -->
+    <h1>
+        <i class="fa fa-circle-o-notch fa-spin"></i>
+        <a href="../.." >リストコンポーネントへの追加処理の修正</a>
+    </h1>
+</div>
+
+
+
+
+                    <div class="page-wrapper" tabindex="-1" role="main">
+                        <div class="page-inner">
+                            
+<div id="book-search-results">
+    <div class="search-noresults">
+    
+                                <section class="normal markdown-section">
+                                
+                                <h1 id="&#x30EA;&#x30B9;&#x30C8;&#x30B3;&#x30F3;&#x30DD;&#x30FC;&#x30CD;&#x30F3;&#x30C8;&#x3078;&#x306E;&#x8FFD;&#x52A0;&#x51E6;&#x7406;&#x306E;&#x4FEE;&#x6B63;">&#x30EA;&#x30B9;&#x30C8;&#x30B3;&#x30F3;&#x30DD;&#x30FC;&#x30CD;&#x30F3;&#x30C8;&#x3078;&#x306E;&#x8FFD;&#x52A0;&#x51E6;&#x7406;&#x306E;&#x4FEE;&#x6B63;</h1>
+<p><a href="shouldComponentUpdate.html">&#x30EA;&#x30B9;&#x30C8;&#x30B3;&#x30F3;&#x30DD;&#x30FC;&#x30CD;&#x30F3;&#x30C8;&#x306E;<code>shouldComponentUpdate</code>&#x306E;&#x6539;&#x5584;</a>&#x3067;&#x30EA;&#x30B9;&#x30C8;&#x30B3;&#x30F3;&#x30DD;&#x30FC;&#x30CD;&#x30F3;&#x30C8;&#x306E;&#x66F4;&#x65B0;&#x51E6;&#x7406;&#x81EA;&#x4F53;&#x306F;&#x6539;&#x5584;&#x3055;&#x308C;&#x3066;&#x3044;&#x307E;&#x3059;&#x3002;
+&#x3057;&#x304B;&#x3057;&#x3001;&#x30EA;&#x30B9;&#x30C8;&#x30B3;&#x30F3;&#x30DD;&#x30FC;&#x30CD;&#x30F3;&#x30C8;&#x306B;&#x30EA;&#x30B9;&#x30C8;&#x30A2;&#x30A4;&#x30C6;&#x30E0;&#xFF08;&#x30B3;&#x30E1;&#x30F3;&#x30C8;&#xFF09;&#x3092;&#x8FFD;&#x52A0;&#x3059;&#x308B;&#x56DE;&#x6570;&#x3084;&#x983B;&#x5EA6;&#x304C;&#x591A;&#x3044;&#x3068;&#x66F4;&#x65B0;&#x51E6;&#x7406;&#x81EA;&#x4F53;&#x306F;&#x6539;&#x5584;&#x3055;&#x308C;&#x3066;&#x3044;&#x3066;&#x3082;&#x66F4;&#x65B0;&#x56DE;&#x6570;&#x304C;&#x5897;&#x3048;&#x307E;&#x3059;&#x3002;</p>
+<p>&#x66F4;&#x65B0;&#x56DE;&#x6570;&#x3092;&#x6E1B;&#x3089;&#x3059;&#x306B;&#x306F;&#x3001;&#x30B3;&#x30E1;&#x30F3;&#x30C8;&#x3092;&#x8FFD;&#x52A0;&#x3059;&#x308B;&#x30BF;&#x30A4;&#x30DF;&#x30F3;&#x30B0;&#x3092;&#x9593;&#x5F15;&#x304F;&#x3088;&#x3046;&#x306A;&#x4ED5;&#x7D44;&#x307F;&#x304C;&#x5FC5;&#x8981;&#x3067;&#x3059;&#x3002;
+&#x5B9F;&#x306F;&#x3059;&#x3067;&#x306B;&#x3001;<code>CommentThrottle</code>&#x3068;&#x305D;&#x306E;&#x307E;&#x307E;&#x306E;&#x540D;&#x524D;&#x306E;throttling&#x3067;&#x9593;&#x5F15;&#x304F;&#x51E6;&#x7406;&#x306E;&#x5B9F;&#x88C5;&#x304C;&#x4F7F;&#x308F;&#x308C;&#x3066;&#x3044;&#x308B;&#x3053;&#x3068;&#x304C;&#x308F;&#x304B;&#x308A;&#x307E;&#x3057;&#x305F;&#x3002;</p>
+<h2 id="&#x89B3;&#x6E2C;">&#x89B3;&#x6E2C;</h2>
+<p>&#x3053;&#x306E;throttling&#x306E;&#x6700;&#x9069;&#x5024;&#x3092;&#x8ABF;&#x3079;&#x308B;&#x3064;&#x3082;&#x308A;&#x3067;&#x3001;1&#x79D2;&#x3054;&#x3068;&#x306B;5&#x30B3;&#x306E;&#x30B3;&#x30E1;&#x30F3;&#x30C8;&#x3092;&#x8FFD;&#x52A0;&#x3057;&#x3066;&#x305D;&#x306E;&#x52D5;&#x304D;&#x3092;&#x8ABF;&#x3079;&#x3066;&#x307F;&#x307E;&#x3057;&#x305F;&#x3002;</p>
+<ul>
+<li>1&#x79D2;&#x3054;&#x3068;&#x306B;5&#x30B3;&#x306E;&#x30B3;&#x30E1;&#x30F3;&#x30C8;&#x3092;&#x8FFD;&#x52A0;&#x3057;&#x305F;&#x3068;&#x304D;<ul>
+<li><code>onAddComments</code>&#x306F; 4&#x3001;1&#x306E;&#x5F15;&#x6570;&#x3067;2&#x56DE;&#x547C;&#x3070;&#x308C;&#x308B;</li>
+</ul>
+</li>
+<li>1&#x79D2;&#x3054;&#x3068;&#x306B;10&#x30B3;&#x306E;&#x30B3;&#x30E1;&#x30F3;&#x30C8;&#x3092;&#x8FFD;&#x52A0;&#x3057;&#x305F;&#x6642;<ul>
+<li><code>onAddComments</code> &#x306F;9&#x3001;1&#x306E;&#x5F15;&#x6570;&#x3067;2&#x56DE;&#x547C;&#x3070;&#x308C;&#x308B;</li>
+</ul>
+</li>
+<li>1&#x79D2;&#x3054;&#x3068;&#x306B;2&#x30B3;&#x306E;&#x30B3;&#x30E1;&#x30F3;&#x30C8;&#x3092;&#x8FFD;&#x52A0;&#x3057;&#x305F;&#x6642;<ul>
+<li><code>onAddComments</code> &#x306F; 1&#x3001;1 &#x306E;&#x5F15;&#x6570;&#x3067;2&#x56DE;&#x547C;&#x3070;&#x308C;&#x308B;</li>
+</ul>
+</li>
+</ul>
+<p>&#x306A;&#x305C;&#x304B;2&#x56DE;&#x306B;&#x5206;&#x3051;&#x3066;&#x30B3;&#x30E1;&#x30F3;&#x30C8;&#x304C;&#x8FFD;&#x52A0;&#x3055;&#x308C;&#x3066;&#x3044;&#x308B;&#x3053;&#x3068;&#x304C;&#x308F;&#x304B;&#x308A;&#x307E;&#x3057;&#x305F;&#x3002;
+&#x4E00;&#x5EA6;&#x306B;&#x8FFD;&#x52A0;&#x3059;&#x308B;&#x30B3;&#x30E1;&#x30F3;&#x30C8;&#x6570;&#x3092;&#x5909;&#x3048;&#x3066;&#x3082; <code>n -&gt; 1</code> &#x3068;2&#x56DE;&#x306B;&#x5206;&#x3051;&#x3089;&#x308C;&#x3066;&#x3044;&#x307E;&#x3059;&#x3002;</p>
+<p>&#x3053;&#x308C;&#x306F;<code>CommentThrottle</code>&#x306E;&#x5B9F;&#x88C5;&#x304C;&#x4F55;&#x304B;&#x304A;&#x304B;&#x3057;&#x305D;&#x3046;&#x3067;&#x3059;&#x3002;</p>
+<h2 id="&#x4FEE;&#x6B63;&#x306E;&#x65B9;&#x91DD;">&#x4FEE;&#x6B63;&#x306E;&#x65B9;&#x91DD;</h2>
+<p>&#x610F;&#x56F3;&#x3057;&#x305F;&#x6319;&#x52D5;&#x306F;&#x3001;N&#x30DF;&#x30EA;&#x79D2;&#x9593;&#x306B;M&#x30B3;&#x306E;&#x30B3;&#x30E1;&#x30F3;&#x30C8;&#x3092;&#x8FFD;&#x52A0;&#x3057;&#x305F;&#x3089;&#x3001;&#x305D;&#x306E;&#x5F8C;M&#x30B3;&#x306E;&#x30B3;&#x30E1;&#x30F3;&#x30C8;&#x304C;&#x540C;&#x6642;&#x306B;&#x30EA;&#x30B9;&#x30C8;&#x30B3;&#x30F3;&#x30DD;&#x30FC;&#x30CD;&#x30F3;&#x30C8;&#x306B;&#x8FFD;&#x52A0;&#x3055;&#x308C;&#x308B;&#x3067;&#x3059;&#x3002;</p>
+<p>&#x307E;&#x305A;&#x306F;&#x3001;&#x305D;&#x306E;&#x6319;&#x52D5;&#x306B;&#x306A;&#x3063;&#x3066;&#x3044;&#x308B;&#x304B;&#x30C6;&#x30B9;&#x30C8;&#x3059;&#x308B;&#x305F;&#x3081;&#x306B;<code>CommentThrottle</code>&#x306E;&#x30C6;&#x30B9;&#x30C8;&#x30B3;&#x30FC;&#x30C9;&#x3092;&#x66F8;&#x304F;&#x3068;&#x3088;&#x3055;&#x305D;&#x3046;&#x3067;&#x3059;&#x3002;</p>
+<pre><code class="lang-js">describe(<span class="hljs-string">&quot;CommentThrottle&quot;</span>, () =&gt; {
+    describe(<span class="hljs-string">&quot;&#x30B3;&#x30E1;&#x30F3;&#x30C8;&#x3092;&#x4E00;&#x5EA6;&#x3082;&#x8FFD;&#x52A0;&#x3057;&#x3066;&#x306A;&#x3044;&#x6642;&quot;</span>, () =&gt; {
+        it(<span class="hljs-string">&quot;interval&#x3092;&#x307E;&#x3063;&#x3066;&#x3082;flush&#x3055;&#x308C;&#x306A;&#x3044;&quot;</span>, () =&gt; {
+            <span class="hljs-comment">// &#x30C6;&#x30B9;&#x30C8;&#x5B9F;&#x88C5;</span>
+        });
+    });
+    describe(<span class="hljs-string">&quot;&#x30B3;&#x30E1;&#x30F3;&#x30C8;&#x3092;&#x8FFD;&#x52A0;&#x3057;&#x305F;&#x6642;&quot;</span>, () =&gt; {
+        it(<span class="hljs-string">&quot;&#x8FFD;&#x52A0;&#x3057;&#x3066;&#x3082;&#x540C;&#x671F;&#x7684;&#x306B;&#x306F;flush&#x3055;&#x308C;&#x306A;&#x3044;&quot;</span>, () =&gt; {
+            <span class="hljs-comment">// &#x30C6;&#x30B9;&#x30C8;&#x5B9F;&#x88C5;</span>
+        });
+        it(<span class="hljs-string">&quot;&#x8FFD;&#x52A0;&#x3057;&#x305F;&#x30B3;&#x30E1;&#x30F3;&#x30C8;&#x306F;FLUSH_INTERVAL&#x307E;&#x3067;flush&#x3055;&#x308C;&#x306A;&#x3044;&quot;</span>, () =&gt; {
+            <span class="hljs-comment">// &#x30C6;&#x30B9;&#x30C8;&#x5B9F;&#x88C5;</span>
+        });
+        it(<span class="hljs-string">&quot;&#x8FFD;&#x52A0;&#x3057;&#x305F;&#x30B3;&#x30E1;&#x30F3;&#x30C8;&#x306F;FLUSH_INTERVAL&#x5F8C;flush&#x3055;&#x308C;&#x308B;&quot;</span>, () =&gt; {
+            <span class="hljs-comment">// &#x30C6;&#x30B9;&#x30C8;&#x5B9F;&#x88C5;</span>
+        });
+        it(<span class="hljs-string">&quot;&#x8907;&#x6570;&#x306E;&#x30B3;&#x30E1;&#x30F3;&#x30C8;&#x3092;&#x8FFD;&#x52A0;&#x3057;&#x305F;&#x5834;&#x5408;&#x306F;&#x3001;FLUSH_INTERVAL&#x5F8C;&#x306B;&#x307E;&#x3068;&#x3081;&#x3066;flush&#x3055;&#x308C;&#x308B;&quot;</span>, () =&gt; {
+            <span class="hljs-comment">// &#x30C6;&#x30B9;&#x30C8;&#x5B9F;&#x88C5;</span>
+        });
+        it(<span class="hljs-string">&quot;&#x30B7;&#x30CA;&#x30EA;&#x30AA;&#x30C6;&#x30B9;&#x30C8;&quot;</span>, () =&gt; {
+        });
+    });
+});
+</code></pre>
+<p>&#x3053;&#x306E;&#x30C6;&#x30B9;&#x30C8;&#x3092;&#x5B9F;&#x88C5;&#x3057;&#x3066;&#x307F;&#x308B;&#x3068;&#x3001;&#x65E2;&#x5B58;&#x306E;<code>CommentThrottle</code>&#x306F;&#x30D0;&#x30B0;&#x304C;&#x3042;&#x308B;&#x3053;&#x3068;&#x304C;&#x308F;&#x304B;&#x308A;&#x307E;&#x3057;&#x305F;&#x3002;
+&#xFF08;&#x610F;&#x56F3;&#x3057;&#x305F;&#x6319;&#x52D5;&#x306E;&#x30C6;&#x30B9;&#x30C8;&#x304C;&#x901A;&#x3089;&#x306A;&#x3044;&#xFF09;</p>
+<h2 id="&#x4FEE;&#x6B63;">&#x4FEE;&#x6B63;</h2>
+<p>&#x307E;&#x305A;&#x306F;&#x3001;&#x30C6;&#x30B9;&#x30C8;&#x304C;&#x901A;&#x308B;&#x3088;&#x3046;&#x306B;&#x7121;&#x7406;&#x3084;&#x308A;<code>CommentThrottle</code>&#x3092;&#x4FEE;&#x6B63;&#x3057;&#x307E;&#x3057;&#x305F;&#x3002;
+&#x305D;&#x306E;&#x5F8C;&#x3001;&#x30C6;&#x30B9;&#x30C8;&#x304C;&#x901A;&#x308B;&#x306E;&#x3092;&#x7DAD;&#x6301;&#x3057;&#x305F;&#x307E;&#x307E;&#x5B9F;&#x88C5;&#x3092;&#x66F8;&#x304D;&#x63DB;&#x3048;&#x3066;&#x554F;&#x984C;&#x3092;&#x4FEE;&#x6B63;&#x3057;&#x307E;&#x3057;&#x305F;&#x3002;</p>
+<p><img src="img/pr-comment-throttle.png" alt="pr-comment-throttle.png"></p>
+<h2 id="&#x8A08;&#x6E2C;">&#x8A08;&#x6E2C;</h2>
+<p>&#x30C6;&#x30B9;&#x30C8;&#x304C;&#x901A;&#x308B;&#x306E;&#x3067;&#x5927;&#x304D;&#x306A;&#x554F;&#x984C;&#x306A;&#x3044;&#x3068;&#x601D;&#x3044;&#x307E;&#x3059;&#x304C;&#x3001;&#x8A08;&#x6E2C;&#x524D;&#x306B;&#x884C;&#x3063;&#x305F;&#x4ED5;&#x7D44;&#x307F;&#x3068;&#x540C;&#x3058;&#x65B9;&#x6CD5;&#x3067;&#x547C;&#x3073;&#x51FA;&#x3059;&#x56DE;&#x6570;&#x3092;&#x8A18;&#x9332;&#x3057;&#x307E;&#x3057;&#x305F;&#x3002;</p>
+<ul>
+<li>1&#x79D2;&#x3054;&#x3068;&#x306B;5&#x30B3;&#x306E;&#x30B3;&#x30E1;&#x30F3;&#x30C8;&#x3092;&#x8FFD;&#x52A0;&#x3057;&#x305F;&#x3068;&#x304D;<ul>
+<li><code>onAddComments</code>&#x306F; 5&#x306E;&#x5F15;&#x6570;&#x3067;1&#x56DE;&#x547C;&#x3070;&#x308C;&#x308B;</li>
+</ul>
+</li>
+<li>1&#x79D2;&#x3054;&#x3068;&#x306B;10&#x30B3;&#x306E;&#x30B3;&#x30E1;&#x30F3;&#x30C8;&#x3092;&#x8FFD;&#x52A0;&#x3057;&#x305F;&#x6642;<ul>
+<li><code>onAddComments</code> &#x306F;10&#x306E;&#x5F15;&#x6570;&#x3067;1&#x56DE;&#x547C;&#x3070;&#x308C;&#x308B;</li>
+</ul>
+</li>
+<li>1&#x79D2;&#x3054;&#x3068;&#x306B;2&#x30B3;&#x306E;&#x30B3;&#x30E1;&#x30F3;&#x30C8;&#x3092;&#x8FFD;&#x52A0;&#x3057;&#x305F;&#x6642;
+ -<code>onAddComments</code> &#x306F; 2&#x306E;&#x5F15;&#x6570;&#x3067;1&#x56DE;&#x547C;&#x3070;&#x308C;&#x308B;</li>
+</ul>
+<p>&#x610F;&#x56F3;&#x3057;&#x305F;&#x3068;&#x304A;&#x308A;&#x306B;&#x306A;&#x3063;&#x3066;&#x3044;&#x308B;&#x306E;&#x3067;&#x554F;&#x984C;&#x3042;&#x308A;&#x307E;&#x305B;&#x3093;&#x3067;&#x3057;&#x305F;&#x3002;</p>
+<p>&#x65E2;&#x5B58;&#x306E;&#x5B9F;&#x88C5;&#x304C;&#x5B58;&#x5728;&#x3057;&#x3066;&#x3044;&#x3066;&#x3082;&#x3001;&#x305D;&#x306E;&#x5B9F;&#x88C5;&#x304C;&#x610F;&#x56F3;&#x3057;&#x305F;&#x3088;&#x3046;&#x306B;&#x52D5;&#x3044;&#x3066;&#x3044;&#x308B;&#x304B;&#x306F;&#x8A66;&#x3057;&#x3066;&#x307F;&#x306A;&#x3044;&#x3068;&#x308F;&#x304B;&#x308A;&#x307E;&#x305B;&#x3093;&#x3002;
+&#x5B9F;&#x969B;&#x306B;&#x6570;&#x5024;&#x3068;&#x3057;&#x3066;&#x51FA;&#x3057;&#x3066;&#x307F;&#x308C;&#x3070;&#x3001;&#x5B9F;&#x88C5;&#x304C;&#x6B63;&#x3057;&#x3044;&#x304B;&#x306F;&#x5206;&#x304B;&#x308B;&#x306F;&#x305A;&#x3002;</p>
+<p>&#x30C6;&#x30B9;&#x30C8;&#x3092;&#x66F8;&#x3044;&#x305F;&#x307B;&#x3046;&#x304C;&#x7D50;&#x679C;&#x7684;&#x306B;&#x30B3;&#x30B9;&#x30C8;&#x304C;&#x4F4E;&#x3044;&#x5834;&#x5408;&#x3082;&#x3042;&#x308A;&#x307E;&#x3059;&#x3002;&#x305D;&#x306E;&#x305F;&#x3081;&#x30C6;&#x30B9;&#x30C8;&#x3092;&#x66F8;&#x3044;&#x3066;&#x8A66;&#x3057;&#x3066;&#x307F;&#x308B;&#x306E;&#x3082;&#x5927;&#x5207;&#x3067;&#x3059;&#x3002;</p>
+
+                                
+                                </section>
+                            
+    </div>
+    <div class="search-results">
+        <div class="has-results">
+            
+            <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+            <ul class="search-results-list"></ul>
+            
+        </div>
+        <div class="no-results">
+            
+            <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+            
+        </div>
+    </div>
+</div>
+
+                        </div>
+                    </div>
+                
+            </div>
+
+            
+                
+                <a href="shouldComponentUpdate.html" class="navigation navigation-prev " aria-label="Previous page: リストコンポーネントのshouldComponentUpdateの改善">
+                    <i class="fa fa-angle-left"></i>
+                </a>
+                
+                
+                <a href="../fix-interval/" class="navigation navigation-next " aria-label="Next page: 定期的に動いてる無駄なものを停止する">
+                    <i class="fa fa-angle-right"></i>
+                </a>
+                
+            
+        
+    </div>
+
+    <script>
+        var gitbook = gitbook || [];
+        gitbook.push(function() {
+            gitbook.page.hasChanged({"page":{"title":"リストコンポーネントへの追加処理の修正","level":"1.2.4.6","depth":3,"next":{"title":"定期的に動いてる無駄なものを停止する","level":"1.2.4.7","depth":3,"path":"watching/fix-interval/README.md","ref":"./watching/fix-interval/README.md","articles":[]},"previous":{"title":"リストコンポーネントのshouldComponentUpdateの改善","level":"1.2.4.5","depth":3,"path":"watching/fix-list/shouldComponentUpdate.md","ref":"./watching/fix-list/shouldComponentUpdate.md","articles":[]},"dir":"ltr"},"config":{"plugins":["markdown-video"],"root":"./src/","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"markdown-video":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","author":"DWANGO Co., Ltd.","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"IPAexMincho","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"Webフロントエンド パフォーマンス改善ハンドブック","language":"ja","gitbook":">=3.0.0","description":"ウェブアプリケーションのフロントエンドにおけるパフォーマンス改善ハンドブック"},"file":{"path":"watching/fix-list/throttling.md","mtime":"2018-10-26T06:49:39.500Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2018-10-26T06:51:05.118Z"},"basePath":"../..","book":{"language":""}});
+        });
+    </script>
+</div>
+
+        
+    <script src="../../gitbook/gitbook.js"></script>
+    <script src="../../gitbook/theme.js"></script>
+    
+        
+        <script src="../../gitbook/gitbook-plugin-markdown-video/video.min.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-search/search-engine.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-search/search.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-lunr/lunr.min.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-lunr/search-lunr.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-sharing/buttons.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-fontsettings/fontsettings.js"></script>
+        
+    
+
+    </body>
+</html>
+

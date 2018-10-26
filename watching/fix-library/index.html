@@ -1,0 +1,617 @@
+
+<!DOCTYPE HTML>
+<html lang="ja" >
+    <head>
+        <meta charset="UTF-8">
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <title>ライブラリを改善する · Webフロントエンド パフォーマンス改善ハンドブック</title>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="description" content="">
+        <meta name="generator" content="GitBook 3.2.3">
+        <meta name="author" content="DWANGO Co., Ltd.">
+        
+        
+    
+    <link rel="stylesheet" href="../../gitbook/style.css">
+
+    
+            
+                
+                <link rel="stylesheet" href="../../gitbook/gitbook-plugin-markdown-video/video-js.min.css">
+                
+            
+                
+                <link rel="stylesheet" href="../../gitbook/gitbook-plugin-highlight/website.css">
+                
+            
+                
+                <link rel="stylesheet" href="../../gitbook/gitbook-plugin-search/search.css">
+                
+            
+                
+                <link rel="stylesheet" href="../../gitbook/gitbook-plugin-fontsettings/website.css">
+                
+            
+        
+
+    
+
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+
+        
+    
+    
+    <meta name="HandheldFriendly" content="true"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="../../gitbook/images/apple-touch-icon-precomposed-152.png">
+    <link rel="shortcut icon" href="../../gitbook/images/favicon.ico" type="image/x-icon">
+
+    
+    <link rel="next" href="../../startup/" />
+    
+    
+    <link rel="prev" href="../tradeoff/" />
+    
+
+    </head>
+    <body>
+        
+<div class="book">
+    <div class="book-summary">
+        
+            
+<div id="book-search-input" role="search">
+    <input type="text" placeholder="検索すると入力" />
+</div>
+
+            
+                <nav role="navigation">
+                
+
+
+<ul class="summary">
+    
+    
+
+    
+
+    
+        
+        
+    
+        <li class="chapter " data-level="1.1" data-path="../../">
+            
+                <a href="../../">
+            
+                    
+                    Introduction
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2" data-path="../">
+            
+                <a href="../">
+            
+                    
+                    視聴中のパフォーマンス改善
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.2.1" data-path="../metrics/">
+            
+                <a href="../metrics/">
+            
+                    
+                    指標の作成
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.2" data-path="../how-to-measure/">
+            
+                <a href="../how-to-measure/">
+            
+                    
+                    パフォーマンスの計測の仕方
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.3" data-path="../no-perf/">
+            
+                <a href="../no-perf/">
+            
+                    
+                    パフォーマンスにおける無駄
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.4" data-path="../fix/">
+            
+                <a href="../fix/">
+            
+                    
+                    パフォーマンス修正の事例
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.2.4.1" data-path="../fix-reflow-componentDidUpdate/">
+            
+                <a href="../fix-reflow-componentDidUpdate/">
+            
+                    
+                    更新ごとの無駄なReflowが発生する問題の修正
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.4.2" data-path="../fix-fullscreen/">
+            
+                <a href="../fix-fullscreen/">
+            
+                    
+                    フルスクリーン時に描画コストの問題の修正
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.4.3" data-path="../fix-input/">
+            
+                <a href="../fix-input/">
+            
+                    
+                    入力欄とControl Componentの改善
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.4.4" data-path="../fix-list/">
+            
+                <a href="../fix-list/">
+            
+                    
+                    リストコンポーネントの問題
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.4.5" data-path="../fix-list/shouldComponentUpdate.html">
+            
+                <a href="../fix-list/shouldComponentUpdate.html">
+            
+                    
+                    リストコンポーネントのshouldComponentUpdateの改善
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.4.6" data-path="../fix-list/throttling.html">
+            
+                <a href="../fix-list/throttling.html">
+            
+                    
+                    リストコンポーネントへの追加処理の修正
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.4.7" data-path="../fix-interval/">
+            
+                <a href="../fix-interval/">
+            
+                    
+                    定期的に動いてる無駄なものを停止する
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.4.8" data-path="../fix-new-function/">
+            
+                <a href="../fix-new-function/">
+            
+                    
+                    毎回関数を作ってpropsに設定する問題の修正
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.4.9" data-path="../fix-mousemove/">
+            
+                <a href="../fix-mousemove/">
+            
+                    
+                    マウスを動かすと再描画する問題の修正
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.5" data-path="../tradeoff/">
+            
+                <a href="../tradeoff/">
+            
+                    
+                    軽量化のトレードオフの検証
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter active" data-level="1.2.6" data-path="./">
+            
+                <a href="./">
+            
+                    
+                    ライブラリを改善する
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3" data-path="../../startup/">
+            
+                <a href="../../startup/">
+            
+                    
+                    ページロードのパフォーマンス改善
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.3.1" data-path="../../startup/stats/">
+            
+                <a href="../../startup/stats/">
+            
+                    
+                    継続的なパフォーマンス計測
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.2" data-path="../../startup/reduce-bundle/">
+            
+                <a href="../../startup/reduce-bundle/">
+            
+                    
+                    パッケージはBundleを配布しない
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.3" data-path="../../startup/module-field/">
+            
+                <a href="../../startup/module-field/">
+            
+                    
+                    "module"フィールド対応
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.4" data-path="../../startup/reduce-size/">
+            
+                <a href="../../startup/reduce-size/">
+            
+                    
+                    ファイルサイズを減らす
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+    
+
+    <li class="divider"></li>
+
+    <li>
+        <a href="https://www.gitbook.com" target="blank" class="gitbook-link">
+            GitBookで公開 
+        </a>
+    </li>
+</ul>
+
+
+                </nav>
+            
+        
+    </div>
+
+    <div class="book-body">
+        
+            <div class="body-inner">
+                
+                    
+
+<div class="book-header" role="navigation">
+    
+
+    <!-- Title -->
+    <h1>
+        <i class="fa fa-circle-o-notch fa-spin"></i>
+        <a href="../.." >ライブラリを改善する</a>
+    </h1>
+</div>
+
+
+
+
+                    <div class="page-wrapper" tabindex="-1" role="main">
+                        <div class="page-inner">
+                            
+<div id="book-search-results">
+    <div class="search-noresults">
+    
+                                <section class="normal markdown-section">
+                                
+                                <h1 id="&#x30E9;&#x30A4;&#x30D6;&#x30E9;&#x30EA;&#x3092;&#x6539;&#x5584;&#x3059;&#x308B;">&#x30E9;&#x30A4;&#x30D6;&#x30E9;&#x30EA;&#x3092;&#x6539;&#x5584;&#x3059;&#x308B;</h1>
+<p>&#x30CB;&#x30B3;&#x30CB;&#x30B3;&#x751F;&#x653E;&#x9001;&#xFF08;PC&#xFF09;&#x3067;&#x306F;&#x751F;&#x653E;&#x9001;&#x306E;&#x6620;&#x50CF;&#x3092;&#x518D;&#x751F;&#x3059;&#x308B;&#x305F;&#x3081;<a href="https://github.com/video-dev/hls.js" target="_blank">hls.js</a>&#x3092;&#x5229;&#x7528;&#x3057;&#x3066;&#x3044;&#x307E;&#x3059;&#x3002;
+<a href="https://github.com/video-dev/hls.js" target="_blank">hls.js</a>&#x306F;HLS&#x306B;&#x975E;&#x5BFE;&#x5FDC;&#x30D6;&#x30E9;&#x30A6;&#x30B6;&#xFF08;Chrome&#x3084;Firefox&#x306A;&#x3069;&#xFF09;&#x3067;&#x3082;HLS&#x3092;&#x518D;&#x751F;&#x3059;&#x308B;&#x305F;&#x3081;&#x306E;&#x30E9;&#x30A4;&#x30D6;&#x30E9;&#x30EA;&#x3067;&#x3059;&#x3002;</p>
+<p>HLS&#x81EA;&#x4F53;&#x306B;&#x3064;&#x3044;&#x3066;&#x306F;&#x6B21;&#x306E;&#x30B5;&#x30A4;&#x30C8;&#x306A;&#x3069;&#x3092;&#x898B;&#x3066;&#x304F;&#x3060;&#x3055;&#x3044;&#x3002;</p>
+<ul>
+<li><a href="https://developer.apple.com/streaming/" title="HTTP Live Streaming (HLS) - Apple Developer" target="_blank">HTTP Live Streaming (HLS) - Apple Developer</a></li>
+<li><a href="https://www.slideshare.net/moriyoshi/hls-46107808" title="HLS&#x306B;&#x3064;&#x3044;&#x3066;&#x77E5;&#x3063;&#x3066;&#x3044;&#x308B;&#x3053;&#x3068;&#x3092;&#x8A71;&#x3057;&#x307E;&#x3059;" target="_blank">HLS&#x306B;&#x3064;&#x3044;&#x3066;&#x77E5;&#x3063;&#x3066;&#x3044;&#x308B;&#x3053;&#x3068;&#x3092;&#x8A71;&#x3057;&#x307E;&#x3059;</a></li>
+<li><a href="https://ygoto3.com/posts/streaming-technology-basics-for-frontend-engineers/index.html" title="&#x30D5;&#x30ED;&#x30F3;&#x30C8;&#x30A8;&#x30F3;&#x30C9;&#x30A8;&#x30F3;&#x30B8;&#x30CB;&#x30A2;&#x306E;&#x305F;&#x3081;&#x306E;&#x52D5;&#x753B;&#x30B9;&#x30C8;&#x30EA;&#x30FC;&#x30DF;&#x30F3;&#x30B0;&#x6280;&#x8853;&#x57FA;&#x790E; | ygoto3.com" target="_blank">&#x30D5;&#x30ED;&#x30F3;&#x30C8;&#x30A8;&#x30F3;&#x30C9;&#x30A8;&#x30F3;&#x30B8;&#x30CB;&#x30A2;&#x306E;&#x305F;&#x3081;&#x306E;&#x52D5;&#x753B;&#x30B9;&#x30C8;&#x30EA;&#x30FC;&#x30DF;&#x30F3;&#x30B0;&#x6280;&#x8853;&#x57FA;&#x790E; | ygoto3.com</a></li>
+</ul>
+<p><a href="../metrics/">&#x6307;&#x6A19;&#x306B;&#x3064;&#x3044;&#x3066;</a>&#x3067;&#x3082;&#x66F8;&#x3044;&#x3066;&#x3044;&#x307E;&#x3059;&#x304C;&#x3001;&#x8996;&#x8074;&#x30DA;&#x30FC;&#x30B8;&#x306E;&#x30E1;&#x30A4;&#x30F3;&#x30B3;&#x30F3;&#x30C6;&#x30F3;&#x30C4;&#x306F;&#x6620;&#x50CF;&#x3001;&#x6620;&#x50CF;&#x306E;&#x4E0A;&#x306B;&#x63CF;&#x753B;&#x3059;&#x308B;&#x30B3;&#x30E1;&#x30F3;&#x30C8;&#x3067;&#x3059;&#x3002;</p>
+<p><img src="../metrics/img/example.png" alt="&#x6620;&#x50CF;&#x3068;&#x30B3;&#x30E1;&#x30F3;&#x30C8;&#x306E;&#x4F8B;"></p>
+<p><code>hls.js</code>&#x306F;&#x3053;&#x306E;&#x6620;&#x50CF;&#x3092;&#x518D;&#x751F;&#x306B;&#x5229;&#x7528;&#x3059;&#x308B;&#x305F;&#x3081;&#x3001;<code>hls.js</code>&#x306E;&#x30D1;&#x30D5;&#x30A9;&#x30FC;&#x30DE;&#x30F3;&#x30B9;&#x306F;&#x305D;&#x306E;&#x307E;&#x307E;&#x8996;&#x8074;&#x30DA;&#x30FC;&#x30B8;&#x306E;&#x30D1;&#x30D5;&#x30A9;&#x30FC;&#x30DE;&#x30F3;&#x30B9;&#x3084;&#x5B89;&#x5B9A;&#x6027;&#x306B;&#x7E4B;&#x304C;&#x308A;&#x307E;&#x3059;&#x3002;</p>
+<p>&#x3053;&#x3053;&#x3067;&#x306F;&#x307E;&#x305A;<code>hls.js</code>&#x306E;&#x30D1;&#x30D5;&#x30A9;&#x30FC;&#x30DE;&#x30F3;&#x30B9;&#x3092;&#x5206;&#x6790;&#x3057;&#x3001;&#x6539;&#x5584;&#x3067;&#x304D;&#x308B;&#x70B9;&#x304C;&#x306A;&#x3044;&#x304B;&#x3092;&#x63A2;&#x3059;&#x3053;&#x3068;&#x306B;&#x3057;&#x307E;&#x3057;&#x305F;&#x3002;</p>
+<h2 id="&#x95A2;&#x6570;&#x30D7;&#x30ED;&#x30D5;&#x30A1;&#x30A4;&#x30EB;">&#x95A2;&#x6570;&#x30D7;&#x30ED;&#x30D5;&#x30A1;&#x30A4;&#x30EB;</h2>
+<p><a href="https://github.com/video-dev/hls.js" target="_blank">hls.js</a>&#x306F;<a href="https://developer.mozilla.org/en-US/docs/Web/API/Media_Source_Extensions_API" target="_blank">Media Source Extensions</a>&#xFF08;MSE&#xFF09;&#x3068;&#x3044;&#x3046;API&#x3092;&#x5229;&#x7528;&#x3057;&#x6620;&#x50CF;&#x3092;&#x518D;&#x751F;&#x3057;&#x307E;&#x3059;&#x3002;
+<code>hls.js</code>&#x3067;&#x306F;&#x3053;&#x306E;MSE&#x306B;&#x6E21;&#x305B;&#x308B;&#x3088;&#x3046;&#x306B;&#x3001;&#x6620;&#x50CF;&#x3092;&#x53D6;&#x5F97;&#x3001;&#x30C7;&#x30B3;&#x30FC;&#x30C9;&#x307E;&#x305F;&#x6620;&#x50CF;&#x306E;&#x30D0;&#x30C3;&#x30D5;&#x30A1;&#x3092;&#x30C1;&#x30A7;&#x30C3;&#x30AF;&#x3059;&#x308B;&#x3068;&#x3044;&#x3063;&#x305F;&#x51E6;&#x7406;&#x304C;&#x884C;&#x308F;&#x308C;&#x3066;&#x3044;&#x307E;&#x3059;&#x3002;</p>
+<p><code>hls.js</code>&#x306E;&#x51E6;&#x7406;&#x306F;DOM API&#x306B;&#x307B;&#x3068;&#x3093;&#x3069;&#x4F9D;&#x5B58;&#x3057;&#x3066;&#x306A;&#x3044;&#xFF08;&#x4E00;&#x90E8;Web Worker&#x306A;&#x3069;&#x304C;&#x3042;&#x308A;&#x307E;&#x3059;&#xFF09;&#x51E6;&#x7406;&#x306A;&#x306E;&#x3067;&#x3001;&#x305D;&#x306E;&#x307E;&#x307E;JavaScript&#x30B3;&#x30FC;&#x30C9;&#x306E;&#x30D7;&#x30ED;&#x30D5;&#x30A1;&#x30A4;&#x30EB;&#x3092;&#x53D6;&#x308C;&#x3070;&#x30DC;&#x30C8;&#x30EB;&#x30CD;&#x30C3;&#x30AF;&#x304C;&#x898B;&#x3048;&#x3066;&#x304D;&#x305D;&#x3046;&#x3067;&#x3059;&#x3002;</p>
+<p>&#x30D6;&#x30E9;&#x30A6;&#x30B6;&#x306E;&#x958B;&#x767A;&#x8005;&#x30C4;&#x30FC;&#x30EB;&#x3067;&#x3082;&#x30D7;&#x30ED;&#x30D5;&#x30A1;&#x30A4;&#x30EB;&#x3092;&#x53D6;&#x308C;&#x307E;&#x3059;&#x304C;&#x3001;&#x958B;&#x767A;&#x8005;&#x30C4;&#x30FC;&#x30EB;&#x3060;&#x3068;&#x4ED6;&#x306E;&#x30B3;&#x30FC;&#x30C9;&#x306A;&#x3069;&#x3082;&#x307E;&#x3056;&#x3063;&#x3066;&#x3057;&#x307E;&#x3044;&#x30CE;&#x30A4;&#x30BA;&#x304C;&#x591A;&#x304F;&#x306A;&#x3063;&#x3066;&#x3057;&#x307E;&#x3044;&#x307E;&#x3057;&#x305F;&#x3002;
+&#x305D;&#x3053;&#x3067;&#x3001;<a href="https://github.com/45deg/node-sjsp" target="_blank">node-sjsp</a>&#x3092;&#x5C11;&#x3057;&#x6539;&#x5909;&#x3057;&#x3066;<code>hls.js</code>&#x306E;&#x30B3;&#x30FC;&#x30C9;&#x3060;&#x3051;&#x306E;&#x30D7;&#x30ED;&#x30D5;&#x30A1;&#x30A4;&#x30EB;&#x3092;&#x53D6;&#x308C;&#x308B;&#x3088;&#x3046;&#x306B;&#x3057;&#x305F;&#x3082;&#x306E;&#x3092;&#x4F7F;&#x3044;&#x307E;&#x3057;&#x305F;&#x3002;</p>
+<ul>
+<li><a href="https://github.com/45deg/node-sjsp" target="_blank">45deg/node-sjsp: sjsp (Simple JavaScript Profiler) implemented in Node.js</a></li>
+</ul>
+<p>&#x30B3;&#x30FC;&#x30C9;&#x3082;&#x4E00;&#x90E8;&#x6539;&#x5909;&#x3057;&#x307E;&#x3057;&#x305F;&#x304C;&#x3001;&#x6B21;&#x306E;&#x3088;&#x3046;&#x306A;<code>node-sjsp</code>&#x3092;&#x4F7F;&#x3063;&#x3066;&#x30B3;&#x30FC;&#x30C9;&#x5909;&#x63DB;&#x3067;&#x304D;&#x308B;<a href="https://webpack.js.org/" target="_blank">webpack</a>&#x306E;Loader&#x3092;&#x66F8;&#x304D;&#x307E;&#x3057;&#x305F;&#x3002;
+&#x3053;&#x306E;Loader&#x3092;&#x7279;&#x5B9A;&#x306E;&#x30D1;&#x30B9;(<code>hls.js</code>)&#x306E;&#x30D1;&#x30B9;&#x3060;&#x3051;&#x306B;&#x9069;&#x5FDC;&#x3059;&#x308C;&#x3070;&#x3001;&#x7279;&#x5B9A;&#x306E;&#x30B3;&#x30FC;&#x30C9;&#x3060;&#x3051;&#x306E;&#x95A2;&#x6570;&#x30D7;&#x30ED;&#x30D5;&#x30A1;&#x30A4;&#x30EB;&#x304C;&#x30B3;&#x30F3;&#x30BD;&#x30FC;&#x30EB;&#x306B;&#x51FA;&#x529B;&#x3055;&#x308C;&#x307E;&#x3059;&#x3002;</p>
+<pre><code class="lang-js"><span class="hljs-meta">&quot;use strict&quot;</span>;
+<span class="hljs-keyword">const</span> inject = <span class="hljs-built_in">require</span>(<span class="hljs-string">&quot;node-sjsp&quot;</span>).inject;
+<span class="hljs-keyword">const</span> path = <span class="hljs-built_in">require</span>(<span class="hljs-string">&quot;path&quot;</span>);
+<span class="hljs-keyword">const</span> currentDir = __dirname
+<span class="hljs-built_in">module</span>.exports = <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">jsCode, inMap</span>) </span>{
+    <span class="hljs-keyword">var</span> filepath = path.relative(currentDir, <span class="hljs-keyword">this</span>.resourcePath);
+    <span class="hljs-keyword">var</span> injectedCode = inject(filepath, jsCode, <span class="hljs-number">10</span>);
+    <span class="hljs-keyword">return</span> injectedCode;
+};
+</code></pre>
+<p>&#x5B9F;&#x969B;&#x306B;&#x53D6;&#x5F97;&#x3057;&#x305F;<code>hls.js</code>&#x306E;&#x95A2;&#x6570;&#x3054;&#x3068;&#x306E;&#x30D7;&#x30ED;&#x30D5;&#x30A1;&#x30A4;&#x30EB;&#x3092;&#x898B;&#x3066;&#x307F;&#x3066;&#x307F;&#x307E;&#x3059;&#x3002;</p>
+<p><img src="img/sjsp-profile.png" alt="hls.js&#x306E;&#x95A2;&#x6570;&#x30D7;&#x30ED;&#x30D5;&#x30A1;&#x30A4;&#x30EB;"></p>
+<p>&#x5408;&#x8A08;&#x306E;&#x51E6;&#x7406;&#x6642;&#x9593;&#x9806;&#x306B;&#x4E26;&#x3079;&#x3066;&#x308B;&#x3068;&#x30A4;&#x30D9;&#x30F3;&#x30C8;&#x306E;&#x4ED5;&#x7D44;&#x307F;&#x3084;&#x30E1;&#x30A4;&#x30F3;&#x30EB;&#x30FC;&#x30D7;&#x3067;&#x306E;<code>tick</code>&#x3001;&#x30D0;&#x30C3;&#x30D5;&#x30A1;&#x30C1;&#x30A7;&#x30C3;&#x30AF;&#x306A;&#x3069;&#x304C;&#x5927;&#x90E8;&#x5206;&#x3092;&#x5360;&#x3081;&#x3066;&#x3044;&#x308B;&#x3053;&#x3068;&#x304C;&#x308F;&#x304B;&#x308A;&#x307E;&#x3059;&#x3002;</p>
+<ul>
+<li><code>EventEmitter</code></li>
+<li><code>tick</code> &#xFF08;&#x30D0;&#x30C3;&#x30D5;&#x30A1;&#x306E;&#x30C1;&#x30A7;&#x30C3;&#x30AF;&#x306A;&#x3069;&#x3092;&#x3057;&#x3066;&#x6B63;&#x3057;&#x304F;&#x518D;&#x751F;&#x3067;&#x304D;&#x3066;&#x3044;&#x308B;&#x304B;&#x3092;100ms&#x3054;&#x3068;&#x306B;&#x30C1;&#x30A7;&#x30C3;&#x30AF;&#x3059;&#x308B;&#xFF09;</li>
+<li><code>_checkAppendedParsed</code>&#xFF08;&#x30D0;&#x30C3;&#x30D5;&#x30A1;&#x304C;&#x65AD;&#x7247;&#x5316;&#x3057;&#x3066;&#x306A;&#x3044;&#x304B;&#x3092;&#x30C1;&#x30A7;&#x30C3;&#x30AF;&#x3059;&#x308B;&#xFF09;</li>
+</ul>
+<p>&#x305D;&#x308C;&#x305E;&#x308C;&#x306E;<code>tick</code> 1&#x56DE;&#x306E;&#x51E6;&#x7406;&#x306F;&#x6570;&#x30DF;&#x30EA;&#x79D2;&#x306A;&#x3069;&#x3068;&#x3066;&#x3082;&#x5C0F;&#x3055;&#x3044;&#x3067;&#x3059;&#x304C;&#x3001;
+<code>hls.js</code>&#x306E;&#x4ED5;&#x7D44;&#x307F;&#x4E0A;&#x3069;&#x3053;&#x304B;&#x3067;&#x6570;&#x767E;&#x30DF;&#x30EA;&#x79D2;&#x306E;&#x51E6;&#x7406;&#x304C;&#x767A;&#x751F;&#x3059;&#x308B;&#x3068;&#x3001;&#x305D;&#x308C;&#x306F;&#x6620;&#x50CF;&#x304C;&#x305D;&#x3053;&#x3067;&#x6B62;&#x307E;&#x308B;&#x3068;&#x3044;&#x3046;&#x3053;&#x3068;&#x3092;&#x610F;&#x5473;&#x3057;&#x307E;&#x3059;&#x3002;
+&#x305D;&#x306E;&#x305F;&#x3081;&#x3001;&#x5E38;&#x306B;&#x5B89;&#x5B9A;&#x3057;&#x305F;&#x6642;&#x9593;&#x3067;&#x51E6;&#x7406;&#x3092;&#x56DE;&#x3057;&#x7D9A;&#x3051;&#x308B;&#x3053;&#x3068;&#x304C;&#x5927;&#x5207;&#x3067;&#x3042;&#x308B;&#x3068;&#x3044;&#x3046;&#x8A8D;&#x8B58;&#x3067;&#x3059;&#x3002;</p>
+<h2 id="&#x4E0D;&#x8981;&#x306A;&#x51E6;&#x7406;&#x3092;&#x7121;&#x52B9;&#x5316;">&#x4E0D;&#x8981;&#x306A;&#x51E6;&#x7406;&#x3092;&#x7121;&#x52B9;&#x5316;</h2>
+<p>&#x4ED6;&#x306B;&#x3082;<code>node-sjsp</code>&#x3092;&#x4F7F;&#x3063;&#x3066;&#x3044;&#x308D;&#x3044;&#x308D;&#x306A;&#x72B6;&#x6CC1;&#x3067;&#x30D7;&#x30ED;&#x30D5;&#x30A1;&#x30A4;&#x30EB;&#x3092;&#x53D6;&#x3063;&#x3066;&#x3044;&#x308B;&#x3068;&#x3001;<code>Cea608</code>&#x3068;&#x3044;&#x3046;&#x898B;&#x6163;&#x308C;&#x306A;&#x3044;&#x51E6;&#x7406;&#x304C;&#x51FA;&#x3066;&#x304F;&#x308B;&#x3053;&#x3068;&#x304C;&#x3042;&#x308A;&#x307E;&#x3057;&#x305F;&#x3002;</p>
+<p><img src="img/hls-caption.png" alt="hls-caption.png"></p>
+<p><a href="https://en.wikipedia.org/wiki/EIA-608" target="_blank">CEA-608</a>&#x306F;&#x30AD;&#x30E3;&#x30D7;&#x30B7;&#x30E7;&#x30F3;&#xFF08;&#x5B57;&#x5E55;&#xFF09;&#x306E;&#x3053;&#x3068;&#x3067;&#x3059;&#x3002;
+&#x5B57;&#x5E55;&#x304C;&#x306A;&#x3044;&#x52D5;&#x753B;&#x306B;&#x5BFE;&#x3057;&#x3066;&#x3082;&#x3053;&#x306E;&#x51E6;&#x7406;&#x304C;&#x884C;&#x308F;&#x308C;&#x3066;&#x3044;&#x308B;&#x305F;&#x3081;&#x3001;&#x306A;&#x306B;&#x304B;&#x7121;&#x99C4;&#x306A;&#x51E6;&#x7406;&#x3092;&#x884C;&#x3063;&#x3066;&#x3044;&#x305D;&#x3046;&#x3067;&#x3059;&#x3002;</p>
+<p><code>hls.js</code>&#x306E;&#x30BD;&#x30FC;&#x30B9;&#x30B3;&#x30FC;&#x30C9;&#x3084;&#x30C9;&#x30AD;&#x30E5;&#x30E1;&#x30F3;&#x30C8;&#x3092;&#x898B;&#x308B;&#x3068;<a href="https://github.com/video-dev/hls.js/blob/master/docs/API.md#enablecea708captions" target="_blank">enableCEA708Captions</a>&#x3068;&#x3044;&#x3046;&#x30AA;&#x30D7;&#x30B7;&#x30E7;&#x30F3;&#x3067;&#x5B57;&#x5E55;&#x51E6;&#x7406;&#x3092;&#x7121;&#x52B9;&#x5316;&#x3067;&#x304D;&#x308B;&#x3053;&#x3068;&#x304C;&#x308F;&#x304B;&#x308A;&#x307E;&#x3059;&#x3002;
+&#xFF08;&#x3053;&#x308C;&#x3089;&#x306F;&#x30C7;&#x30D5;&#x30A9;&#x30EB;&#x30C8;&#x304C;&#x6709;&#x52B9;&#x3067;&#x3059;&#xFF09;</p>
+<p>&#x3053;&#x306E;<a href="https://github.com/video-dev/hls.js/blob/master/docs/API.md#enablecea708captions" target="_blank">enableCEA708Captions</a>&#x30AA;&#x30D7;&#x30B7;&#x30E7;&#x30F3;&#x3092;<code>false</code>&#x306B;&#x3059;&#x308B;&#x3053;&#x3068;&#x3067;<code>Cea608</code>&#x306B;&#x95A2;&#x3059;&#x308B;&#x51E6;&#x7406;&#x3092;&#x3057;&#x306A;&#x304F;&#x306A;&#x308B;&#x3053;&#x3068;&#x304C;&#x78BA;&#x8A8D;&#x3067;&#x304D;&#x307E;&#x3057;&#x305F;&#x3002;</p>
+<p>&#x1F4DD; hls.js&#x3067;&#x306F;&#x3053;&#x306E;&#x30AA;&#x30D7;&#x30B7;&#x30E7;&#x30F3;&#x304C;&#x6709;&#x52B9;&#x6642;&#x306B;&#x30D5;&#x30E9;&#x30B0;&#x30E1;&#x30F3;&#x30C8;&#x3092;&#x53D6;&#x5F97;&#x3059;&#x308B;&#x305F;&#x3073;&#x306B;&#x3001;<code>cea608Parser</code>&#x3092;&#x30EA;&#x30BB;&#x30C3;&#x30C8;&#x3059;&#x308B;&#x51E6;&#x7406;&#x304C;&#x884C;&#x308F;&#x308C;&#x3066;&#x3044;&#x307E;&#x3057;&#x305F;&#x3002;</p>
+<ul>
+<li><a href="https://github.com/video-dev/hls.js/blob/905e65fd68095bd5e2bc9f888ae09b64fca8835a/src/controller/timeline-controller.js#L228-L232" target="_blank">https://github.com/video-dev/hls.js/blob/905e65fd68095bd5e2bc9f888ae09b64fca8835a/src/controller/timeline-controller.js#L228-L232</a></li>
+</ul>
+<h2 id="hlsjs&#x3092;&#x4FEE;&#x6B63;&#x3059;&#x308B;"><code>hls.js</code>&#x3092;&#x4FEE;&#x6B63;&#x3059;&#x308B;</h2>
+<p>&#x95A2;&#x6570;&#x306E;&#x30D7;&#x30ED;&#x30D5;&#x30A1;&#x30A4;&#x30EB;&#x3092;&#x898B;&#x3066;&#x307F;&#x308B;&#x3068;<code>hls.js</code>&#x3067;&#x51E6;&#x7406;&#x306E;&#x4E2D;&#x5FC3;&#x3068;&#x306A;&#x3063;&#x3066;&#x3044;&#x308B;&#x306E;&#x306F;&#x9AD8;&#x983B;&#x5EA6;&#x304C;&#x547C;&#x3070;&#x308C;&#x308B;<code>tick</code>&#x3084;<code>_checkAppendedParsed</code>&#x306A;&#x3069;&#x3067;&#x3057;&#x305F;&#x3002;
+&#x3053;&#x308C;&#x3089;&#x306E;&#x51E6;&#x7406;&#x306F;&#x9AD8;&#x983B;&#x5EA6;&#x3067;&#x547C;&#x3070;&#x308C;&#x308B;&#x305F;&#x3081;&#x3001;&#x5C11;&#x3057;&#x3067;&#x3082;&#x6539;&#x5584;&#x3059;&#x308B;&#x3068;&#x6620;&#x50CF;&#x518D;&#x751F;&#x306E;&#x5B89;&#x5B9A;&#x5316;&#x306B;&#x5BC4;&#x4E0E;&#x3059;&#x308B;&#x3060;&#x308D;&#x3046;&#x3068;&#x4EEE;&#x8AAC;&#x304C;&#x3042;&#x308A;&#x307E;&#x3057;&#x305F;&#x3002;
+&#x307E;&#x305F;&#x3001;<code>_checkAppendedParsed</code>&#x306A;&#x3069;&#x306F;&#x4FDD;&#x6301;&#x3057;&#x3066;&#x3044;&#x308B;&#x30D5;&#x30E9;&#x30B0;&#x30E1;&#x30F3;&#x30C8;&#x306E;&#x6570;&#xFF08;HLS&#x306F;&#x6620;&#x50CF;&#x304C;&#x30BB;&#x30B0;&#x30E1;&#x30F3;&#x30C8;&#x5358;&#x4F4D;&#x306B;&#x7D30;&#x304B;&#x304F;&#x5207;&#x3063;&#x305F;&#x3082;&#x306E;&#x3092;&#x53D6;&#x5F97;&#x3057;&#x518D;&#x751F;&#x3057;&#x307E;&#x3059;&#xFF09;&#x3068;&#x51E6;&#x7406;&#x6642;&#x9593;&#x306B;&#x76F8;&#x95A2;&#x304C;&#x3042;&#x308A;&#x305D;&#x3046;&#x3067;&#x3057;&#x305F;&#x3002;
+&#x5B9F;&#x969B;&#x306B; <code>fragments</code> &#x3068;&#x3044;&#x3046;&#x914D;&#x5217;&#x306B;&#x5BFE;&#x3057;&#x3066;&#x3001;for&#x30EB;&#x30FC;&#x30D7;&#x3067;&#x30C1;&#x30A7;&#x30C3;&#x30AF;&#x51E6;&#x7406;&#x3092;&#x884C;&#x3046;&#x305F;&#x3081;&#x3001;&#x30D5;&#x30E9;&#x30B0;&#x30E1;&#x30F3;&#x30C8;&#x306E;&#x6570;&#x304C;&#x5897;&#x3048;&#x308B;&#x3068;&#x51E6;&#x7406;&#x6642;&#x9593;&#x304C;&#x5897;&#x52A0;&#x3057;&#x3066;&#x3044;&#x307E;&#x3057;&#x305F;&#x3002;</p>
+<p><img src="img/hls-js-fragments-count.png" alt="hls-js-fragments-count.png"></p>
+<blockquote>
+<p>&#x30D5;&#x30E9;&#x30B0;&#x30E1;&#x30F3;&#x30C8;&#x6570;&#x3068;<code>_checkAppendedParsed</code>&#x306E;&#x51E6;&#x7406;&#x30B3;&#x30B9;&#x30C8;&#x306E;&#x76F8;&#x95A2;</p>
+</blockquote>
+<p>&#x3053;&#x308C;&#x3089;&#x306E;&#x30D1;&#x30D5;&#x30A9;&#x30FC;&#x30DE;&#x30F3;&#x30B9;&#x3092;&#x6539;&#x5584;&#x3059;&#x308B;&#x306B;&#x306F;<code>hls.js</code>&#x305D;&#x306E;&#x3082;&#x306E;&#x306B;&#x624B;&#x3092;&#x5165;&#x308C;&#x308B;&#x5FC5;&#x8981;&#x304C;&#x3042;&#x308B;&#x305F;&#x3081;&#x3001;<code>hls.js</code>&#x306B;Pull Request&#x3057;&#x3066;&#x4FEE;&#x6B63;&#x3059;&#x308B;&#x3088;&#x3046;&#x306B;&#x3057;&#x307E;&#x3057;&#x305F;&#x3002;</p>
+<p>&#x3055;&#x304D;&#x307B;&#x3069;&#x306E;<code>_checkAppendedParsed</code>&#x306E;&#x554F;&#x984C;&#x3082;&#x30EB;&#x30FC;&#x30D7;&#x5185;&#x306E;&#x51E6;&#x7406;&#x3092;&#x6700;&#x9069;&#x5316;&#x3059;&#x308B;PR&#x3092;&#x51FA;&#x3059;&#x306A;&#x3069;&#x3057;&#x3066;&#x3001;&#x30DE;&#x30A4;&#x30AF;&#x30ED;&#x30D9;&#x30F3;&#x30C1;&#x4E0A;&#x306F;3.38&#x500D;&#x65E9;&#x304F;&#x306A;&#x308A;&#x307E;&#x3057;&#x305F;&#x3002;</p>
+<p><img src="img/hls-js_checkAppendedParsed.png" alt="improve `_checkAppendedParsed`"></p>
+<blockquote>
+<p><a href="https://github.com/video-dev/hls.js/pull/1528" target="_blank">Improve <code>StreamController#_checkAppendedParsed</code> performance #1528</a></p>
+</blockquote>
+<p>&#x3053;&#x308C;&#x306B;&#x52A0;&#x3048;&#x3066;<a href="https://github.com/video-dev/hls.js/issues/1544" target="_blank">&#x30D0;&#x30C3;&#x30D5;&#x30A1;&#x30C1;&#x30A7;&#x30C3;&#x30AF;&#x306E;&#x4ED5;&#x7D44;&#x307F;&#x306E;&#x69CB;&#x9020;&#x3092;&#x4FEE;&#x6B63;</a>&#x3059;&#x308B;&#x3068;&#x3044;&#x3063;&#x305F;&#x6539;&#x5584;&#x3082;&#x884C;&#x3063;&#x3066;&#x3044;&#x307E;&#x3059;&#x3002;</p>
+<p>&#x307E;&#x305F;<code>hls.js</code>&#x306F;&#x8907;&#x96D1;&#x306A;&#x30B9;&#x30C6;&#x30FC;&#x30C8;&#x3092;&#x3082;&#x3064;&#x30B3;&#x30FC;&#x30C9;&#x3067;&#x3059;&#x304C;&#x3001;&#x305D;&#x308C;&#x306B;&#x5BFE;&#x3057;&#x3066;&#x30C6;&#x30B9;&#x30C8;&#x306E;&#x91CF;&#x304C;&#x8DB3;&#x308A;&#x3066;&#x3044;&#x306A;&#x304B;&#x3063;&#x305F;&#x306E;&#x3067;&#x30C6;&#x30B9;&#x30C8;&#x3092;&#x8FFD;&#x52A0;&#x3057;&#x305F;&#x308A;&#x3001;
+SauceLab&#x3092;&#x4F7F;&#x3063;&#x305F;<a href="https://github.com/video-dev/hls.js/issues/1566" target="_blank">CI&#x304C;&#x4E0D;&#x5B89;&#x5B9A;&#x3060;&#x3063;&#x305F;&#x306E;&#x3092;&#x554F;&#x984C;&#x3092;&#x5B89;&#x5B9A;&#x5316;</a>&#x3059;&#x308B;&#x306A;&#x3069;&#x3092;&#x884C;&#x3044;&#x307E;&#x3057;&#x305F;&#x3002;</p>
+<p>&#x6700;&#x7D42;&#x7684;&#x306B;&#x306F;&#x6570;&#x5341;&#x306E;&#x30B3;&#x30DF;&#x30C3;&#x30C8;&#x3084;Pull Request&#x3092;&#x3057;&#x305F;&#x7D50;&#x679C;&#x3001;<code>hls.js</code>&#x306E;&#x30B3;&#x30E9;&#x30DC;&#x30EC;&#x30FC;&#x30BF;&#x3068;&#x3057;&#x3066;&#x6D3B;&#x52D5;&#x3057;&#x3066;&#x3044;&#x307E;&#x3059;&#x3002;</p>
+<h2 id="fork&#x3067;&#x306F;&#x306A;&#x304F;pull-request">Fork&#x3067;&#x306F;&#x306A;&#x304F;Pull Request</h2>
+<p><a href="https://github.com/video-dev/hls.js" target="_blank">hls.js</a>&#x306E;&#x30D1;&#x30D5;&#x30A9;&#x30FC;&#x30DE;&#x30F3;&#x30B9;&#x6539;&#x5584;&#x3092;&#x884C;&#x3046;&#x5834;&#x5408;&#x306B;&#x3001;Pull Request&#x3092;&#x9001;&#x308B;&#x306E;&#x3067;&#x306F;&#x306A;&#x304F;Fork&#x3057;&#x3066;&#x3057;&#x307E;&#x3046;&#x3068;&#x3044;&#x3046;&#x9078;&#x629E;&#x80A2;&#x3082;&#x3042;&#x308A;&#x307E;&#x3057;&#x305F;&#x3002;
+&#x3057;&#x304B;&#x3057;&#x306A;&#x304C;&#x3089;&#x3001;<code>hls.js</code>&#x306F;&#x5341;&#x5206;&#x8907;&#x96D1;&#x306A;&#x30E9;&#x30A4;&#x30D6;&#x30E9;&#x30EA;&#x3067;&#x3059;&#x3002;&#x305D;&#x306E;&#x305F;&#x3081;&#x5B89;&#x6613;&#x306B;Fork&#x3059;&#x308B;&#x3068;&#x3001;Upstream&#x306B;&#x8FFD;&#x5F93;&#x3059;&#x308B;&#x306E;&#x3082;&#x96E3;&#x3057;&#x304F;&#x30E1;&#x30F3;&#x30C6;&#x30CA;&#x30F3;&#x30B9;&#x30B3;&#x30B9;&#x30C8;&#x304C;&#x9AD8;&#x304F;&#x306A;&#x308A;&#x3084;&#x3059;&#x3044;&#x3067;&#x3059;&#x3002;</p>
+<ul>
+<li><a href="http://llvm.org/devmtg/2015-10/slides/RobinsonEdwards-LivingDownstreamWithoutDrowning.pdf" target="_blank">Living Downstream - BOF vFinal.key</a><ul>
+<li>Sony&#x304C;LLVM&#x306E;Fork&#x3092;&#x3084;&#x3081;&#x305F;&#x8A71;</li>
+</ul>
+</li>
+</ul>
+<!-- textlint-disable -->
+<p>&#x3053;&#x308C;&#x306F;<code>hls.js</code>&#x306B;&#x9650;&#x3089;&#x305A;&#x3055;&#x307E;&#x3056;&#x307E;&#x306A;OSS&#x3092;&#x4F7F;&#x3063;&#x305F;&#x958B;&#x767A;&#x3067;&#x767A;&#x751F;&#x3059;&#x308B;&#x554F;&#x984C;&#x3067;&#x3059;&#x3002;
+&#x3042;&#x308B;&#x30E9;&#x30A4;&#x30D6;&#x30E9;&#x30EA;&#x3092;&#x5229;&#x7528;&#x3059;&#x308B;&#x969B;&#x306B;&#x306F;&#x3001;&#x305D;&#x306E;&#x30E9;&#x30A4;&#x30D6;&#x30E9;&#x30EA;&#x306B;&#x554F;&#x984C;&#x304C;&#x767A;&#x751F;&#x3057;&#x305F;&#x3068;&#x304D;&#x306B;&#x3069;&#x3046;&#x3059;&#x308B;&#x304B;&#x3092;&#x8003;&#x3048;&#x3066;&#x304B;&#x3089;&#x9078;&#x629E;&#x3057;&#x3066;&#x3082;&#x9045;&#x304F;&#x306F;&#x306A;&#x3044;&#x304B;&#x3082;&#x3057;&#x308C;&#x307E;&#x305B;&#x3093;&#x3002;</p>
+<!-- textlint-enable -->
+
+                                
+                                </section>
+                            
+    </div>
+    <div class="search-results">
+        <div class="has-results">
+            
+            <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+            <ul class="search-results-list"></ul>
+            
+        </div>
+        <div class="no-results">
+            
+            <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+            
+        </div>
+    </div>
+</div>
+
+                        </div>
+                    </div>
+                
+            </div>
+
+            
+                
+                <a href="../tradeoff/" class="navigation navigation-prev " aria-label="Previous page: 軽量化のトレードオフの検証">
+                    <i class="fa fa-angle-left"></i>
+                </a>
+                
+                
+                <a href="../../startup/" class="navigation navigation-next " aria-label="Next page: ページロードのパフォーマンス改善">
+                    <i class="fa fa-angle-right"></i>
+                </a>
+                
+            
+        
+    </div>
+
+    <script>
+        var gitbook = gitbook || [];
+        gitbook.push(function() {
+            gitbook.page.hasChanged({"page":{"title":"ライブラリを改善する","level":"1.2.6","depth":2,"next":{"title":"ページロードのパフォーマンス改善","level":"1.3","depth":1,"path":"startup/README.md","ref":"./startup/README.md","articles":[{"title":"継続的なパフォーマンス計測","level":"1.3.1","depth":2,"path":"startup/stats/README.md","ref":"./startup/stats/README.md","articles":[]},{"title":"パッケージはBundleを配布しない","level":"1.3.2","depth":2,"path":"startup/reduce-bundle/README.md","ref":"./startup/reduce-bundle/README.md","articles":[]},{"title":"\"module\"フィールド対応","level":"1.3.3","depth":2,"path":"startup/module-field/README.md","ref":"./startup/module-field/README.md","articles":[]},{"title":"ファイルサイズを減らす","level":"1.3.4","depth":2,"path":"startup/reduce-size/README.md","ref":"./startup/reduce-size/README.md","articles":[]}]},"previous":{"title":"軽量化のトレードオフの検証","level":"1.2.5","depth":2,"path":"watching/tradeoff/README.md","ref":"./watching/tradeoff/README.md","articles":[]},"dir":"ltr"},"config":{"plugins":["markdown-video"],"root":"./src/","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"markdown-video":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","author":"DWANGO Co., Ltd.","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"IPAexMincho","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"Webフロントエンド パフォーマンス改善ハンドブック","language":"ja","gitbook":">=3.0.0","description":"ウェブアプリケーションのフロントエンドにおけるパフォーマンス改善ハンドブック"},"file":{"path":"watching/fix-library/README.md","mtime":"2018-10-26T06:49:39.468Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2018-10-26T06:51:05.118Z"},"basePath":"../..","book":{"language":""}});
+        });
+    </script>
+</div>
+
+        
+    <script src="../../gitbook/gitbook.js"></script>
+    <script src="../../gitbook/theme.js"></script>
+    
+        
+        <script src="../../gitbook/gitbook-plugin-markdown-video/video.min.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-search/search-engine.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-search/search.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-lunr/lunr.min.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-lunr/search-lunr.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-sharing/buttons.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-fontsettings/fontsettings.js"></script>
+        
+    
+
+    </body>
+</html>
+
