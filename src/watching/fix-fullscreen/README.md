@@ -38,7 +38,7 @@
 
 リサイズイベントが起きたから、要素をリサイズするといったようにイベント駆動で処理することで負荷が軽減できます。もちろん大量のイベントが発生すると問題となるため、イベントを間引くや別のタイミングでまとめる工夫も必要になる場合があります。
 
-少なくても、`shouldComponentUpdate`が完全に管理できていない状況においては`componentDidUpdate`でレイアウトするのは問題となりやすい。
+少なくとも、`shouldComponentUpdate`が完全に管理できていない状況においては`componentDidUpdate`でレイアウトするのは問題となりやすい箇所です。
 
 - [ `componentDidUpdate`でのReflowの修正](../fix-reflow-componentDidUpdate/README.md)
 
@@ -52,8 +52,8 @@
 
 #### 1. componentDidUpdateで重たい場所を見つける
 
-React 16ならばTimelineに次のような表示が出ている箇所が怪しい箇所。
-長い`componentDidUpdate`の処理の場合に表示される)
+React 16ならばTimelineに次のような表示が出ている箇所が怪しい箇所です。  
+（長い`componentDidUpdate`の処理の場合に表示される)
 
 > ⛔ (Committing Changes) Warning: Lifecycle hook scheduled a cascading update
 

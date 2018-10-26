@@ -63,7 +63,7 @@ Tree Shakingに対応するには、そのライブラリが`import`、`export`�
 （webpackではこの読み込む優先度を[resolve.mainFields](https://webpack.js.org/configuration/resolve/#resolve-mainfields)で変更できます）
 
 そのため、管理しているライブラリそれぞれ`"module"`フィールドに対応する必要があります。
-(`"module"`フィールドに対応してないライブラリは今までとおり扱えるのは、無理にすべてを対応する必要はありません）
+(`"module"`フィールドに対応してないライブラリは今までとおり扱えるので、無理にすべてを対応する必要はありません）
 
 次のような内容でIssueを作成し、対応するべきモジュールを一個ずつ対応していきました。
 （`"module"`フィールドは混在できるので、すべてを一気にやる必要はありません）

@@ -85,7 +85,7 @@ VueやAlminなど最近のライブラリなら大抵何とかなります。
 [flux](https://github.com/facebook/flux "flux")のイベントと[React](https://reactjs.org/ "React")の更新の関係をUser Timing APIを使って可視化してみましょう。
 
 といっても難しい話ではなく、Fluxがdispatchしたタイミングで`performance.mark`を貼り、Storeが更新されたタイミングもう一度`performance.mark`を貼るだけです。
-Reactは`?react_perf`（React 16からはデフォルト）を付けるだけど、自動的に`performance.mark`をつけてくれます。
+Reactは`?react_perf`（React 16からはデフォルト）を付けるだけで、自動的に`performance.mark`をつけてくれます。
 
 - [Profiling Components with the Chrome Performance Tab](https://reactjs.org/docs/optimizing-performance.html#profiling-components-with-the-chrome-performance-tab "Profiling Components with the Chrome Performance Tab")
 
